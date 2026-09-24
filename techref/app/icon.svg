@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#180a3a"/>
+      <stop offset="60%" stop-color="#090414"/>
+      <stop offset="100%" stop-color="#020005"/>
+    </radialGradient>
+    
+    <!-- Neon Gradients -->
+    <linearGradient id="cyanPlasma" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f7ff"/>
+      <stop offset="50%" stop-color="#0099ff"/>
+      <stop offset="100%" stop-color="#7000ff"/>
+    </linearGradient>
+
+    <linearGradient id="magentaLaser" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff007b"/>
+      <stop offset="60%" stop-color="#d000ff"/>
+      <stop offset="100%" stop-color="#00f7ff"/>
+    </linearGradient>
+
+    <linearGradient id="topFacet" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="leftFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c026d3" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#581c87" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <linearGradient id="rightFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Intense Neon Glow Filter -->
+    <filter id="superGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="coreGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark Cosmic Canvas -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGlow)"/>
+
+  <!-- Orbital Data Rings -->
+  <circle cx="64" cy="64" r="50" fill="none" stroke="url(#cyanPlasma)" stroke-width="1.2" stroke-dasharray="8 6 2 6" opacity="0.65" filter="url(#coreGlow)"/>
+  <circle cx="64" cy="64" r="56" fill="none" stroke="url(#magentaLaser)" stroke-width="1" stroke-dasharray="14 10 4 10" opacity="0.5" filter="url(#coreGlow)"/>
+
+  <!-- Crosshairs / Circuit Nodes -->
+  <line x1="64" y1="6" x2="64" y2="122" stroke="#00f7ff" stroke-width="0.8" opacity="0.4" stroke-dasharray="4 6"/>
+  <line x1="6" y1="64" x2="122" y2="64" stroke="#ff007b" stroke-width="0.8" opacity="0.4" stroke-dasharray="4 6"/>
+  <circle cx="64" cy="14" r="2.5" fill="#00f7ff" filter="url(#coreGlow)"/>
+  <circle cx="64" cy="114" r="2.5" fill="#00f7ff" filter="url(#coreGlow)"/>
+  <circle cx="14" cy="64" r="2.5" fill="#ff007b" filter="url(#coreGlow)"/>
+  <circle cx="114" cy="64" r="2.5" fill="#ff007b" filter="url(#coreGlow)"/>
+
+  <!-- Outer Isometric Hypercube -->
+  <!-- Top Face -->
+  <polygon points="64,28 92,44 64,60 36,44" fill="url(#topFacet)" stroke="#38bdf8" stroke-width="1.8" filter="url(#coreGlow)"/>
+  <!-- Left Face -->
+  <polygon points="36,44 64,60 64,96 36,80" fill="url(#leftFacet)" stroke="#e879f9" stroke-width="1.8" filter="url(#coreGlow)"/>
+  <!-- Right Face -->
+  <polygon points="64,60 92,44 92,80 64,96" fill="url(#rightFacet)" stroke="#22d3ee" stroke-width="1.8" filter="url(#coreGlow)"/>
+
+  <!-- Inner Quantum Core (Floating & Glowing) -->
+  <polygon points="64,46 78,54 64,62 50,54" fill="#00f7ff" opacity="0.85" filter="url(#superGlow)"/>
+  <polygon points="50,54 64,62 64,78 50,70" fill="#ff00a0" opacity="0.85" filter="url(#superGlow)"/>
+  <polygon points="64,62 78,54 78,70 64,78" fill="#7928ca" opacity="0.9" filter="url(#superGlow)"/>
+
+  <!-- Radiant Quantum Core Center Flare -->
+  <circle cx="64" cy="62" r="5" fill="#ffffff" filter="url(#superGlow)"/>
+  <circle cx="64" cy="62" r="2" fill="#ffffff"/>
+
+  <!-- Diagonal Laser Beams -->
+  <line x1="20" y1="20" x2="108" y2="108" stroke="#ff00a0" stroke-width="1.5" opacity="0.75" filter="url(#superGlow)"/>
+  <line x1="108" y1="20" x2="20" y2="108" stroke="#00f7ff" stroke-width="1.5" opacity="0.75" filter="url(#superGlow)"/>
+</svg>

@@ -1,0 +1,171 @@
+[
+  {
+    "id": "create_embedding",
+    "method": "POST",
+    "path": "/v1/embeddings",
+    "title": "Generate Vector Embeddings",
+    "description": "Transforms high-dimensional text sequences into 1536-dimensional dense float vectors for semantic retrieval, similarity ranking, and RAG pipelines.",
+    "tags": ["AI & Embeddings"],
+    "parameters": [
+      {
+        "name": "X-Org-Id",
+        "in": "header",
+        "required": true,
+        "description": "Enterprise organization tenant identifier.",
+        "schema": {
+          "type": "string",
+          "example": "org_enterprise_99x"
+        }
+      }
+    ],
+    "requestBody": {
+      "type": "object",
+      "required": ["model", "input"],
+      "description": "Embedding creation options and raw text inputs.",
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "Embedding model identifier (e.g. text-embedding-3-large).",
+          "example": "text-embedding-3-large"
+        },
+        "input": {
+          "type": "array",
+          "description": "Array of string tokens or single string document.",
+          "items": {
+            "type": "string"
+          },
+          "example": ["Architectural patterns for high-throughput stream processing"]
+        },
+        "dimensions": {
+          "type": "integer",
+          "description": "Truncation dimension count for compact storage.",
+          "example": 1536
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "statusCode": "200",
+        "description": "Successful vectorization payload.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "object": { "type": "string", "example": "list" },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "index": { "type": "integer" },
+                  "embedding": { "type": "array", "items": { "type": "number" } }
+                }
+              }
+            },
+            "usage": {
+              "type": "object",
+              "properties": {
+                "prompt_tokens": { "type": "integer" },
+                "total_tokens": { "type": "integer" }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "statusCode": "401",
+        "description": "Invalid API key or expired token.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "error": { "type": "string", "example": "Unauthorized: API token revoked" }
+          }
+        }
+      }
+    },
+    "servers": [{ "url": "https://api.techref.dev/v1" }]
+  },
+  {
+    "id": "query_pipeline",
+    "method": "GET",
+    "path": "/v1/pipelines/{pipeline_id}",
+    "title": "Retrieve Distributed Pipeline Status",
+    "description": "Queries real-time telemetry, node partition state, worker consumer lag, and checkpoint health for an active streaming pipeline.",
+    "tags": ["Distributed Systems"],
+    "parameters": [
+      {
+        "name": "pipeline_id",
+        "in": "path",
+        "required": true,
+        "description": "Unique identifier of the target ingestion pipeline.",
+        "schema": {
+          "type": "string",
+          "example": "pipe_tokio_kafka_001"
+        }
+      },
+      {
+        "name": "include_metrics",
+        "in": "query",
+        "required": false,
+        "description": "Flag to hydrate percentile latencies (p95, p99).",
+        "schema": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "statusCode": "200",
+        "description": "Pipeline operational telemetry.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "pipeline_id": { "type": "string" },
+            "state": { "type": "string", "enum": ["RUNNING", "DEGRADED", "HALTED"] },
+            "throughput_eps": { "type": "number", "description": "Events per second" },
+            "active_shards": { "type": "integer" },
+            "consumer_lag_ms": { "type": "number" }
+          }
+        }
+      }
+    },
+    "servers": [{ "url": "https://api.techref.dev/v1" }]
+  },
+  {
+    "id": "revoke_token",
+    "method": "DELETE",
+    "path": "/v1/auth/tokens/{token_id}",
+    "title": "Revoke Access Token",
+    "description": "Immediately invalidates a scoped API token and broadcasts a distributed eviction event to edge authorization caches within 50ms.",
+    "tags": ["Security & Auth"],
+    "parameters": [
+      {
+        "name": "token_id",
+        "in": "path",
+        "required": true,
+        "description": "Token identifier string to invalidate.",
+        "schema": {
+          "type": "string",
+          "example": "tok_live_7x92b"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "statusCode": "200",
+        "description": "Token successfully revoked and purged.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "revoked": { "type": "boolean" },
+            "token_id": { "type": "string" },
+            "evicted_at": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    },
+    "servers": [{ "url": "https://api.techref.dev/v1" }]
+  }
+]

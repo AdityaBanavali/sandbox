@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ep-create-embedding",
+    "type": "endpoint",
+    "title": "POST /v1/embeddings",
+    "subtitle": "Generate Vector Embeddings - AI & Embeddings",
+    "content": "Transforms high-dimensional text sequences into 1536-dimensional dense float vectors for semantic retrieval, similarity ranking, and RAG pipelines.",
+    "url": "/#create_embedding",
+    "tags": ["AI", "Embeddings", "POST", "Vector"]
+  },
+  {
+    "id": "ep-query-pipeline",
+    "type": "endpoint",
+    "title": "GET /v1/pipelines/{pipeline_id}",
+    "subtitle": "Retrieve Distributed Pipeline Status - Distributed Systems",
+    "content": "Queries real-time telemetry, node partition state, worker consumer lag, and checkpoint health for an active streaming pipeline.",
+    "url": "/#query_pipeline",
+    "tags": ["Pipeline", "Telemetry", "GET", "Kafka"]
+  },
+  {
+    "id": "ep-revoke-token",
+    "type": "endpoint",
+    "title": "DELETE /v1/auth/tokens/{token_id}",
+    "subtitle": "Revoke Access Token - Security & Auth",
+    "content": "Immediately invalidates a scoped API token and broadcasts a distributed eviction event to edge authorization caches within 50ms.",
+    "url": "/#revoke_token",
+    "tags": ["Auth", "Security", "DELETE", "Tokens"]
+  },
+  {
+    "id": "guide-quickstart",
+    "type": "guide",
+    "title": "Quickstart Guide & Environment Setup",
+    "subtitle": "Developer Guides - Getting Started",
+    "content": "Initialize your TechRef client, configure TLS credentials, verify clock synchronization, and execute your first authenticated RPC call.",
+    "url": "/#guide-quickstart",
+    "tags": ["Quickstart", "Guide", "Setup"]
+  },
+  {
+    "id": "guide-architecture",
+    "type": "guide",
+    "title": "Distributed Ingestion Architecture Blueprint",
+    "subtitle": "System Blueprints - High Availability",
+    "content": "Zero-copy streaming pipeline architecture, backpressure propagation with Tokio channels, and partitioned consensus using Raft.",
+    "url": "/#guide-architecture",
+    "tags": ["Architecture", "Consensus", "Raft", "Tokio"]
+  },
+  {
+    "id": "sdk-typescript",
+    "type": "sdk",
+    "title": "TypeScript & Node.js SDK Reference",
+    "subtitle": "SDKs & Client Libraries",
+    "content": "Fully typed isomorphic client supporting Node 18+, Bun, Deno, and Next.js 16 Server Components with automatic backoff retry handlers.",
+    "url": "/#sdk-typescript",
+    "tags": ["SDK", "TypeScript", "Node.js", "Next.js"]
+  },
+  {
+    "id": "sdk-python",
+    "type": "sdk",
+    "title": "Python AsyncIO SDK (v1.4.0)",
+    "subtitle": "SDKs & Client Libraries",
+    "content": "Asyncio client built on httpx and pydantic v2 with native streaming generators and threadpool offloading.",
+    "url": "/#sdk-python",
+    "tags": ["SDK", "Python", "AsyncIO", "Pydantic"]
+  },
+  {
+    "id": "changelog-v1-4",
+    "type": "changelog",
+    "title": "Release v1.4.0: Turbopack & Vector Indexing",
+    "subtitle": "Changelog - September 2026",
+    "content": "Introduced sub-millisecond pgvector similarity index caching, Next.js 16 Turbopack compiler integration, and WebAuthn credential rotation.",
+    "url": "/#changelog",
+    "tags": ["Changelog", "Release", "v1.4.0"]
+  }
+]

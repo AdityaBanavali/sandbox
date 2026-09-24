@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --vortex-bg: #09090c;
+  --vortex-activity-bg: #09090b;
+  --vortex-sidebar-bg: #101014;
+  --vortex-editor-bg: #0e0e12;
+  --vortex-tabbar-bg: #0c0c10;
+  --vortex-breadcrumb-bg: #0c0c10;
+  --vortex-bottom-bg: #0e0e12;
+  --vortex-statusbar-bg: #0b0b0e;
+  --vortex-card-bg: #121217;
+  --vortex-accent: #8b7cf6;
+}
+
+/* VS Code Dark Modern Theme */
+.theme-vscode-dark {
+  --vortex-bg: #181818;
+  --vortex-activity-bg: #181818;
+  --vortex-sidebar-bg: #1f1f1f;
+  --vortex-editor-bg: #1e1e1e;
+  --vortex-tabbar-bg: #181818;
+  --vortex-breadcrumb-bg: #181818;
+  --vortex-bottom-bg: #1e1e1e;
+  --vortex-statusbar-bg: #007acc;
+  --vortex-card-bg: #252526;
+  --vortex-accent: #3b82f6;
+}
+
+/* Midnight Obsidian Theme */
+.theme-midnight-obsidian {
+  --vortex-bg: #000000;
+  --vortex-activity-bg: #000000;
+  --vortex-sidebar-bg: #050507;
+  --vortex-editor-bg: #000000;
+  --vortex-tabbar-bg: #030304;
+  --vortex-breadcrumb-bg: #030304;
+  --vortex-bottom-bg: #040406;
+  --vortex-statusbar-bg: #020203;
+  --vortex-card-bg: #0a0a0d;
+  --vortex-accent: #06b6d4;
+}
+
+/* Vortex Light Theme */
+.theme-vortex-light {
+  --vortex-bg: #f3f4f6;
+  --vortex-activity-bg: #e5e7eb;
+  --vortex-sidebar-bg: #f9fafb;
+  --vortex-editor-bg: #ffffff;
+  --vortex-tabbar-bg: #f3f4f6;
+  --vortex-breadcrumb-bg: #f9fafb;
+  --vortex-bottom-bg: #ffffff;
+  --vortex-statusbar-bg: #6366f1;
+  --vortex-card-bg: #ffffff;
+  --vortex-accent: #6366f1;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--vortex-bg);
+  color: #e4e4e7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+}
+
+input,
+textarea,
+[contenteditable="true"],
+.select-text {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  pointer-events: auto !important;
+}
+
+.theme-vortex-light {
+  color: #1f2937;
+}
+
+/* Custom Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.theme-vortex-light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-vortex-light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Utility classes */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Git Blame Inline Ghost Annotation */
+.vortex-git-blame-ghost {
+  color: #71717a !important;
+  font-style: italic !important;
+  font-size: 11px !important;
+  opacity: 0.7 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
