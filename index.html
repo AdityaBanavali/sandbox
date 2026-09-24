@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANDBOX // Cyberpunk Developer Hub</title>
+  <meta name="description" content="Engineering sandbox repository showcasing Matrix-rain, Vortex IDE, CodeVisualizer, and TechRef.">
+  <meta name="theme-color" content="#06080d">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-void: #05070a;
+      --bg-card: rgba(10, 14, 22, 0.78);
+      --bg-card-hover: rgba(14, 20, 32, 0.92);
+      --bg-surface: #0e131d;
+      --border-dim: rgba(0, 240, 255, 0.15);
+      --border-glow: rgba(0, 240, 255, 0.55);
+      
+      --cyan-neon: #00f0ff;
+      --green-matrix: #00ff66;
+      --magenta-cyber: #ff0055;
+      --violet-plasma: #9d4edd;
+      --amber-alert: #ffbe0b;
+      
+      --text-main: #e2e8f0;
+      --text-muted: #7b8ba5;
+      --text-dim: #435168;
+
+      --font-display: 'Orbitron', -apple-system, sans-serif;
+      --font-tech: 'Rajdhani', -apple-system, sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: var(--font-tech);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    /* Background Cyber Canvas & Grid */
+    #cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .scanline-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+      background-size: 100% 3px, 6px 100%;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.7;
+    }
+
+    /* Content Wrapper */
+    .app-container {
+      position: relative;
+      z-index: 10;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Telemetry / HUD Header */
+    .hud-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      background: rgba(10, 14, 22, 0.85);
+      border: 1px solid var(--border-dim);
+      border-radius: 4px;
+      backdrop-filter: blur(12px);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .hud-left {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .hud-status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green-matrix);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .pulsing-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-matrix);
+      box-shadow: 0 0 10px var(--green-matrix);
+      animation: pulseGlow 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hud-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .hud-btn {
+      background: transparent;
+      border: 1px solid var(--border-dim);
+      color: var(--cyan-neon);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .hud-btn:hover {
+      background: rgba(0, 240, 255, 0.12);
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+      color: #fff;
+    }
+
+    /* Main Brand Hero */
+    .hero-section {
+      text-align: center;
+      margin: 1.5rem 0 3rem;
+    }
+
+    .hero-pretitle {
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      color: var(--cyan-neon);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .hero-pretitle::before,
+    .hero-pretitle::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--cyan-neon));
+    }
+    .hero-pretitle::after {
+      background: linear-gradient(to left, transparent, var(--cyan-neon));
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff 30%, var(--cyan-neon) 75%, var(--magenta-cyber) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.85rem;
+      text-shadow: 0 0 35px rgba(0, 240, 255, 0.2);
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      font-weight: 500;
+    }
+
+    /* Filter / Controls Bar */
+    .controls-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background: rgba(14, 19, 29, 0.8);
+      border: 1px solid var(--border-dim);
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.05em;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-main);
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .filter-btn.active {
+      background: rgba(0, 240, 255, 0.12);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 260px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(14, 19, 29, 0.85);
+      border: 1px solid var(--border-dim);
+      border-radius: 4px;
+      padding: 0.45rem 0.85rem 0.45rem 2.2rem;
+      color: var(--text-main);
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      pointer-events: none;
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Project Cards Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Cyber Card */
+    .cyber-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-radius: 8px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(14px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    /* Cyberpunk Corner Cuts / Accents */
+    .cyber-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-top: 2px solid var(--cyan-neon);
+      border-left: 2px solid var(--cyan-neon);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .cyber-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      border-bottom: 2px solid var(--cyan-neon);
+      border-right: 2px solid var(--cyan-neon);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .cyber-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+
+    .cyber-card:hover::before,
+    .cyber-card:hover::after {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Card Themes */
+    .cyber-card[data-theme="matrix"]:hover {
+      border-color: rgba(0, 255, 102, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 255, 102, 0.2);
+    }
+    .cyber-card[data-theme="matrix"]::before,
+    .cyber-card[data-theme="matrix"]::after {
+      border-color: var(--green-matrix);
+    }
+
+    .cyber-card[data-theme="vortex"]:hover {
+      border-color: rgba(157, 78, 221, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(157, 78, 221, 0.2);
+    }
+    .cyber-card[data-theme="vortex"]::before,
+    .cyber-card[data-theme="vortex"]::after {
+      border-color: var(--violet-plasma);
+    }
+
+    .cyber-card[data-theme="codeviz"]:hover {
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 240, 255, 0.2);
+    }
+    .cyber-card[data-theme="codeviz"]::before,
+    .cyber-card[data-theme="codeviz"]::after {
+      border-color: var(--cyan-neon);
+    }
+
+    .cyber-card[data-theme="techref"]:hover {
+      border-color: rgba(255, 190, 11, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 190, 11, 0.2);
+    }
+    .cyber-card[data-theme="techref"]::before,
+    .cyber-card[data-theme="techref"]::after {
+      border-color: var(--amber-alert);
+    }
+
+    /* Card Header */
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .card-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-sys-id {
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      font-weight: 700;
+    }
+
+    .card-badge {
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-matrix {
+      background: rgba(0, 255, 102, 0.12);
+      border: 1px solid rgba(0, 255, 102, 0.35);
+      color: var(--green-matrix);
+    }
+
+    .badge-vortex {
+      background: rgba(157, 78, 221, 0.12);
+      border: 1px solid rgba(157, 78, 221, 0.35);
+      color: #c77dff;
+    }
+
+    .badge-codeviz {
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: var(--cyan-neon);
+    }
+
+    .badge-techref {
+      background: rgba(255, 190, 11, 0.12);
+      border: 1px solid rgba(255, 190, 11, 0.35);
+      color: var(--amber-alert);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
+    }
+
+    /* Title & Description */
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-family: var(--font-tech);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Stack Tags */
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #a0aec0;
+      font-family: var(--font-code);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    /* Feature Highlights */
+    .feature-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .feature-item {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .feature-item::before {
+      content: "▸";
+      color: var(--cyan-neon);
+      font-family: var(--font-code);
+      font-weight: 700;
+    }
+
+    .cyber-card[data-theme="matrix"] .feature-item::before { color: var(--green-matrix); }
+    .cyber-card[data-theme="vortex"] .feature-item::before { color: var(--violet-plasma); }
+    .cyber-card[data-theme="codeviz"] .feature-item::before { color: var(--cyan-neon); }
+    .cyber-card[data-theme="techref"] .feature-item::before { color: var(--amber-alert); }
+
+    /* Action Buttons */
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-launch {
+      flex: 1;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--cyan-neon);
+      color: #fff;
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.65rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-launch:hover {
+      background: var(--cyan-neon);
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+    }
+
+    .cyber-card[data-theme="matrix"] .btn-launch {
+      border-color: var(--green-matrix);
+      background: rgba(0, 255, 102, 0.1);
+    }
+    .cyber-card[data-theme="matrix"] .btn-launch:hover {
+      background: var(--green-matrix);
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+    }
+
+    .cyber-card[data-theme="vortex"] .btn-launch {
+      border-color: var(--violet-plasma);
+      background: rgba(157, 78, 221, 0.12);
+    }
+    .cyber-card[data-theme="vortex"] .btn-launch:hover {
+      background: var(--violet-plasma);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+    }
+
+    .cyber-card[data-theme="techref"] .btn-launch {
+      border-color: var(--amber-alert);
+      background: rgba(255, 190, 11, 0.1);
+    }
+    .cyber-card[data-theme="techref"] .btn-launch:hover {
+      background: var(--amber-alert);
+      color: #000;
+      box-shadow: 0 0 20px rgba(255, 190, 11, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Terminal Quickrunner Drawer */
+    .terminal-section {
+      background: rgba(8, 12, 18, 0.9);
+      border: 1px solid var(--border-dim);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-code);
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 0.6rem;
+    }
+
+    .terminal-title {
+      font-size: 0.75rem;
+      color: var(--cyan-neon);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .terminal-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 240, 255, 0.08);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      gap: 1rem;
+      overflow-x: auto;
+    }
+
+    .terminal-code {
+      color: var(--green-matrix);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .terminal-code span.prompt {
+      color: var(--cyan-neon);
+      user-select: none;
+      margin-right: 0.5rem;
+    }
+
+    .copy-btn {
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: var(--cyan-neon);
+      font-family: var(--font-code);
+      font-size: 0.72rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 3px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      background: var(--cyan-neon);
+      color: #000;
+    }
+
+    /* Footer */
+    .app-footer {
+      margin-top: auto;
+      padding-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover {
+      color: var(--cyan-neon);
+    }
+
+    /* Toast Notification */
+    .cyber-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(10, 14, 22, 0.95);
+      border: 1px solid var(--cyan-neon);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+      color: #fff;
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .cyber-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hud-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+      .hud-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .card-actions {
+        flex-direction: column;
+      }
+      .btn-launch, .btn-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Canvas for Matrix / Cyber Ambient Stream -->
+  <canvas id="cyber-bg"></canvas>
+  <div class="grid-overlay"></div>
+  <div class="scanline-overlay"></div>
+
+  <div class="app-container">
+
+    <!-- Top Telemetry HUD -->
+    <header class="hud-bar">
+      <div class="hud-left">
+        <div class="hud-status-badge">
+          <div class="pulsing-dot"></div>
+          <span>GRID STATUS: ACTIVE</span>
+        </div>
+        <span>REPO: ADITYABANAVALI / SANDBOX</span>
+        <span id="live-clock" style="color: var(--cyan-neon);">00:00:00 UTC</span>
+      </div>
+      <div class="hud-right">
+        <span>BRANCH: <b style="color: #fff;">main</b></span>
+        <a href="https://github.com/AdityaBanavali/sandbox" target="_blank" rel="noopener noreferrer" class="hud-btn" id="github-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GITHUB REPO
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Title -->
+    <section class="hero-section">
+      <div class="hero-pretitle">CYBERNETIC ARTIFACT DIRECTORY // 4 SUBPROJECTS</div>
+      <h1 class="hero-title">SANDBOX REGISTRY</h1>
+      <p class="hero-description">
+        Curated showcase of high-performance developer tools, machine vision portals, desktop environments, and API engines.
+      </p>
+    </section>
+
+    <!-- Controls / Filters -->
+    <div class="controls-wrapper">
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">ALL NODES [4]</button>
+        <button class="filter-btn" data-filter="cv">VISION & CANVAS</button>
+        <button class="filter-btn" data-filter="desktop">DESKTOP & IDE</button>
+        <button class="filter-btn" data-filter="devtools">DEVTOOLS</button>
+        <button class="filter-btn" data-filter="web">WEB & APIS</button>
+      </div>
+      <div class="search-box">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input type="text" id="project-search" class="search-input" placeholder="Search systems or tags...">
+      </div>
+    </div>
+
+    <!-- Sandbox Projects Grid -->
+    <main class="projects-grid" id="projects-grid">
+
+      <!-- 1. Matrix-rain -->
+      <article class="cyber-card" data-category="cv" data-theme="matrix" data-name="matrix rain portal mediapipe canvas gesture vision">
+        <div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="card-sys-id">NODE_01</span>
+              <span class="card-badge badge-matrix">LIVE IN BROWSER</span>
+            </div>
+            <div class="card-icon">🟢</div>
+          </div>
+          <h2 class="card-title">Matrix-rain</h2>
+          <p class="card-subtitle">
+            Gesture-controlled digital portal streaming iconic falling Matrix code rain between your hands via Google MediaPipe Hand Landmarker and Canvas 2D.
+          </p>
+          <div class="tag-container">
+            <span class="tech-tag">MediaPipe Vision</span>
+            <span class="tech-tag">HTML5 Canvas</span>
+            <span class="tech-tag">WebAssembly</span>
+            <span class="tech-tag">Gesture AI</span>
+            <span class="tech-tag">Zero Build</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">Real-time dual hand landmark detection (21 joints/hand)</li>
+            <li class="feature-item">Simultaneous dual-pinch spawning dynamic portal geometry</li>
+            <li class="feature-item">100% on-device private processing with zero external API calls</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a href="./Matrix-rain/index.html" class="btn-launch" id="launch-matrix">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            LAUNCH PORTAL
+          </a>
+          <a href="./Matrix-rain/" class="btn-secondary" title="Open Matrix-rain folder">
+            <span>DIR</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <button class="btn-secondary" onclick="setQuickRun('cd Matrix-rain && npx serve')">
+            QUICK RUN
+          </button>
+        </div>
+      </article>
+
+      <!-- 2. Vortex -->
+      <article class="cyber-card" data-category="desktop" data-theme="vortex" data-name="vortex ide tauri rust react gemini ai monaco git desktop editor">
+        <div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="card-sys-id">NODE_02</span>
+              <span class="card-badge badge-vortex">DESKTOP IDE</span>
+            </div>
+            <div class="card-icon">⚡</div>
+          </div>
+          <h2 class="card-title">Vortex</h2>
+          <p class="card-subtitle">
+            High-performance, AI-native desktop code editor built on Tauri v2 & Rust, featuring Monaco core, multi-tab split view, deep Git, and autonomous Gemini Copilot.
+          </p>
+          <div class="tag-container">
+            <span class="tech-tag">Tauri v2</span>
+            <span class="tech-tag">Rust 1.80+</span>
+            <span class="tech-tag">React 19</span>
+            <span class="tech-tag">Monaco Editor</span>
+            <span class="tech-tag">Gemini AI</span>
+            <span class="tech-tag">Git Engine</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">Autonomous Gemini pair programming with inline cursor code injection</li>
+            <li class="feature-item">Visual Git commit timeline, AI conventional commit generator & blame text</li>
+            <li class="feature-item">Native Rust HTTP proxy & terminal shell emulator bypassing sandbox limits</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a href="./Vortex/" class="btn-launch" id="launch-vortex">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            EXPLORE PROJECT
+          </a>
+          <a href="./Vortex/README.md" class="btn-secondary" title="View Vortex Documentation">
+            <span>DOCS</span>
+          </a>
+          <button class="btn-secondary" onclick="setQuickRun('cd Vortex && pnpm install && pnpm tauri dev')">
+            QUICK RUN
+          </button>
+        </div>
+      </article>
+
+      <!-- 3. CodeVisualizer -->
+      <article class="cyber-card" data-category="devtools" data-theme="codeviz" data-name="codevisualizer fastapi react flow python ast architecture logic diagrams monaco">
+        <div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="card-sys-id">NODE_03</span>
+              <span class="card-badge badge-codeviz">FULLSTACK TOOL</span>
+            </div>
+            <div class="card-icon">📐</div>
+          </div>
+          <h2 class="card-title">CodeVisualizer</h2>
+          <p class="card-subtitle">
+            Interactive code architecture and logic flow visualizer that parses source code into live React Flow diagrams using dual Gemini LLM and offline Python AST engines.
+          </p>
+          <div class="tag-container">
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">React 19</span>
+            <span class="tech-tag">React Flow</span>
+            <span class="tech-tag">Dagre Layout</span>
+            <span class="tech-tag">Python AST</span>
+            <span class="tech-tag">Monaco</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">Dual-engine parser: Cloud AI (Gemini/OpenAI) + Offline AST tokenizer</li>
+            <li class="feature-item">Interactive node inspector drawer with dependencies and snippet review</li>
+            <li class="feature-item">Hierarchical auto-layout with 2x crisp PNG / SVG vector export</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a href="./codevisualizer/" class="btn-launch" id="launch-codevisualizer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+            EXPLORE PROJECT
+          </a>
+          <a href="./codevisualizer/README.md" class="btn-secondary" title="View CodeVisualizer Documentation">
+            <span>DOCS</span>
+          </a>
+          <button class="btn-secondary" onclick="setQuickRun('cd codevisualizer/frontend && npm install && npm run dev')">
+            QUICK RUN
+          </button>
+        </div>
+      </article>
+
+      <!-- 4. TechRef -->
+      <article class="cyber-card" data-category="web" data-theme="techref" data-name="techref nextjs documentation openapi rest api playground sdk tailwind typescript">
+        <div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="card-sys-id">NODE_04</span>
+              <span class="card-badge badge-techref">NEXT.JS PLATFORM</span>
+            </div>
+            <div class="card-icon">⚡</div>
+          </div>
+          <h2 class="card-title">TechRef</h2>
+          <p class="card-subtitle">
+            Next.js developer documentation and interactive API reference hub with OpenAPI 3.0 specification rendering, live request playground, and multi-SDK generation.
+          </p>
+          <div class="tag-container">
+            <span class="tech-tag">Next.js 15</span>
+            <span class="tech-tag">React 19</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">OpenAPI 3.0</span>
+            <span class="tech-tag">Tailwind CSS v4</span>
+            <span class="tech-tag">Live Playground</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">Interactive schema tables and live HTTP execution sandbox</li>
+            <li class="feature-item">Instant client code generator (TypeScript, Python Async, Rust, Go)</li>
+            <li class="feature-item">Full-text instant fuzzy documentation index with keyboard shortcuts</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a href="./techref/" class="btn-launch" id="launch-techref">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            EXPLORE PROJECT
+          </a>
+          <a href="./techref/README.md" class="btn-secondary" title="View TechRef Documentation">
+            <span>DOCS</span>
+          </a>
+          <button class="btn-secondary" onclick="setQuickRun('cd techref && npm install && npm run dev')">
+            QUICK RUN
+          </button>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Terminal Quickrunner Drawer -->
+    <section class="terminal-section">
+      <div class="terminal-header">
+        <div class="terminal-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          LOCAL RUN COMMAND RUNNER
+        </div>
+        <div class="terminal-dots">
+          <span class="terminal-dot dot-red"></span>
+          <span class="terminal-dot dot-yellow"></span>
+          <span class="terminal-dot dot-green"></span>
+        </div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-code" id="terminal-display">
+          <span class="prompt">sandbox@node:~$</span>cd Matrix-rain && npx serve
+        </div>
+        <button class="copy-btn" id="copy-cmd-btn" onclick="copyCurrentCommand()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          COPY COMMAND
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>© 2026 ADITYA BANAVALI // ALL RIGHTS RESERVED</span>
+        <span>•</span>
+        <a href="https://github.com/AdityaBanavali/sandbox" class="footer-link" target="_blank" rel="noopener noreferrer">ORIGIN REPO</a>
+      </div>
+      <div>
+        <span>SYSTEM: NOMINAL // PROTOCOL: v2.4</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification Element -->
+  <div class="cyber-toast" id="cyber-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-neon)" stroke-width="2">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">COPIED TO CLIPBOARD // 0x01</span>
+  </div>
+
+  <script>
+    // Live Telemetry Clock
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toISOString().substring(11, 19) + ' UTC';
+      const el = document.getElementById('live-clock');
+      if (el) el.textContent = timeStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Quick Command Setter & Copy
+    let activeCommand = 'cd Matrix-rain && npx serve';
+    
+    function setQuickRun(cmd) {
+      activeCommand = cmd;
+      const display = document.getElementById('terminal-display');
+      display.innerHTML = '<span class="prompt">sandbox@node:~$</span>' + escapeHtml(cmd);
+      showToast('RUN COMMAND LOADED // ' + cmd.split('&&')[0].trim());
+    }
+
+    function copyCurrentCommand() {
+      navigator.clipboard.writeText(activeCommand).then(() => {
+        showToast('COMMAND COPIED TO CLIPBOARD');
+      }).catch(() => {
+        // Fallback
+        const temp = document.createElement('textarea');
+        temp.value = activeCommand;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast('COMMAND COPIED');
+      });
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('cyber-toast');
+      const msg = document.getElementById('toast-msg');
+      msg.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+
+    function escapeHtml(string) {
+      return String(string).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Filter Buttons
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.cyber-card');
+    const searchInput = document.getElementById('project-search');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      applyFilters();
+    });
+
+    function applyFilters() {
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      const query = searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        const nameKeywords = card.dataset.name.toLowerCase();
+        
+        const matchesCategory = (activeFilter === 'all') || (category === activeFilter);
+        const matchesQuery = query === '' || nameKeywords.includes(query);
+
+        if (matchesCategory && matchesQuery) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Cyber Matrix Canvas Ambient Background
+    const canvas = document.getElementById('cyber-bg');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initStreams();
+    });
+
+    const characters = '0123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ'.split('');
+    const fontSize = 16;
+    let columns = Math.floor(width / fontSize);
+    let drops = [];
+
+    function initStreams() {
+      columns = Math.floor(width / fontSize);
+      drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100;
+      }
+    }
+    initStreams();
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(5, 7, 10, 0.08)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = '#00f0ff';
+      ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        // Alternate subtle colors between cyan and matrix green
+        if (i % 3 === 0) {
+          ctx.fillStyle = 'rgba(0, 255, 102, 0.35)';
+        } else if (i % 7 === 0) {
+          ctx.fillStyle = 'rgba(255, 0, 85, 0.3)';
+        } else {
+          ctx.fillStyle = 'rgba(0, 240, 255, 0.28)';
+        }
+
+        ctx.fillText(text, x, y);
+
+        if (y > height && Math.random() > 0.985) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    let lastDraw = 0;
+    function animate(now) {
+      if (now - lastDraw > 40) { // ~25 FPS for smooth, subtle matrix trail
+        drawMatrix();
+        lastDraw = now;
+      }
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>
