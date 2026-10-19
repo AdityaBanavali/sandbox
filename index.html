@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SANDBOX // Cyberpunk Developer Hub</title>
-  <meta name="description" content="Engineering sandbox repository showcasing Matrix-rain, Vortex IDE, CodeVisualizer, and TechRef.">
+  <meta name="description" content="Engineering sandbox repository showcasing Matrix-rain, Vortex IDE, CodeVisualizer, TechRef, and txtedit.">
   <meta name="theme-color" content="#06080d">
 
   <!-- Favicon -->
@@ -410,6 +410,15 @@
       border-color: var(--amber-alert);
     }
 
+    .cyber-card[data-theme="txtedit"]:hover {
+      border-color: rgba(255, 0, 85, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 0, 85, 0.2);
+    }
+    .cyber-card[data-theme="txtedit"]::before,
+    .cyber-card[data-theme="txtedit"]::after {
+      border-color: var(--magenta-cyber);
+    }
+
     /* Card Header */
     .card-top {
       display: flex;
@@ -464,6 +473,12 @@
       background: rgba(255, 190, 11, 0.12);
       border: 1px solid rgba(255, 190, 11, 0.35);
       color: var(--amber-alert);
+    }
+
+    .badge-txtedit {
+      background: rgba(255, 0, 85, 0.12);
+      border: 1px solid rgba(255, 0, 85, 0.35);
+      color: var(--magenta-cyber);
     }
 
     .card-icon {
@@ -828,21 +843,22 @@
 
     <!-- Hero Title -->
     <section class="hero-section">
-      <div class="hero-pretitle">CYBERNETIC ARTIFACT DIRECTORY // 4 SUBPROJECTS</div>
+      <div class="hero-pretitle">CYBERNETIC ARTIFACT DIRECTORY // 5 SUBPROJECTS</div>
       <h1 class="hero-title">SANDBOX REGISTRY</h1>
       <p class="hero-description">
-        Curated showcase of high-performance developer tools, machine vision portals, desktop environments, and API engines.
+        Curated showcase of high-performance developer tools, machine vision portals, low-level text engines, desktop environments, and API hubs.
       </p>
     </section>
 
     <!-- Controls / Filters -->
     <div class="controls-wrapper">
       <div class="filter-tabs">
-        <button class="filter-btn active" data-filter="all">ALL NODES [4]</button>
+        <button class="filter-btn active" data-filter="all">ALL NODES [5]</button>
         <button class="filter-btn" data-filter="cv">VISION & CANVAS</button>
         <button class="filter-btn" data-filter="desktop">DESKTOP & IDE</button>
         <button class="filter-btn" data-filter="devtools">DEVTOOLS</button>
         <button class="filter-btn" data-filter="web">WEB & APIS</button>
+        <button class="filter-btn" data-filter="systems">SYSTEMS & C</button>
       </div>
       <div class="search-box">
         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1034,6 +1050,51 @@
             <span>DOCS</span>
           </a>
           <button class="btn-secondary" onclick="setQuickRun('cd techref && npm install && npm run dev')">
+            QUICK RUN
+          </button>
+        </div>
+      </article>
+
+      <!-- 5. txtedit -->
+      <article class="cyber-card" data-category="systems" data-theme="txtedit" data-name="txtedit c c99 piece table text editor buffer repl undo redo cli">
+        <div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="card-sys-id">NODE_05</span>
+              <span class="card-badge badge-txtedit">C ENGINE & REPL</span>
+            </div>
+            <div class="card-icon">⚙️</div>
+          </div>
+          <h2 class="card-title">txtedit</h2>
+          <p class="card-subtitle">
+            High-performance Piece Table text editor core & interactive REPL engine implemented in pure ISO C99/C11 with double-linked piece descriptors and linear undo/redo.
+          </p>
+          <div class="tag-container">
+            <span class="tech-tag">C99 / C11</span>
+            <span class="tech-tag">Piece Table</span>
+            <span class="tech-tag">Undo / Redo</span>
+            <span class="tech-tag">Zero Dependencies</span>
+            <span class="tech-tag">Interactive REPL</span>
+            <span class="tech-tag">CLI Tool</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">Immutable original buffer + O(1) append-only add buffer architecture</li>
+            <li class="feature-item">Surgical piece splitting with non-destructive action history stack</li>
+            <li class="feature-item">Interactive CLI shell supporting insert, delete, undo, redo, and debug</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a href="./txtedit/README.md" class="btn-launch" id="launch-txtedit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            EXPLORE ENGINE
+          </a>
+          <a href="./txtedit/" class="btn-secondary" title="Open txtedit folder">
+            <span>DIR</span>
+          </a>
+          <button class="btn-secondary" onclick="setQuickRun('cd txtedit && clang -O2 main.c piece_table.c -o piece_table_repl && ./piece_table_repl')">
             QUICK RUN
           </button>
         </div>

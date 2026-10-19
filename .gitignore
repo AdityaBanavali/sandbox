@@ -59,9 +59,17 @@ htmlcov/
 !.env.example
 *.local
 
+
 # IDEs and Editors
 .idea/
 .vscode/*
 !.vscode/extensions.json
 *.swp
 *.swo
+
+# C / C++ Build Artifacts
+*.o
+*.obj
+*.dSYM/
+txtedit/piece_table_repl
+
