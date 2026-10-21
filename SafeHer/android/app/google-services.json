@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "170637405271",
+    "project_id": "safe-her-app-498605",
+    "storage_bucket": "safe-her-app-498605.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170637405271:android:e1594010a2bd877370c712",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhj1S39N5DufZXi-I_dPNKcgaz7QoFjpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

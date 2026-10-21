@@ -1,0 +1,17 @@
+project-includes = [
+    "app",
+    "tests",
+    "scripts",
+]
+project-excludes = [
+    "**/node_modules",
+    "**/__pycache__",
+    ".venv",
+    "frontend",
+    "logs",
+]
+infer-with-first-use = false
+python-interpreter-path = ".venv/bin/python"
+
+[errors]
+missing-import = "ignore"

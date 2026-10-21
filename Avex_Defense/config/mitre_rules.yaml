@@ -1,0 +1,142 @@
+# =============================================================================
+# Dynamic MITRE ATT&CK Mapping Configuration for Unidirectional IP Traffic
+# Maps behavioral threat classes and ML labels to ATT&CK Matrix TTPs
+# =============================================================================
+
+version: "1.0.0"
+description: "Dynamic MITRE ATT&CK mappings for data diode and unidirectional traffic defense"
+
+mappings:
+  # ---------------------------------------------------------------------------
+  # 1. Port Scan Burst & Reconnaissance
+  # ---------------------------------------------------------------------------
+  port_scan_burst:
+    technique_id: "T1046"
+    subtechnique_id: null
+    tactic_name: "Discovery"
+    technique_name: "Network Service Discovery"
+    description: >
+      Adversaries may attempt to get a listing of services running on hosts by
+      generating unidirectional SYN probes or UDP port sweeps across data diodes.
+    mitre_url: "https://attack.mitre.org/techniques/T1046/"
+    default_severity: "MEDIUM"
+    default_impact: 0.50
+    aliases:
+      - "PORT_SCAN"
+      - "Unidirectional Port Probe Sweep"
+      - "port_sweep"
+
+  # ---------------------------------------------------------------------------
+  # 2. C2 Beaconing Pattern
+  # ---------------------------------------------------------------------------
+  beaconing_pattern:
+    technique_id: "T1071.004"
+    subtechnique_id: "T1071.004"
+    tactic_name: "Command and Control"
+    technique_name: "Application Layer Protocol: DNS"
+    description: >
+      Adversaries may communicate using structured periodic DNS queries or outbound
+      heartbeat channels across unidirectional diode taps with rigid inter-arrival times.
+    mitre_url: "https://attack.mitre.org/techniques/T1071/004/"
+    default_severity: "HIGH"
+    default_impact: 0.90
+    aliases:
+      - "C2_BEACON"
+      - "Periodic C2 Beaconing Channel"
+      - "c2_heartbeat"
+
+  # ---------------------------------------------------------------------------
+  # 3. Payload High Entropy Exfiltration
+  # ---------------------------------------------------------------------------
+  payload_high_entropy_exfil:
+    technique_id: "T1048.003"
+    subtechnique_id: "T1048.003"
+    tactic_name: "Exfiltration"
+    technique_name: "Exfiltration Over Unencrypted Non-C2 Protocol"
+    description: >
+      Adversaries may exfiltrate sensitive files, databases, or memory dumps over an
+      alternative protocol using high-entropy compressed or encrypted payloads.
+    mitre_url: "https://attack.mitre.org/techniques/T1048/003/"
+    default_severity: "HIGH"
+    default_impact: 0.95
+    aliases:
+      - "DATA_EXFILTRATION"
+      - "High-Entropy Unidirectional Exfiltration"
+      - "data_exfil"
+      - "entropy_exfiltration"
+
+  # ---------------------------------------------------------------------------
+  # 4. Protocol and Port Anomaly
+  # ---------------------------------------------------------------------------
+  protocol_anomaly:
+    technique_id: "T1571"
+    subtechnique_id: null
+    tactic_name: "Command and Control"
+    technique_name: "Non-Standard Port"
+    description: >
+      Adversaries may communicate using a protocol over an unconventional port,
+      such as running covert proxies or SSH on port 80/443 or DNS queries over TCP.
+    mitre_url: "https://attack.mitre.org/techniques/T1571/"
+    default_severity: "MEDIUM"
+    default_impact: 0.60
+    aliases:
+      - "PROTOCOL_ANOMALY"
+      - "port_protocol_mismatch"
+      - "non_standard_port"
+
+  # ---------------------------------------------------------------------------
+  # 5. DoS / Volumetric Traffic Flood
+  # ---------------------------------------------------------------------------
+  dos_traffic_flood:
+    technique_id: "T1498"
+    subtechnique_id: null
+    tactic_name: "Impact"
+    technique_name: "Network Denial of Service"
+    description: >
+      Adversaries may perform Network Denial of Service attacks by flooding bandwidth
+      or buffers through unidirectional taps to exhaust network capacity or mask exfiltration.
+    mitre_url: "https://attack.mitre.org/techniques/T1498/"
+    default_severity: "HIGH"
+    default_impact: 0.85
+    aliases:
+      - "DOS_BURST"
+      - "Adaptive EWMA Volumetric Burst Anomaly"
+      - "udp_flood"
+
+  # ---------------------------------------------------------------------------
+  # 6. Device Spoofing & Masquerading
+  # ---------------------------------------------------------------------------
+  device_spoofing_masquerade:
+    technique_id: "T1036"
+    subtechnique_id: null
+    tactic_name: "Defense Evasion"
+    technique_name: "Masquerading"
+    description: >
+      Adversaries may manipulate IP TTL fields or spoof source addresses to appear
+      as authorized internal devices or multi-host nodes behind a single diode interface.
+    mitre_url: "https://attack.mitre.org/techniques/T1036/"
+    default_severity: "MEDIUM"
+    default_impact: 0.65
+    aliases:
+      - "DEVICE_SPOOF"
+      - "TTL / IP Device Masquerade & Spoofing"
+      - "ttl_spoof"
+
+  # ---------------------------------------------------------------------------
+  # 7. Novel Zero-Day Anomaly
+  # ---------------------------------------------------------------------------
+  novel_anomaly_zeroday:
+    technique_id: "T1048"
+    subtechnique_id: null
+    tactic_name: "Exfiltration"
+    technique_name: "Exfiltration Over Alternative Protocol (Zero-Day Outlier)"
+    description: >
+      Unsupervised Isolation Forest detected an unprecedented structural outlier
+      in unidirectional traffic distributions, indicating potential zero-day tradecraft.
+    mitre_url: "https://attack.mitre.org/techniques/T1048/"
+    default_severity: "CRITICAL"
+    default_impact: 0.92
+    aliases:
+      - "NOVEL_ANOMALY"
+      - "Novel Anomaly / Zero-Day Suspect"
+      - "zero_day"

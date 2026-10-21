@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding - Matrix Code Rain Portal</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MediaPipe Tasks Vision CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-4xl w-full flex flex-col items-center gap-4">
+        <header class="text-center">
+            <h1 class="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-500">
+                Matrix Code Rain Portal 🟢💻
+            </h1>
+            <p class="text-sm text-zinc-400 mt-1">Pinch the index & thumb on <b>both</b> hands to stream the falling Matrix code!</p>
+        </header>
+
+        <!-- Main Viewport container -->
+        <div class="relative w-full aspect-video bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl flex items-center justify-center">
+            <!-- Webcam Video Feed -->
+            <video id="webcam" class="absolute inset-0 w-full h-full object-cover -scale-x-100" autoplay playsinline></video>
+            
+            <!-- Canvas Overlay -->
+            <canvas id="output_canvas" class="absolute inset-0 w-full h-full object-cover -scale-x-100 pointer-events-none"></canvas>
+
+            <!-- Loading Indicator -->
+            <div id="loader" class="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-3 transition-opacity duration-300">
+                <div class="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                <p id="loader-text" class="text-sm font-medium text-zinc-300">Initializing Matrix Engine...</p>
+            </div>
+        </div>
+
+        <!-- Status Dashboard -->
+        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+            <div class="bg-zinc-900/50 border border-zinc-800/80 p-3 rounded-xl text-center">
+                <span class="block text-xs text-zinc-500 uppercase font-semibold">Hands Tracking</span>
+                <span id="status-hand" class="text-sm font-bold text-zinc-400">Searching...</span>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800/80 p-3 rounded-xl text-center">
+                <span class="block text-xs text-zinc-500 uppercase font-semibold">Portal State</span>
+                <span id="status-gesture" class="text-sm font-bold text-zinc-400">Waiting for Dual Pinch</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
+
+        const video = document.getElementById("webcam");
+        const canvas = document.getElementById("output_canvas");
+        const ctx = canvas.getContext("2d");
+        const loader = document.getElementById("loader");
+        const loaderText = document.getElementById("loader-text");
+        const statusHand = document.getElementById("status-hand");
+        const statusGesture = document.getElementById("status-gesture");
+
+        let handLandmarker = undefined;
+        let lastVideoTime = -1;
+
+        // Matrix rain character storage per portal region
+        const matrixChars = "0123456789ABCDEFXYZアアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+        let dropsMap = {};
+
+        async function createHandLandmarker() {
+            const vision = await FilesetResolver.forVisionTasks(
+                "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
+            );
+            handLandmarker = await HandLandmarker.createFromOptions(vision, {
+                baseOptions: {
+                    modelAssetPath: `https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task`,
+                    delegate: "GPU"
+                },
+                runningMode: "VIDEO",
+                numHands: 2,
+                minHandDetectionConfidence: 0.7,
+                minHandPresenceConfidence: 0.7,
+                minTrackingConfidence: 0.7
+            });
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 300);
+            startWebcam();
+        }
+
+        async function startWebcam() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { width: 1280, height: 720, facingMode: "user" }
+                });
+                video.srcObject = stream;
+                video.addEventListener("loadeddata", predictWebcam);
+            } catch (err) {
+                loaderText.innerText = "Camera access denied or unavailable.";
+                console.error(err);
+            }
+        }
+
+        async function predictWebcam() {
+            if (!handLandmarker) return;
+
+            if (video.videoWidth > 0 && canvas.width !== video.videoWidth) {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+            }
+
+            let startTimeMs = performance.now();
+            if (video.currentTime !== lastVideoTime) {
+                lastVideoTime = video.currentTime;
+                const results = handLandmarker.detectForVideo(video, startTimeMs);
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                if (results.landmarks && results.landmarks.length > 0) {
+                    statusHand.innerText = `${results.landmarks.length} Hand(s) Locked 🎯`;
+                    statusHand.className = "text-sm font-bold text-emerald-400";
+
+                    for (const landmarks of results.landmarks) {
+                        drawHandJointsAndBones(landmarks);
+                    }
+
+                    if (results.landmarks.length >= 2) {
+                        const h1 = results.landmarks[0];
+                        const h2 = results.landmarks[1];
+
+                        const pinch1 = isPinching(h1);
+                        const pinch2 = isPinching(h2);
+
+                        if (pinch1 && pinch2) {
+                            statusGesture.innerText = "Matrix Rain Active 🟢✨";
+                            statusGesture.className = "text-sm font-bold text-green-400";
+                            drawMatrixPortal(h1[8], h2[8]);
+                        } else {
+                            statusGesture.innerText = "Pinch index & thumb on both hands";
+                            statusGesture.className = "text-sm font-bold text-zinc-400";
+                        }
+                    } else {
+                        statusGesture.innerText = "Bring second hand up & pinch";
+                        statusGesture.className = "text-sm font-bold text-zinc-400";
+                    }
+                } else {
+                    statusHand.innerText = "Searching...";
+                    statusHand.className = "text-sm font-bold text-zinc-400";
+                    statusGesture.innerText = "Waiting for hands";
+                    statusGesture.className = "text-sm font-bold text-zinc-400";
+                }
+            }
+
+            requestAnimationFrame(predictWebcam);
+        }
+
+        function isPinching(landmarks) {
+            const thumbTip = landmarks[4];
+            const indexTip = landmarks[8];
+            const dx = thumbTip.x - indexTip.x;
+            const dy = thumbTip.y - indexTip.y;
+            return Math.sqrt(dx * dx + dy * dy) < 0.055;
+        }
+
+        function drawHandJointsAndBones(landmarks) {
+            const CONNECTIONS = [
+                [0,1],[1,2],[2,3],[3,4],       
+                [0,5],[5,6],[6,7],[7,8],       
+                [5,9],[9,10],[10,11],[11,12],  
+                [9,13],[13,14],[14,15],[15,16],
+                [13,17],[17,18],[18,19],[19,20],
+                [0,17]                         
+            ];
+
+            ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
+            ctx.lineWidth = 3;
+            for (const [i, j] of CONNECTIONS) {
+                const p1 = landmarks[i];
+                const p2 = landmarks[j];
+                ctx.beginPath();
+                ctx.moveTo(p1.x * canvas.width, p1.y * canvas.height);
+                ctx.lineTo(p2.x * canvas.width, p2.y * canvas.height);
+                ctx.stroke();
+            }
+
+            landmarks.forEach((landmark, index) => {
+                const x = landmark.x * canvas.width;
+                const y = landmark.y * canvas.height;
+                const isTip = [4, 8, 12, 16, 20].includes(index);
+
+                ctx.fillStyle = isTip ? "#34d399" : "#059669";
+                ctx.beginPath();
+                ctx.arc(x, y, isTip ? 6 : 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function drawMatrixPortal(tip1, tip2) {
+            const x1 = tip1.x * canvas.width;
+            const y1 = tip1.y * canvas.height;
+            const x2 = tip2.x * canvas.width;
+            const y2 = tip2.y * canvas.height;
+
+            const minX = Math.min(x1, x2) - 35;
+            const maxX = Math.max(x1, x2) + 35;
+            const minY = Math.min(y1, y2) - 35;
+            const maxY = Math.max(y1, y2) + 35;
+            const width = maxX - minX;
+            const height = maxY - minY;
+
+            ctx.save();
+            
+            // Step 1: Clip canvas region to the portal box
+            ctx.beginPath();
+            ctx.roundRect(minX, minY, width, height, 16);
+            ctx.clip();
+
+            // Step 2: Pitch black digital background inside portal
+            ctx.fillStyle = "rgba(0, 0, 0, 0.92)";
+            ctx.fillRect(minX, minY, width, height);
+
+            // Step 3: Initialize dropping columns if missing
+            const portalKey = "portal_rains";
+            if (!dropsMap[portalKey]) {
+                dropsMap[portalKey] = {};
+            }
+
+            const fontSize = 14;
+            const columns = Math.floor(width / fontSize);
+
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < columns; i++) {
+                let colX = minX + i * fontSize;
+                if (!dropsMap[portalKey][i]) {
+                    dropsMap[portalKey][i] = minY + Math.random() * height;
+                }
+
+                let colY = dropsMap[portalKey][i];
+
+                // Draw falling character chain
+                for (let j = 0; j < 8; j++) {
+                    let charY = colY - (j * fontSize);
+                    if (charY >= minY && charY <= maxY) {
+                        let randomChar = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                        
+                        // Head of the rain stream is bright white/neon green, tail fades out
+                        ctx.fillStyle = j === 0 ? "#ffffff" : `rgba(34, 197, 94, ${1 - j * 0.12})`;
+                        // Un-flip text rendering so characters display upright against the mirrored canvas
+                        ctx.save();
+                        ctx.translate(colX, charY);
+                        ctx.scale(-1, 1);
+                        ctx.fillText(randomChar, 0, 0);
+                        ctx.restore();
+                    }
+                }
+
+                // Advance drop downward
+                dropsMap[portalKey][i] += fontSize * 0.75;
+                if (dropsMap[portalKey][i] > maxY) {
+                    dropsMap[portalKey][i] = minY;
+                }
+            }
+
+            // Step 4: Draw neon green glowing outer frame border
+            ctx.strokeStyle = "rgba(34, 197, 94, 0.95)";
+            ctx.lineWidth = 3.5;
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        createHandLandmarker();
+    </script>
+</body>
+</html>

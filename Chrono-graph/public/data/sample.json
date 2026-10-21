@@ -1,0 +1,4167 @@
+{
+  "repo": "hyper-engine",
+  "totalCommits": 300,
+  "commits": [
+    {
+      "sha": "0759b5ab8168f5f22f0c001f486d7fe19d10c43a",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-10T12:33:09.370Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#101)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "c176b955f99744706545c7866fc3794cd493667f",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-10T14:31:43.875Z",
+      "message": "perf(storage): optimize B-tree node split routine (#102)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "3d8afc12f817f199359a235019f28a3c6e5d307b",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-10T15:07:45.939Z",
+      "message": "feat(network): implement multiplexed stream protocol (#103)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "a95649c47bd96021cc45d2a058a28afdb08bf24d",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-10T18:04:17.534Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#104)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "05fc0ef3009c8f28a98d5112758349970e8a7fdc",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-10T20:05:38.659Z",
+      "message": "test(storage): add concurrent transaction stress tests (#105)",
+      "files": [
+        {
+          "path": "network/handshake.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "9fa2c1c8b798d66a5159c040ad0d56417f0a4b2c",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-10T23:45:41.018Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#106)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "1540be8a533e740e175d9a418bd5a4b745ce8e3e",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-11T00:07:35.225Z",
+      "message": "feat(cli): add telemetry inspect command (#107)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2e2064861625a3ee288eaebe1b87992204cb9e05",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-11T00:29:36.958Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#108)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "e3e69219ea0070a5ad707369906594f92b1c7cdd",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-11T04:15:09.731Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#109)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "f250373efd99693d582c3487fcc4ffc17fb10ea8",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-11T08:29:24.472Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#110)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "54c43e916136b90449d9448766fd94c0b1c9a045",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-11T12:30:30.312Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#111)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "10ee61f4c2dae98d47a186f1f36474282449ee5c",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-11T16:37:35.965Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#112)",
+      "files": [
+        {
+          "path": "network/stream.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "80e7e7196ded6994d80b17608d6b0d76a10ece74",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-11T20:05:27.701Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#113)",
+      "files": [
+        {
+          "path": "core/constants.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "6124f4f58c10cdbe3e38e02737bc12060455e430",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-12T00:17:22.095Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#114)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "a081a66950f721297f697c04a36944ae4731d541",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-12T03:43:37.090Z",
+      "message": "fix(cli): parse custom config flags gracefully (#115)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "7ee470f8a79b248aa7211b7503b135c833b60f66",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-12T04:00:05.969Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#116)",
+      "files": [
+        {
+          "path": "core/allocator.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "6fb728dfa471086a37d1da0b035bc549095a622f",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-12T07:05:32.111Z",
+      "message": "feat(storage): add online database compaction worker (#117)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1e41bfc861820c9f16aa627bb1e117aac0d282cf",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-12T10:05:04.089Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#118)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "7ba1603293680e855c5b18a30ca7b201584903e3",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-12T13:42:11.338Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#119)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "b24d425850586a957c1ac5bcb622b64061524e3d",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-12T17:34:22.761Z",
+      "message": "feat(network): introduce UDP transport fallback (#120)",
+      "files": [
+        {
+          "path": "network/socket.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "3f7b5eb800e544d2392e3dbe8bde6471b54de87d",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-12T21:48:32.307Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#121)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "2ef1ad7b6192f3a89ae2d8b71f5b735df8a1346f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-13T00:34:48.600Z",
+      "message": "feat(core): initial memory pool allocator (#122)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "7ffe82b07df27515f80083bf9c8a22c06eaded21",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-13T02:07:47.473Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#123)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "52154f5057363ba25e26a413a27bafebacc64726",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-13T05:35:58.258Z",
+      "message": "perf(storage): optimize B-tree node split routine (#124)",
+      "files": [
+        {
+          "path": "core/engine.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "fca646ff6fff5a1c6cef91a642db1f067eb4e5b3",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-13T07:37:46.686Z",
+      "message": "feat(network): implement multiplexed stream protocol (#125)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "ecee718dc8b93a333a719f91a7346abce4a598f3",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-13T09:48:20.533Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#126)",
+      "files": [
+        {
+          "path": "core/types.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "402fbb5d2245f74ca0dd15669286450157a60fd3",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-13T10:14:38.241Z",
+      "message": "test(storage): add concurrent transaction stress tests (#127)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "ee9fd85542ce98c7d8f0687ddebb75feeba6ac43",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-13T14:05:17.518Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#128)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3a0305a9bf6011f0b55c90eec0fdacc509814a84",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-13T16:20:11.127Z",
+      "message": "feat(cli): add telemetry inspect command (#129)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bd97fc21558713081410676f91b633645440bbd5",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-13T17:13:32.623Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#130)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2debf75c22bdf27a31ce479964d8ed05a4f8d81d",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-13T19:49:55.768Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#131)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e784daaaf0fe681442fc3a20ab3453f8b3ff68f8",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-13T21:45:33.703Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#132)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "8d014bdfe9dcf0cd54c3658581ea8cbddbd19722",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-14T01:37:24.240Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#133)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "eeeff2a61ab621ddce66d3c969c7a9b89c7456d1",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-14T03:03:01.502Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#134)",
+      "files": [
+        {
+          "path": "cli/config.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "9a91c55dc208037f3ba01a9bb262cc88bdad1654",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-14T06:57:43.388Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#135)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "83444829034362bc251720167410aee6acfa7a17",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-14T08:53:53.935Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#136)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "188984deafbe0e33e70c7ba9b44942cd4c315998",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-14T12:19:14.951Z",
+      "message": "fix(cli): parse custom config flags gracefully (#137)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6a7150cc4ddebd5c1b1ad6d0b15d871079857aa3",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-14T14:11:23.722Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#138)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "a2b60f24015a7ad5bf366cc215f731d97e9c45ab",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-14T15:56:29.224Z",
+      "message": "feat(storage): add online database compaction worker (#139)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5453948e9bc22baaa9c559da096b7effa8f3917c",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-14T19:22:27.171Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#140)",
+      "files": [
+        {
+          "path": "core/engine.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c54a0a9591d0a1476efe030cfb865ef7955bc548",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-14T22:30:09.114Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#141)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f854917b7cc810447d55a350304da0060e4d6c59",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-15T01:30:10.304Z",
+      "message": "feat(network): introduce UDP transport fallback (#142)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b9e44c4699987f628113e7a237ce950f5b7159e0",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-15T05:16:15.335Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#143)",
+      "files": [
+        {
+          "path": "storage/wal.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "ded1a809dc0f1859d3d0e4c0a900e982758a2cce",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-15T07:56:30.599Z",
+      "message": "feat(core): initial memory pool allocator (#144)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "aec1eedb19753ed2a41bd63ec72ca2a4c1489982",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-15T10:47:06.285Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#145)",
+      "files": [
+        {
+          "path": "tests/core.test.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "6097e057aff1aac79f748635bdf06e4dad1a8c80",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-15T12:52:26.840Z",
+      "message": "perf(storage): optimize B-tree node split routine (#146)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "292e317a1d77ad0a4d62e6a84f50b6791d751941",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-15T15:42:24.413Z",
+      "message": "feat(network): implement multiplexed stream protocol (#147)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "299c77a1198463fc1ab0027278905dba09228b69",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-15T18:56:06.025Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#148)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9a4f3d0418443e4f11b12b74d86d63d6d528f370",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-15T22:12:09.872Z",
+      "message": "test(storage): add concurrent transaction stress tests (#149)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ab0879758125f5f772ed26269fe02640d333b394",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-16T01:24:41.045Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#150)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "97e7aa71943e999571f226fa86defbbc23e2cc43",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T01:55:58.748Z",
+      "message": "feat(cli): add telemetry inspect command (#151)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "f2ab77d30b0a3e1085633cb89b97a6af931e5625",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-16T04:44:37.126Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#152)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5fbb424cea526bcacad873623db0a2adebfb992f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T06:41:54.940Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#153)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "0fb7c4b4b7daa227053391881f254b33a76b62b0",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T09:23:12.274Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#154)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/config.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8e40aa9fc7d671c0191d42f2fe8028b276438f50",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-16T09:52:37.094Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#155)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "43455fa18e79b850f403d1ebc8bd377e7551cd4f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T11:48:54.277Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#156)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0bc0e61464552f9a2930acb06790f5f5ba35f4bd",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T15:54:24.393Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#157)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "60d6c80c3dff851573dab8231ff78087b2c004ec",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T17:44:47.765Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#158)",
+      "files": [
+        {
+          "path": "core/allocator.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a48202bf9c995d0d8bcc5dd055063f6d1e858959",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-16T18:46:58.669Z",
+      "message": "fix(cli): parse custom config flags gracefully (#159)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "481a9e27f0f2afcaeaf654e88d8963df2566d37c",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-16T19:16:48.053Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#160)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "017757352edb936180460dcf1510a950f61718fe",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-16T19:55:05.904Z",
+      "message": "feat(storage): add online database compaction worker (#161)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "05b4b23f9960217545e1bac3b8cb9b0c89c2aa9c",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-16T20:38:27.849Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#162)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2f368859928029473eae36b04bce76a1c98cf77e",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-16T22:08:27.507Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#163)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7cc59c20dd387211b40ce649569051dca4c17fbb",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-16T23:27:12.491Z",
+      "message": "feat(network): introduce UDP transport fallback (#164)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "a927ad52eecbb249520e671377bdb9a385acb897",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-17T00:28:18.778Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#165)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "03f6e0b3dd5105a7bfc43170792e4f0a2861768d",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-17T01:14:22.923Z",
+      "message": "feat(core): initial memory pool allocator (#166)",
+      "files": [
+        {
+          "path": "core/dispatcher.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "a5b1408cc1a574f59f25fbfb32a2fb80a2b35216",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-17T03:59:20.829Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#167)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d689513ff7f6f793ab6f45f6359c015e1a5129ac",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-17T06:38:12.026Z",
+      "message": "perf(storage): optimize B-tree node split routine (#168)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "295f120ab9d555309d63c4c9feccfa10590b9d86",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-17T07:52:31.434Z",
+      "message": "feat(network): implement multiplexed stream protocol (#169)",
+      "files": [
+        {
+          "path": "network/peer.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "d44db50562a7e721b37cc3dcaeeb4660e977ca21",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-17T08:37:52.518Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#170)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "411ec8b8b4c3d4872381628c31199488d87ef767",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-17T11:17:42.693Z",
+      "message": "test(storage): add concurrent transaction stress tests (#171)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fb07616691e4e1950160041e3e762234bf918ae3",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-17T14:57:09.764Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#172)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "25baa72dc7f2d6fc587d5d796b4106b4904e7ad1",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-17T18:44:02.079Z",
+      "message": "feat(cli): add telemetry inspect command (#173)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "edb2d358ebcb2a912054ddc77aaa9907a7e08fd8",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-17T22:15:53.093Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#174)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "64158f7408813bbe4acc9aa89373a944a46b99d3",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-18T02:16:53.150Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#175)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "02ad49e8e64dc2fe12f3f2f2409b1758cd7c31c8",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-18T06:17:15.477Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#176)",
+      "files": [
+        {
+          "path": "network/stream.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b66eb42bf8860f84e1f9baf0547ef961b3172d51",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-18T07:18:17.892Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#177)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "89a1a3f5d45c39467054c82fec23b2e0143b587a",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-18T10:19:17.593Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#178)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8ecf583a4c555c73889499ca221eef453b6a8402",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-18T11:25:19.633Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#179)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08f2bce59f8463e0c6b29fe53a6d890ac5bc3bf8",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-18T14:08:34.537Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#180)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cc7b9291c464d2f19531e9ff49fbe9688996e2e9",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-18T17:33:29.130Z",
+      "message": "fix(cli): parse custom config flags gracefully (#181)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4c80ad552ad850ef88c09d168c2c3c55f848ef2e",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-18T20:58:01.311Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#182)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ef94d06f77f0bedfff41f237604f16618b8ded1b",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-18T22:25:12.336Z",
+      "message": "feat(storage): add online database compaction worker (#183)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a3e94af9cc77913bd45cf23e19c0bb019f04db31",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-19T01:59:13.567Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#184)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c019b5c753845088b58d200c425330a74c8d9c7e",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-19T04:00:37.584Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#185)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "06ccec51a71d3fb83a6ef9136a64f6860c71d61e",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-19T05:35:56.541Z",
+      "message": "feat(network): introduce UDP transport fallback (#186)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "0179aa909611ca67e1080e897796ca884312ad61",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-19T07:06:45.140Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#187)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "92a2bb96ed11a19cd3d317a59e35519b16847da0",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-19T10:20:25.041Z",
+      "message": "feat(core): initial memory pool allocator (#188)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e16ae6a454ece19cef3ca8efd94e39ee9a511e82",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-19T11:45:23.974Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#189)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6d3290e98bbf0e64d1862613fd57d1736d1436a3",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-19T14:34:11.114Z",
+      "message": "perf(storage): optimize B-tree node split routine (#190)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "df5298e0b47b518bcfc40eea7862a218fd3bd20e",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-19T15:34:32.607Z",
+      "message": "feat(network): implement multiplexed stream protocol (#191)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7af83a0f38c62fcdc72c8753b56d3c8e9b74bbef",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-19T17:11:59.747Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#192)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f36b3627dc29e2a3b513c3ce0ea3aae95a3991d4",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-19T17:56:03.620Z",
+      "message": "test(storage): add concurrent transaction stress tests (#193)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        },
+        {
+          "path": "network/socket.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "48192b400991429b798ba12a4fbd954a0a18b660",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-19T19:14:36.872Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#194)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "51da8541fe9bd7fc66039d2cede7c9e8964f6183",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-19T21:30:22.728Z",
+      "message": "feat(cli): add telemetry inspect command (#195)",
+      "files": [
+        {
+          "path": "storage/wal.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "68913aa1c177df9d2a7507c7f083231cc773a665",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-19T22:08:40.209Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#196)",
+      "files": [
+        {
+          "path": "storage/cache.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "5fcbaf6e3f4f33d2f2d1d5be878c49c80f1a6e25",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-19T22:55:29.253Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#197)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "74faa15a2ee4b543d254c2c18a939d2ea6f9f0d4",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-20T00:06:16.090Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#198)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "M"
+        },
+        {
+          "path": "network/handshake.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "92f49f864d7665eb2dc8af62b3e618be6d02bec2",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-20T01:33:11.708Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#199)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9acff627cb2faa7be66bf85985f8730891fea081",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-20T02:16:48.867Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#200)",
+      "files": [
+        {
+          "path": "storage/cache.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3a3d4525364da6b3556e86f3d3feca3c7d2bcff9",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-20T04:57:24.768Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#201)",
+      "files": [
+        {
+          "path": "storage/compact.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "195d6bec5b8a06610c5302516e5ebc0745a678a1",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-20T05:36:27.560Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#202)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7ea7ddd7bd17c323b76df47f7d09061f18fa4414",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-20T09:28:05.089Z",
+      "message": "fix(cli): parse custom config flags gracefully (#203)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e19e3333dfb1f49973b2b76211649df4d42a3791",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-20T10:47:07.938Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#204)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7f4cb8b355692c58d1958a43fa2fed22f53f7b86",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-20T11:13:24.336Z",
+      "message": "feat(storage): add online database compaction worker (#205)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "844f6f16ed8e7044e8b522a7b66ca8a3f19a7ace",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-20T14:42:25.509Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#206)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "82aacb239226a9b0dc5c3c31d53c16f1cacb0b74",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-20T15:42:27.618Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#207)",
+      "files": [
+        {
+          "path": "storage/wal.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/cache.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a3bfa93504c3278df2d596974db928917008969b",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-20T19:52:41.290Z",
+      "message": "feat(network): introduce UDP transport fallback (#208)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bf3eb0837b4bd0e2cb4061c2ba4b5cb38d472fc1",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-20T21:58:51.870Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#209)",
+      "files": [
+        {
+          "path": "core/allocator.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "eacb16849a44a7dfe1bf8463b7cf55292457d233",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-20T22:35:12.878Z",
+      "message": "feat(core): initial memory pool allocator (#210)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "90d950a0b9fdd673d163dca46fd0741bacfc5808",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-21T01:11:30.986Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#211)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f3f7d93d01a75757744d35ea0a8b1b8692829853",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-21T02:23:21.079Z",
+      "message": "perf(storage): optimize B-tree node split routine (#212)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "015aeef979d0f3711a5712c0f171172ed4130948",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-21T05:17:19.430Z",
+      "message": "feat(network): implement multiplexed stream protocol (#213)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8e6ccf857f1721773658b328bb61bf8db32118a9",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-21T08:33:10.354Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#214)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "35a97c988bc2ebbecfc7b583df8de6a197347ae6",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-21T09:34:36.655Z",
+      "message": "test(storage): add concurrent transaction stress tests (#215)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2d4576e2e59838a8e3142209b49974ba9f7e3ad9",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-21T13:10:38.842Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#216)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "48cf423e4f053b0478fae5afe74111adedfdfc33",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-21T14:17:37.998Z",
+      "message": "feat(cli): add telemetry inspect command (#217)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "66350bf3a7484854cda45eba1f13112cc95278ef",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-21T15:40:24.486Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#218)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2a0718cee551d97ad9857c4a0cc4f4c1c5891cfb",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-21T19:40:09.225Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#219)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b3976e8ff1862e7ef8a671229c86830a1d3801bc",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-21T20:39:12.463Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#220)",
+      "files": [
+        {
+          "path": "storage/compact.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "958cb364f7cd12f580b9a2c8f2a578d5f5db5f2f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-22T00:52:44.210Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#221)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5eb1a2e080efbb9fd4f1f1b5d6826486e1f0de18",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-22T05:01:34.782Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#222)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b204fd3584399a98441d29604dd8a1f23219b695",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-22T08:31:53.264Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#223)",
+      "files": [
+        {
+          "path": "tests/core.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4284dabee4428f5d76566e2645fec77f0aad86e9",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-22T11:38:39.580Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#224)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "68493d26be30c8a0db3e8ec43eaefdc45513fd6a",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-22T12:40:45.709Z",
+      "message": "fix(cli): parse custom config flags gracefully (#225)",
+      "files": [
+        {
+          "path": "storage/disk.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "63ac5dd8311838d0faea83c8da265708d6ae8d3b",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-22T16:27:15.800Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#226)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "52f99d0f81d99cca4d1e393538d676afe040c7e5",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-22T18:29:27.414Z",
+      "message": "feat(storage): add online database compaction worker (#227)",
+      "files": [
+        {
+          "path": "core/types.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b5884f02de0ae3c911ab8c67b99874bfea9b4226",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-22T21:07:21.261Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#228)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2cb2bab685c35cd218ddbd2813750a20bdbae526",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-23T00:39:29.266Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#229)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e76a0017ec60a8f69635084e1aab161862b8de2b",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-23T04:21:23.113Z",
+      "message": "feat(network): introduce UDP transport fallback (#230)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5539cad900d1d3af5a70a0fd35ba0180659b74a9",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-23T06:58:15.347Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#231)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ac28150867a681c28fc6ee78d1003d86bca3e06b",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-23T07:51:50.748Z",
+      "message": "feat(core): initial memory pool allocator (#232)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d461f441c0dbac622dbc8266541880e3dcd34d9c",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-23T08:54:39.688Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#233)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1461c36514ac3c9d1bb73a9fc39bc4e92cee3f21",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-23T10:00:21.137Z",
+      "message": "perf(storage): optimize B-tree node split routine (#234)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "127b15334f38270f2851cb5a2414ade3802d2f7c",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-23T14:10:04.327Z",
+      "message": "feat(network): implement multiplexed stream protocol (#235)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b3333bb1f16376c97fff20c64e731bb6e9c6ef37",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-23T18:18:38.057Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#236)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2920dfb8351f39b80abee0e97a1089d6d33e3670",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-23T22:06:25.164Z",
+      "message": "test(storage): add concurrent transaction stress tests (#237)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "954700699946271df202d7ff97ef93bca74ba889",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-24T01:21:33.557Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#238)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cb92219929bfc977c68c502d8ea26cdc06d24591",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-24T02:11:26.589Z",
+      "message": "feat(cli): add telemetry inspect command (#239)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7b02c8372c44e4652ba17437a742ddf1473fd447",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-24T04:37:35.342Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#240)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d87ea4c25ce32d47ab90529bff2681a146da5c73",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-24T07:18:48.502Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#241)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "66437206a9ba8abe7c9dc35e7ecf69359b7b256d",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-24T10:33:10.657Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#242)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "67e65676792094a2a7ee20ef2e634d2655dc1a7f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-24T12:39:38.052Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#243)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bbfdafe50a2939bf67b55da7f8415b94d53b3d7c",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-24T14:35:56.095Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#244)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08352fb09a9a6d1ac7551e85a146d142ad493263",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-24T15:39:23.226Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#245)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f7022a54dca32733d968011f3c59145f2cd91560",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-24T19:10:59.548Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#246)",
+      "files": [
+        {
+          "path": "tests/core.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "561740d502670f75877f56b2cf8b3a71a3ade7cd",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-24T22:32:56.107Z",
+      "message": "fix(cli): parse custom config flags gracefully (#247)",
+      "files": [
+        {
+          "path": "cli/config.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6080618db7d5dd648093db1e6b14971b0880496a",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-25T00:39:36.853Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#248)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c75c79ae55a323f5da76454f350e439e61279c5f",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-25T02:56:14.011Z",
+      "message": "feat(storage): add online database compaction worker (#249)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e900842671b8314b3cb6628e40b939a4c6a2c77a",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-25T06:22:13.507Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#250)",
+      "files": [
+        {
+          "path": "network/stream.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "86010c289302290aef644b7dd7d1fbeff6ce4d7b",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-25T09:18:52.729Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#251)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1d295a659297a2c14c5fdb07f288d150b143ff93",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-25T13:26:07.745Z",
+      "message": "feat(network): introduce UDP transport fallback (#252)",
+      "files": [
+        {
+          "path": "storage/disk.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6df4eca367725267506e3f277593ead5bd05fee8",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-25T13:52:39.431Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#253)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "12fd5c61dee6a0a73117f2a23f8a0b21661d14a6",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-25T14:38:26.085Z",
+      "message": "feat(core): initial memory pool allocator (#254)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f27179c3fa0c9e9c976669acf17b7a51014c4088",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-25T17:38:31.814Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#255)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1cf8f80019ce2c79be32c748de6a703f9bdeb14b",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-25T21:05:16.082Z",
+      "message": "perf(storage): optimize B-tree node split routine (#256)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7d7165d978b6624a3d37ce8fb36eeb131477103f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-26T00:20:58.992Z",
+      "message": "feat(network): implement multiplexed stream protocol (#257)",
+      "files": [
+        {
+          "path": "network/handshake.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "758758d4e456881def8c2e3a6e9d6bbb56a3a244",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-26T01:05:06.995Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#258)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4acb01683bb28038915764e1191a1f890d0c9feb",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-26T04:16:57.446Z",
+      "message": "test(storage): add concurrent transaction stress tests (#259)",
+      "files": [
+        {
+          "path": "core/engine.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e4540feb3b7444bf1b61653937768c5bab3dc867",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-26T07:05:01.406Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#260)",
+      "files": [
+        {
+          "path": "storage/disk.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "71c70a6f99871ff42e778daabfe063f12a0cba25",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-26T07:26:03.561Z",
+      "message": "feat(cli): add telemetry inspect command (#261)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1b468aa1c4db83e11c2da6544e8cbb73d1cb12b8",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-26T11:35:11.710Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#262)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "74b003e80b6564470043e08df94e3a2ba1d5bd18",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-26T15:12:50.587Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#263)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b43c33585673cacde1359e7a8dae37bad85c685b",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-26T18:59:56.630Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#264)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7d6b4ea7eb0faffcb132a1ab47b1040dc0d4c956",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-26T21:08:58.226Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#265)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6fe988fa0e501fa80085b9bb0f3c984cd1b6a8e3",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-26T22:10:23.776Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#266)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "58c5c7fc905114b8188d7346304802cf313556b0",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-27T00:27:03.341Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#267)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "af2e97dc6efe31824bf36c4258fc3fbc2905d11f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-27T03:01:29.726Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#268)",
+      "files": [
+        {
+          "path": "core/buffer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "435e0f0a12ce6a93bbf137f2f9305428389f6180",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-27T05:14:16.002Z",
+      "message": "fix(cli): parse custom config flags gracefully (#269)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "84c17cc2472aef9dad6b43cb6c719d850fdfd49d",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-27T06:30:19.405Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#270)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c4e343a4c141d5ed2914f82e1ba2e4fd0f2e851b",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-27T08:34:13.762Z",
+      "message": "feat(storage): add online database compaction worker (#271)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a0c168321faeb7284a2c51ef73a722e5bb8f775f",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-27T11:31:05.839Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#272)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ad716f8cef0b74989e362ddf170362b1349ac939",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-27T12:33:59.260Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#273)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        },
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "73c358d4e435d91f3f58bcf4a341e162f08b7140",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-27T13:02:37.647Z",
+      "message": "feat(network): introduce UDP transport fallback (#274)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ee73a44dd70e7c349693a28e252d9084a2208b06",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-27T16:50:31.421Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#275)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5ea5be27136b7dcb89df73ca0649e7ec87be883a",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-27T17:08:39.693Z",
+      "message": "feat(core): initial memory pool allocator (#276)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6bbbbba24de47b8c474e45a990c5a139e5668e2c",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-27T20:37:27.754Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#277)",
+      "files": [
+        {
+          "path": "core/types.ts",
+          "status": "M"
+        },
+        {
+          "path": "core/dispatcher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0efa288602614d01e5aab73a9b8d182744809491",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-27T23:03:46.339Z",
+      "message": "perf(storage): optimize B-tree node split routine (#278)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6b35706f48409474d14c0b38f2021975ec7a588d",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-28T02:14:34.175Z",
+      "message": "feat(network): implement multiplexed stream protocol (#279)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d6d0e8aee3a95e9f109508935d74770c5beb4ff0",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-28T05:58:27.919Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#280)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0d5dab1e9154f8ece78000ba53c5e8e0916fd293",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-28T06:36:30.361Z",
+      "message": "test(storage): add concurrent transaction stress tests (#281)",
+      "files": [
+        {
+          "path": "storage/compact.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b0c8652757b80e94a46009b1951d14804c406aad",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-28T10:38:50.605Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#282)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "88c80ca99717747349b8121ef2b15c8332a30a2e",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-28T13:34:46.048Z",
+      "message": "feat(cli): add telemetry inspect command (#283)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8ec24bdf11879484561ce9a5e1aa9554a4a7769f",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-28T15:27:26.258Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#284)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3523d44413a3616559cc9fb182cb2aa38e1ceb76",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-28T15:57:07.519Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#285)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "dece2dec474d78c4a0318da0c0803af3ed0958d6",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-28T16:55:35.872Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#286)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "15076a68253a5dd40aed8d19ea562efb2b406b6c",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-28T19:22:50.133Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#287)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5350be04938621dc22bcd598da98fc6d5536bf8d",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-28T21:47:56.446Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#288)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fa3cf7c1fa6bcceb7c700a9abd0e5258b1ef9464",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-28T22:06:03.896Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#289)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3ff3a843d660d3ff74deadb01e76ee649cc75872",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-28T22:53:05.467Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#290)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e63814b98f591dfacb4038a1577adcf707820072",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-29T02:44:24.106Z",
+      "message": "fix(cli): parse custom config flags gracefully (#291)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e9ca6a0ef06946fc6aca7b53c6e7bf011fc95ef8",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-29T06:28:58.631Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#292)",
+      "files": [
+        {
+          "path": "network/handshake.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4384962f705d6018628755ace6fb2d89b7bc9799",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-29T07:37:10.812Z",
+      "message": "feat(storage): add online database compaction worker (#293)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ebd77e71fbb335f6a0cab1c68517ba73c7eb734f",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-29T08:02:34.461Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#294)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c8da688dac04ad1b488e47577b7f9352f27f2176",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-29T09:25:22.473Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#295)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a4af17e03b9f7954c8e716fb87590be958299606",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-29T11:28:25.524Z",
+      "message": "feat(network): introduce UDP transport fallback (#296)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6f5d4f40c22bb91f6a24c201d705e66a5b4426d1",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-29T12:39:05.401Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#297)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c6c4b7d059e36f936a0f7b21f9236978136b5ad1",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-29T16:32:30.947Z",
+      "message": "feat(core): initial memory pool allocator (#298)",
+      "files": [
+        {
+          "path": "network/codec.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "061fbb3be6f302573a44e850d3a52281430f79c1",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-29T16:53:56.685Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#299)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b0a8e1a7cbf2c7ed3f61aed31a8caf3013709fe2",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-01-29T19:35:50.347Z",
+      "message": "perf(storage): optimize B-tree node split routine (#300)",
+      "files": [
+        {
+          "path": "network/peer.ts",
+          "status": "M"
+        },
+        {
+          "path": "network/stream.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "750d1f980ad3a449738a4c3860198cef936d8e52",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-29T21:09:04.312Z",
+      "message": "feat(network): implement multiplexed stream protocol (#301)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bd486f21c54ff02a0cc4d719959aa507549e7d3d",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-29T23:29:30.435Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#302)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1761e5b8daa0df843f0ea683806a6bd5534e526b",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-30T00:33:49.545Z",
+      "message": "test(storage): add concurrent transaction stress tests (#303)",
+      "files": [
+        {
+          "path": "core/allocator.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e08fcbb078e40e69c0e1fd1ecd3e25d3ae2c5ae1",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-30T01:39:29.017Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#304)",
+      "files": [
+        {
+          "path": "storage/wal.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/cache.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2bbce5388cf7467630c892998b663d0ec4099001",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-30T04:34:43.884Z",
+      "message": "feat(cli): add telemetry inspect command (#305)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b1aa0469b26be643bfcb7b1cc5bc7db34107e7a0",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-30T06:04:31.440Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#306)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "affb9ce1d3b73bd7d0b30cc793412b8df9f73613",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-01-30T10:18:22.000Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#307)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "43fc0782145fa4c84a290a9ab45eeb398522cdd9",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-30T12:40:34.441Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#308)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        },
+        {
+          "path": "core/engine.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e9a4fe21f3dc662253f2fbe90aa76223582d7fe9",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-30T13:43:35.347Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#309)",
+      "files": [
+        {
+          "path": "core/allocator.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fef2f32922e72009f71495fdf89a6b6d79bb1d0b",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-30T14:49:38.719Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#310)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b86b1b99b14c9fd05dfd914e7308f63f6ae75bd5",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-30T18:59:35.977Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#311)",
+      "files": [
+        {
+          "path": "storage/compact.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7248bf9ea0591051de4231486a8cf6e17029c024",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-30T21:52:42.914Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#312)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e5fa1e05ff3261d20c35e926f3a2fc2c15aa35b1",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-31T00:19:20.305Z",
+      "message": "fix(cli): parse custom config flags gracefully (#313)",
+      "files": [
+        {
+          "path": "network/peer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "264c35fae51bc2f0db391be4488e03b9e40cf345",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-31T02:12:10.277Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#314)",
+      "files": [
+        {
+          "path": "storage/wal.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1ce08ac9fece397234b65b988e7bfa1daa3b6651",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-31T02:37:55.562Z",
+      "message": "feat(storage): add online database compaction worker (#315)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0f390b6d5f599800db92fb462e0068438616d46b",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-01-31T04:09:58.029Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#316)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d4c4419f8c74fdd7ae597865c29bb339a15f279e",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-31T08:07:38.606Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#317)",
+      "files": [
+        {
+          "path": "cli/config.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9d5ed09cb3602a12e48d391893fdd19a17cfb825",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-01-31T11:51:36.900Z",
+      "message": "feat(network): introduce UDP transport fallback (#318)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0ada5e5d2fb1e272a33ce000db69db66e299f2d9",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-31T12:08:38.761Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#319)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bb26cc6ba626bf02223814a79bfc5018bf406979",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-31T15:19:59.479Z",
+      "message": "feat(core): initial memory pool allocator (#320)",
+      "files": [
+        {
+          "path": "core/engine.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5aa915ae1537b27b63841c90665f723d15b5e11d",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-01-31T19:10:02.182Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#321)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9d01ad3759e720ee8c021ee2410187ea47f4c120",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-01-31T19:46:50.655Z",
+      "message": "perf(storage): optimize B-tree node split routine (#322)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7ffa0c2542801fbaf75797b119f7a98738268744",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-01-31T23:01:09.792Z",
+      "message": "feat(network): implement multiplexed stream protocol (#323)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "82ec450e4e3c943986de0e7ca9dad21b147f6295",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-01T02:17:08.514Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#324)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6d3ada90ca0fb0b3630a21dff18bf4981a3bafc1",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-01T04:49:22.676Z",
+      "message": "test(storage): add concurrent transaction stress tests (#325)",
+      "files": [
+        {
+          "path": "network/handshake.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0e57ef75b38fc73281a40c2eeddf54cf52664c6a",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-01T08:17:12.281Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#326)",
+      "files": [
+        {
+          "path": "storage/cache.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b6127151aebd863acbb070ba5c0d30a775bd238e",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-01T09:34:02.834Z",
+      "message": "feat(cli): add telemetry inspect command (#327)",
+      "files": [
+        {
+          "path": "core/dispatcher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7b221fe02af6792a6566253ac7c4529e2f2eb542",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-01T12:23:26.788Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#328)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8b2a814d5c541896baa58f4291ba34cd4de0249e",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-01T15:44:47.424Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#329)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b524cfe5a17989682d8e71f4b4915aacc3668169",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-01T17:14:56.645Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#330)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "16ab20937a4a16d664845b8135a36abb85f627a8",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-01T20:29:45.870Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#331)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/compact.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "baebdd1407033ddccae78f1735701c84f89e5111",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-01T22:33:51.705Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#332)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/wal.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4b661817cc0ea624f638c19924ebf3092a98ce9c",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-01T23:25:23.009Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#333)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7518ffe1444296864d5ade858efc329ddb4f3959",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-02T03:31:54.291Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#334)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "757ccb4bad7318b9684712c3c97c8be766ad7231",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-02-02T06:18:07.273Z",
+      "message": "fix(cli): parse custom config flags gracefully (#335)",
+      "files": [
+        {
+          "path": "tests/crypto.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b2f7f53a58f744981a12db95e153af6d3fd98a69",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-02T06:36:42.006Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#336)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8427cf095146b343e0723c847421a465a7bbdd18",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-02T08:22:40.729Z",
+      "message": "feat(storage): add online database compaction worker (#337)",
+      "files": [
+        {
+          "path": "tests/storage.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b8fb58768461e8c36127aff1ae1bc544e167ddc8",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-02T11:41:33.381Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#338)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5f28a52eae3e5e60b035ed8fe95db69afb822ee4",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-02T14:12:10.366Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#339)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f464804f49c4aef44fa023d7a15e4008ec6d4c87",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-02T17:35:16.961Z",
+      "message": "feat(network): introduce UDP transport fallback (#340)",
+      "files": [
+        {
+          "path": "core/constants.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7be099237d502295f36054b4853216702b7551d0",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-02T18:26:35.813Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#341)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "10276e3220b6fd0766f483fd9548996434bcec88",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-02T18:48:23.690Z",
+      "message": "feat(core): initial memory pool allocator (#342)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "82ca69349613b94edb7e35b4ac7591524b0a0041",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-02T20:49:55.972Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#343)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "753dfee77ec9a7812a195dfd6a3d8b416a3500a6",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T00:28:00.584Z",
+      "message": "perf(storage): optimize B-tree node split routine (#344)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "edb728861e4449e27abf6251b82cec2c90909561",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-03T01:55:35.867Z",
+      "message": "feat(network): implement multiplexed stream protocol (#345)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f61c1cdbd1e978d6ac7f7fb15a28bffbd241d6d4",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-03T04:24:41.985Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#346)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2920eac846f74742d6d1b4ec94cf8e459b3ff3c4",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T05:06:12.281Z",
+      "message": "test(storage): add concurrent transaction stress tests (#347)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1056d546400a8a80a923a5f07fb2c0df3c66d22a",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T07:04:30.279Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#348)",
+      "files": [
+        {
+          "path": "core/types.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fed3c39a91f197cea3a760537be9f77fa12ccbef",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T09:45:52.509Z",
+      "message": "feat(cli): add telemetry inspect command (#349)",
+      "files": [
+        {
+          "path": "storage/disk.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bf98859b13112bacf9de3f699cce1e129fd111dc",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-03T11:25:06.023Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#350)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9cf617848be7799c32b20b692a61ef475a89bffb",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-02-03T13:41:08.943Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#351)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c0376e49cb529859228e1afb5ea6991ddbd22926",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T13:57:51.842Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#352)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a3a05005ee39e940733082a38830729f8e06b1a1",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-03T15:05:38.946Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#353)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d63f4225db8aa0a7808f2a98158dfca20f2beda6",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-03T16:10:02.151Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#354)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fc523fd5b205f167b3d5d0fe8fe0924ef7e1a5c2",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T19:29:21.685Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#355)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fd33b57e7504bde9ba0d5132e11c22b89bd92777",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-03T20:13:18.835Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#356)",
+      "files": [
+        {
+          "path": "core/events.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8b6891d4150897f50949bb308fb0e1a95175dafe",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-03T23:50:34.848Z",
+      "message": "fix(cli): parse custom config flags gracefully (#357)",
+      "files": [
+        {
+          "path": "storage/compact.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1c9b75a0528f2f994657fb8ba88f5a24401119b0",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-04T03:51:35.610Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#358)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b11d111456aac8724dd7c23bf82262581b3243ca",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-04T07:53:47.254Z",
+      "message": "feat(storage): add online database compaction worker (#359)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6713e90d690f2083ed00b41f5ece952bee2bc38d",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-04T09:26:44.761Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#360)",
+      "files": [
+        {
+          "path": "cli/args.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b67a9517e72d2b1be03d406b3d2ae9eb71fb5fc0",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-02-04T11:18:25.295Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#361)",
+      "files": [
+        {
+          "path": "core/engine.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bc776aba54d10e1da73c45c050c201016092264d",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-04T13:41:35.672Z",
+      "message": "feat(network): introduce UDP transport fallback (#362)",
+      "files": [
+        {
+          "path": "core/dispatcher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ae9422fc8e746918666c180a32029d9454c688c2",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-04T17:46:24.995Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#363)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bc3023319b0a65d5c4b07216aba99ce91edc485e",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-04T18:46:12.036Z",
+      "message": "feat(core): initial memory pool allocator (#364)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9ea11c5dd3328f505ae19c801f4b4701ebfbaa5e",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-04T20:09:31.330Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#365)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "128069f0be25fd027f08c33b695fc313fdb3ff0e",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-04T23:15:10.641Z",
+      "message": "perf(storage): optimize B-tree node split routine (#366)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "de03d1bd7fe8a69d0c1a834ec46d76953cd274e8",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-05T02:35:23.498Z",
+      "message": "feat(network): implement multiplexed stream protocol (#367)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "db245ea428c2d4c7e904d30654a06f211a231bc1",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-05T04:05:55.704Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#368)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ac688f7c4fc96a0f90491a8a9f444d29cab7dce9",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-05T07:30:43.955Z",
+      "message": "test(storage): add concurrent transaction stress tests (#369)",
+      "files": [
+        {
+          "path": "cli/formatter.ts",
+          "status": "M"
+        },
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "48326b289c091986d89e7d62bd351fa326250e03",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-05T11:28:29.152Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#370)",
+      "files": [
+        {
+          "path": "network/socket.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1b5bfd19b46a0ab387034b4340ce9150e655c6c0",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-02-05T13:46:34.151Z",
+      "message": "feat(cli): add telemetry inspect command (#371)",
+      "files": [
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5c9ee20fead5a18b022ccba99b22e42a0494538b",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-05T17:33:49.046Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#372)",
+      "files": [
+        {
+          "path": "tests/e2e.test.ts",
+          "status": "M"
+        },
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a01a9c15bc1a6111baf0dd166d2fb5990002b52a",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-05T21:09:23.251Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#373)",
+      "files": [
+        {
+          "path": "crypto/keys.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9922166b89b725b3d8a030f6d6b4a528470f9d39",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-06T01:11:10.095Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#374)",
+      "files": [
+        {
+          "path": "network/protocol.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "20917881a17b9cf8ae22726d7c2fad4458762fa4",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-06T05:09:03.653Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#375)",
+      "files": [
+        {
+          "path": "tests/core.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5a02fcadf7fc4976159fa254c98a84e4de1a917f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-06T07:22:17.387Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#376)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5a64ac54c4c08ec4de3b9fcd3f23592e9ee061d3",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-06T10:39:59.017Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#377)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "712dde10c0d9616b30aa86a712dca9f7ffb745fe",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-06T11:03:13.661Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#378)",
+      "files": [
+        {
+          "path": "docs/storage-spec.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "76a28ff10e27e9c28d83bda5e1460b87d638e18a",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-06T14:47:30.162Z",
+      "message": "fix(cli): parse custom config flags gracefully (#379)",
+      "files": [
+        {
+          "path": "network/rpc.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9a0f3aaba9dfb103eceb8287a407a2e7586c7180",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-02-06T16:12:43.482Z",
+      "message": "perf(core): reduce allocations inside hot dispatch loop (#380)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cb0b93d65ce9f680f99cd67908bbf301f7a82b84",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-06T18:10:57.105Z",
+      "message": "feat(storage): add online database compaction worker (#381)",
+      "files": [
+        {
+          "path": "cli/commands.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4acfd1ad7084eb16eb8d50241c580384cabad37f",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-06T21:13:35.323Z",
+      "message": "docs(protocol): clarify frame sequence numbers and ack timeout (#382)",
+      "files": [
+        {
+          "path": "network/peer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "953363268e01fcde6c4e62977ebe2fef8a5604d4",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-02-07T00:41:37.229Z",
+      "message": "refactor(core): migrate internal events to typed event bus (#383)",
+      "files": [
+        {
+          "path": "network/peer.ts",
+          "status": "M"
+        },
+        {
+          "path": "network/stream.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fd263d422353bba3b0fb6f537607e6ee677914c3",
+      "author": "Ken Thompson",
+      "email": "ken@chrono.dev",
+      "date": "2024-02-07T03:33:02.005Z",
+      "message": "feat(network): introduce UDP transport fallback (#384)",
+      "files": [
+        {
+          "path": "storage/disk.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ebe451d79e9c947042f40d6ef311d3eaf0c5efbb",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-07T03:56:22.449Z",
+      "message": "fix(storage): fix latch contention under heavy insert workloads (#385)",
+      "files": [
+        {
+          "path": "cli/main.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d93f5629227e3bf999924dac44c878032a828b50",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-07T05:25:33.286Z",
+      "message": "feat(core): initial memory pool allocator (#386)",
+      "files": [
+        {
+          "path": "tests/network.test.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9019c60b7d1ece81d081a436e61c6bb93a85440d",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-07T09:12:05.543Z",
+      "message": "fix(storage): resolve WAL replay edge case on unclean shutdown (#387)",
+      "files": [
+        {
+          "path": "crypto/cipher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cc00c986e92847e34e922325621de46de1c2cf79",
+      "author": "Satoshi Nakamoto",
+      "email": "satoshi@chrono.dev",
+      "date": "2024-02-07T12:28:18.504Z",
+      "message": "perf(storage): optimize B-tree node split routine (#388)",
+      "files": [
+        {
+          "path": "docs/protocol.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "88c11880f62a826695a8308ed40e053c5c541361",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-07T16:01:36.436Z",
+      "message": "feat(network): implement multiplexed stream protocol (#389)",
+      "files": [
+        {
+          "path": "core/dispatcher.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9f0ad0d5a7828b57a35c9728505c9fa9e3c12ffa",
+      "author": "Linus Torvalds",
+      "email": "linus@chrono.dev",
+      "date": "2024-02-07T19:53:23.178Z",
+      "message": "refactor(crypto): migrate sha256 to vectorized SIMD routines (#390)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8663b2bc6d80c999df443c60f8ddeefe3c4cc825",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-07T23:09:23.465Z",
+      "message": "test(storage): add concurrent transaction stress tests (#391)",
+      "files": [
+        {
+          "path": "docs/architecture.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f348f9fbbc302ee2a43703123cdbf2b47c46e7ae",
+      "author": "Alan Turing",
+      "email": "alan@chrono.dev",
+      "date": "2024-02-07T23:25:12.088Z",
+      "message": "fix(network): handle peer timeout during handshake exchange (#392)",
+      "files": [
+        {
+          "path": "storage/btree.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5988f1f8f78a7265c345c324dd572981ae674ecf",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-08T01:38:39.305Z",
+      "message": "feat(cli): add telemetry inspect command (#393)",
+      "files": [
+        {
+          "path": "storage/cache.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e5d76d881348c37657b2b0ac0398b298cdd66c6f",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-08T02:50:11.822Z",
+      "message": "docs(architecture): document zero-copy buffer architecture (#394)",
+      "files": [
+        {
+          "path": "docs/README.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4695bef743bce421d0f3b1622e923d494bbfbe75",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-08T04:50:45.394Z",
+      "message": "feat(core): dynamic worker thread auto-scaling (#395)",
+      "files": [
+        {
+          "path": "crypto/merkle.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ca625846c2762ab14318b034c98129b8ffdae6bb",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-08T07:22:36.865Z",
+      "message": "perf(network): zero-copy frame parsing for RPC batches (#396)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e7b1502f8023a8932d069f43fd14e603077cf9b8",
+      "author": "Margaret Hamilton",
+      "email": "margaret@chrono.dev",
+      "date": "2024-02-08T08:01:17.972Z",
+      "message": "refactor(storage): separate page cache from raw disk I/O (#397)",
+      "files": [
+        {
+          "path": "storage/pager.ts",
+          "status": "M"
+        },
+        {
+          "path": "storage/compact.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b8c2ea3a65cc3d6f93193f1fdcc7afb5f6e1dbd0",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-08T09:01:25.896Z",
+      "message": "fix(crypto): correct Merkle tree root computation on leaf deletion (#398)",
+      "files": [
+        {
+          "path": "docs/benchmarks.md",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "91145dab6c25e34fe4f55a60861383895a64fe8b",
+      "author": "Ada Lovelace",
+      "email": "ada@chrono.dev",
+      "date": "2024-02-08T09:54:04.973Z",
+      "message": "feat(core): implement lock-free ring buffer for logging (#399)",
+      "files": [
+        {
+          "path": "crypto/signature.ts",
+          "status": "M"
+        },
+        {
+          "path": "crypto/hash.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fcb04fdf0b71114860ef405105fbff60e13ae77a",
+      "author": "Grace Hopper",
+      "email": "grace@chrono.dev",
+      "date": "2024-02-08T13:15:05.378Z",
+      "message": "chore(tests): increase randomized fuzzing iterations (#400)",
+      "files": [
+        {
+          "path": "storage/transaction.ts",
+          "status": "M"
+        }
+      ]
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Ada Lovelace",
+      "commits": 90,
+      "color": "#00f0ff"
+    },
+    {
+      "name": "Linus Torvalds",
+      "commits": 68,
+      "color": "#ffe600"
+    },
+    {
+      "name": "Margaret Hamilton",
+      "commits": 53,
+      "color": "#00ff66"
+    },
+    {
+      "name": "Satoshi Nakamoto",
+      "commits": 34,
+      "color": "#ff0055"
+    },
+    {
+      "name": "Alan Turing",
+      "commits": 27,
+      "color": "#a855f7"
+    },
+    {
+      "name": "Grace Hopper",
+      "commits": 19,
+      "color": "#ff7700"
+    },
+    {
+      "name": "Ken Thompson",
+      "commits": 9,
+      "color": "#38bdf8"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read and write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Cycle logs can only be read and written by the owner
+    match /cycle_logs/{logId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.user_id;
+    }
+
+    // ESP32 can create alerts, owner and authorized contacts can read
+    match /alerts/{alertId} {
+      allow create: if isESP32(); // Define isESP32() in your rules or use other authentication methods
+      allow read: if request.auth != null && (
+                    request.auth.uid == resource.data.user_id ||
+                    isAuthorizedContact(request.auth.uid, resource.data.user_id)
+                  );
+    }
+
+    // Helper functions
+    function isESP32() {
+      // This is a placeholder. You should implement a secure way to identify your ESP32 device.
+      // For example, you could use a specific claim in a custom token.
+      // For simplicity, this example assumes a specific UID for the ESP32.
+      return request.auth != null && request.auth.uid == "esp32-service-account";
+    }
+
+    function isAuthorizedContact(auth_uid, user_id) {
+        // This function would check if the authenticated user is listed in the emergency_contacts of the user
+        // This requires a read from the users collection, which can be complex to do securely and efficiently
+        // in security rules alone. A more robust solution might involve a Cloud Function to manage permissions.
+        return get(/databases/$(database)/documents/users/$(user_id)).data.emergency_contacts.exists(contact, contact.uid == auth_uid);
+    }
+  }
+}

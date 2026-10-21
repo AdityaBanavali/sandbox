@@ -1,0 +1,3650 @@
+{
+  "repo": "facebook/react",
+  "totalCommits": 290,
+  "commits": [
+    {
+      "sha": "63726246371eec51bda082f86b08e94218b52424",
+      "author": "Sophie Alpert",
+      "date": "2023-01-01T11:40:13.071Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#201)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "fe36f68e23053b1c8a51fd7eed6264daeb22c207",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-01T15:42:54.902Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#202)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "57d789beb5cf89300199eb87d16cd172db1beebf",
+      "author": "Andrew Clark",
+      "date": "2023-01-01T18:00:20.956Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#203)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "d26b44f80771f2deffa16285ce43e431b8a4ce2b",
+      "author": "Luna Ruan",
+      "date": "2023-01-01T20:09:02.324Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#204)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "65e029086cd5de718d81c39ee0a3aac0b6fbe8b9",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-01T23:32:31.936Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#205)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "c79e3502c16ea453b95c74c69555215f1c869391",
+      "author": "Dan Abramov",
+      "date": "2023-01-02T02:36:54.562Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#206)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "55dd774b8adf526dd4c9eb3f98425cb574bb1a36",
+      "author": "Sophie Alpert",
+      "date": "2023-01-02T06:41:38.086Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#207)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "319b7bbdb079b8910f8c123b9e0f6eec9b5eeeec",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-02T11:00:42.000Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#208)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2b22372430629a3abd49c2109656841528e3389b",
+      "author": "Andrew Clark",
+      "date": "2023-01-02T15:49:38.796Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#209)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2ae174f2643315269089d1c9a843d8173d33537e",
+      "author": "Luna Ruan",
+      "date": "2023-01-02T19:23:12.996Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#210)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "772b61e6db43646c2dfb6c0d14c3697f9016682d",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-02T19:56:31.824Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#211)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "38e492652f509646770e093fca16eca205ec25ac",
+      "author": "Dan Abramov",
+      "date": "2023-01-03T00:12:43.228Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#212)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "7f02b65d7d910b8aa44c03718b152851f22cf602",
+      "author": "Sophie Alpert",
+      "date": "2023-01-03T02:44:08.009Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#213)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ff454eb7b241045611357dc570920dea78d2f8b0",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-03T07:13:07.405Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#214)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "62c86a9030f3646c71b8bc54f2dfa3f05912a349",
+      "author": "Andrew Clark",
+      "date": "2023-01-03T09:28:56.730Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#215)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7d6d3f402bc793a8c797001b72585e374e532fd5",
+      "author": "Luna Ruan",
+      "date": "2023-01-03T10:06:01.228Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#216)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a5481c3c22fd29ad97cc97e29a7bfd6aed9728dd",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-03T13:57:58.610Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#217)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "1ed60c7491dc69d2b3699c8a5ff8aae35210bf9e",
+      "author": "Dan Abramov",
+      "date": "2023-01-03T14:28:09.188Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#218)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d18297af7df59c7137e6d5d4d8b16d3ed6fa7f71",
+      "author": "Sophie Alpert",
+      "date": "2023-01-03T18:17:07.036Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#219)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a7fd45f26088625913c667f98a297317a77db41e",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-03T22:24:16.941Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#220)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08e4600f4b8903502265e091099322bc7c973353",
+      "author": "Andrew Clark",
+      "date": "2023-01-03T23:26:37.922Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#221)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "de4d3a5859e4cc512d9959e3f3c36513b01ecb7b",
+      "author": "Luna Ruan",
+      "date": "2023-01-04T01:19:23.505Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#222)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5d697c8af8d89419ca76a0b8963ae96103ea8811",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-04T02:35:32.843Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#223)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5af3dedaea7641e26644949ef61158a9a2619cc5",
+      "author": "Dan Abramov",
+      "date": "2023-01-04T04:37:25.013Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#224)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "fdfb0a2758d9db26d1826f34ab06b6fffc9b26be",
+      "author": "Sophie Alpert",
+      "date": "2023-01-04T06:29:47.383Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#225)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6acae999ff778a96f7b115a537757e3b214c61c5",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-04T09:01:56.415Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#226)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9b4a487732903f7e48eb40dc7b8e3f0935f336b0",
+      "author": "Andrew Clark",
+      "date": "2023-01-04T09:48:38.283Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#227)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "69a58d491902fd7d5974803a04fc6b703cce9db7",
+      "author": "Luna Ruan",
+      "date": "2023-01-04T11:39:45.823Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#228)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c8c1fbe1aada947ad6a5c8b766ec99e4c5cbb3a4",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-04T16:23:15.267Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#229)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "51e3944989b9df270f40ea2cd18ca3c2cee150fd",
+      "author": "Dan Abramov",
+      "date": "2023-01-04T17:34:10.740Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#230)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6815abbd1356787b1ce53e27b8013a729eb9a5f5",
+      "author": "Sophie Alpert",
+      "date": "2023-01-04T18:25:08.008Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#231)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "73251a3848b5d381b86084d922eff3f569775425",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-04T21:46:51.577Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#232)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d383296d47e0a813a715adf2663449825e5a0440",
+      "author": "Andrew Clark",
+      "date": "2023-01-05T03:15:16.119Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#233)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cb7510bac2a2633b62d91cee4ef32b180ef6bb76",
+      "author": "Luna Ruan",
+      "date": "2023-01-05T05:04:18.834Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#234)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e1ec8909395488f5430efd6695702645501f4441",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-05T05:47:16.455Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#235)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "3caa441fc5f5b2200c76662709cac15d608dc712",
+      "author": "Dan Abramov",
+      "date": "2023-01-05T07:53:13.300Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#236)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "875bc6c0101d0a0ad2f5711cf31125233de8a46e",
+      "author": "Sophie Alpert",
+      "date": "2023-01-05T10:02:19.500Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#237)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ae534c2e623513194b562812dfdc3843938d7b68",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-05T11:09:02.547Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#238)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "9926c439b056394f5aa4dcf9899da21e80df7140",
+      "author": "Andrew Clark",
+      "date": "2023-01-05T15:24:53.866Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#239)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0bfc9355f4db569e1c8ed3dc2231330180cfebd2",
+      "author": "Luna Ruan",
+      "date": "2023-01-05T18:38:08.757Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#240)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "702e6ad3014206e883d592b11a246fac06cc3503",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-05T22:04:09.534Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#241)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7613d2ef49c1804782d0d83fcff47138ce227aa0",
+      "author": "Dan Abramov",
+      "date": "2023-01-06T03:13:20.794Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#242)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f7ba45893a2df059066d790e48fb200743e11182",
+      "author": "Sophie Alpert",
+      "date": "2023-01-06T05:40:40.328Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#243)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b7d11407964be1624e527e7ce6c1bc175f83b021",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-06T08:47:56.304Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#244)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "e39f25526d7edc1d1de6c72a47bd9c2b675f6fcf",
+      "author": "Andrew Clark",
+      "date": "2023-01-06T12:02:48.868Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#245)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3c773f37654ace0a01151c4118939596447f030d",
+      "author": "Luna Ruan",
+      "date": "2023-01-06T15:13:53.860Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#246)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "782518e6937bdd2a89d13f99bb10b83141fd55d1",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-06T18:41:22.960Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#247)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "eff82c1f2728a042ddb8108a24ca9ca82d8bc2e3",
+      "author": "Dan Abramov",
+      "date": "2023-01-06T19:12:13.366Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#248)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bd0d93456cd97a449f50c36a9bb2c59f9a5b2fe3",
+      "author": "Sophie Alpert",
+      "date": "2023-01-06T20:43:49.934Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#249)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b8b6c666890e1eb9d3ff3b3db41efa7e6085bd58",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-07T00:44:10.342Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#250)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9dea1c2685463e8c7f7e41c464bfe91f86532955",
+      "author": "Andrew Clark",
+      "date": "2023-01-07T05:18:11.702Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#251)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bb732567cfbcfb27bcc5936afa9009abee416958",
+      "author": "Luna Ruan",
+      "date": "2023-01-07T09:17:21.862Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#252)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f1c56e293490ee8013b76e560d2bb839fd3f0329",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-07T11:46:07.733Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#253)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f10df22e64f2e7dc297ba39b5a714cb312656ac6",
+      "author": "Dan Abramov",
+      "date": "2023-01-07T15:34:00.250Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#254)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ce2fd7ceefd809766dd9c0a05fce8359b15cb919",
+      "author": "Sophie Alpert",
+      "date": "2023-01-07T20:26:51.776Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#255)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b578012b07234b120d41244471b697c46bca1819",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-07T21:31:18.024Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#256)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9f94de3587c8904f320294b29c23849efd626178",
+      "author": "Andrew Clark",
+      "date": "2023-01-08T01:29:28.720Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#257)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0f46b8a4240f13483cd624745c423f06f2e15fb4",
+      "author": "Luna Ruan",
+      "date": "2023-01-08T05:09:44.629Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#258)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e737589e9fdf18e2f87f09d52a742fc9adc3301b",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-08T07:00:50.196Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#259)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0510fea88993ce115e3361ba6ecc5f09528a3298",
+      "author": "Dan Abramov",
+      "date": "2023-01-08T09:42:25.132Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#260)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cb70cfc9a993c2419dce6d1b3c0ea9cdeb28a94b",
+      "author": "Sophie Alpert",
+      "date": "2023-01-08T11:07:56.945Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#261)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        },
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d6bea8b831fd49b7fe6a520171f58175df407855",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-08T13:50:48.077Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#262)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "96ab4283912a8e7092dceec73781dd640da31986",
+      "author": "Andrew Clark",
+      "date": "2023-01-08T19:05:04.214Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#263)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bf690838efae85a11ff052d373bc36e91afe4f05",
+      "author": "Luna Ruan",
+      "date": "2023-01-08T21:30:06.124Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#264)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08dacff7fa55484c5afd80133c147a5584cd903c",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-09T02:47:17.005Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#265)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4bea14b81210fa6eab3708ed03f2b514e7ecdd05",
+      "author": "Dan Abramov",
+      "date": "2023-01-09T06:29:07.810Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#266)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8f9b17036b20dc9644b9a59ebcb1627fa8282b6d",
+      "author": "Sophie Alpert",
+      "date": "2023-01-09T07:54:14.249Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#267)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "559dfa150ecbd4966955adfb5bcb0cced3f5320d",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-09T08:56:15.686Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#268)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "642ecc80977285fed450d3a35bdddba3e3c0dd51",
+      "author": "Andrew Clark",
+      "date": "2023-01-09T13:28:35.503Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#269)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9829a534062b2c3d60d085f7d107295a5a731c01",
+      "author": "Luna Ruan",
+      "date": "2023-01-09T18:53:27.574Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#270)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cb6caea02f1db7e2467e532868dab39c17167c4b",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-09T20:42:39.806Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#271)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d46a7489bde2952698ca44c8f321cdf188c2e50c",
+      "author": "Dan Abramov",
+      "date": "2023-01-09T22:12:47.226Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#272)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "908a388763b6075155e2f490453f7333f491532f",
+      "author": "Sophie Alpert",
+      "date": "2023-01-10T03:40:00.267Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#273)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "66ad69b7706df7d320591c3c10587744153947c5",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-10T07:05:02.053Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#274)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "afd43452d3348d8eba714b6ccebc45461c2f0bd1",
+      "author": "Andrew Clark",
+      "date": "2023-01-10T12:19:38.567Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#275)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f8270d736fd43a5b8fb5ef373da776a89c75296d",
+      "author": "Luna Ruan",
+      "date": "2023-01-10T13:14:44.389Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#276)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3d105514b244fd75755560ba6b7a8ef1de04fe5b",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-10T16:45:12.630Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#277)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c3878a37b140624b7af44cfa442f316a579e2f77",
+      "author": "Dan Abramov",
+      "date": "2023-01-10T17:46:55.058Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#278)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5224c1632bc9f178351c9418ebd97bf23be62ccf",
+      "author": "Sophie Alpert",
+      "date": "2023-01-10T22:01:45.340Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#279)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7c2136c05aafe404982ca450d9da762dc8dc2beb",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-11T03:23:15.718Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#280)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2ad0b415c812350c1bd907bbb43059a36ee151a7",
+      "author": "Andrew Clark",
+      "date": "2023-01-11T04:06:58.503Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#281)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1f40ed4758f192170ce8e90d3a2bb8c075157e66",
+      "author": "Luna Ruan",
+      "date": "2023-01-11T08:49:30.568Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#282)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "50920a3e96e26a0f6ec22b8e61039d43d7717196",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-11T09:46:20.171Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#283)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0b8a17a1775a84c427d73fc4955fef6e0a5a31bf",
+      "author": "Dan Abramov",
+      "date": "2023-01-11T11:49:27.945Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#284)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2a47bead7d71a1d7e49219c2b47ee88d458b6971",
+      "author": "Sophie Alpert",
+      "date": "2023-01-11T16:33:39.376Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#285)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4e531d11d023fae7bb1fbce56fe366198ffeb961",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-11T17:37:23.612Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#286)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2d14e40ac4c3ee4a701330d5b754faaa8789409f",
+      "author": "Andrew Clark",
+      "date": "2023-01-11T18:16:32.788Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#287)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b1724c25b0c173b3d1a0fdf7ce41ca89af8851c0",
+      "author": "Luna Ruan",
+      "date": "2023-01-11T21:00:30.260Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#288)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8111d08e601e562d46827343a2792f698e9b5af5",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-11T23:06:50.415Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#289)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5fcde812c377e2a3ec77402e633acc1ec857ef62",
+      "author": "Dan Abramov",
+      "date": "2023-01-12T00:19:56.048Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#290)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "62033818138aabbe8194f0bd8283793daf71f79d",
+      "author": "Sophie Alpert",
+      "date": "2023-01-12T01:47:39.681Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#291)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ce9c8fe9db9652ad357556381276573af649bbe7",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-12T03:48:56.561Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#292)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5cf632214629d6c986a632ae43a399ffbd194c77",
+      "author": "Andrew Clark",
+      "date": "2023-01-12T07:02:04.083Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#293)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b9d7c96f36ae49d694ef4559c662a5b38ba44cdd",
+      "author": "Luna Ruan",
+      "date": "2023-01-12T09:02:12.273Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#294)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cadaca5659b68c989c5ce1f0585df5a8422ce110",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-12T11:49:47.864Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#295)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1883fd33a666b5855cd7793ccf9572ae83ce413b",
+      "author": "Dan Abramov",
+      "date": "2023-01-12T17:12:34.661Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#296)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ef8982d699502b07805f7f21128ed151091651ac",
+      "author": "Sophie Alpert",
+      "date": "2023-01-12T19:45:25.339Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#297)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f5190ed22c27f843e72135b924da70a6dea8f080",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-12T21:51:55.866Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#298)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "deb3a10ce8b9eb094ae9c4e171ff75cc5c049027",
+      "author": "Andrew Clark",
+      "date": "2023-01-13T00:02:50.453Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#299)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "24df050f67f00c314be89db319e30b1c7d1ea6cf",
+      "author": "Luna Ruan",
+      "date": "2023-01-13T03:12:50.327Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#300)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c7664873a0cb0b06e92c43e4fe707282e81154da",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-13T08:10:41.113Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#301)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "801d72e4a80660261c9cb5252a860682b23305b4",
+      "author": "Dan Abramov",
+      "date": "2023-01-13T12:47:00.859Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#302)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b02af1f42ecd6ec946201006b9f19ce91440c111",
+      "author": "Sophie Alpert",
+      "date": "2023-01-13T15:47:16.883Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#303)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a95e73d16f7d91505ee5de0b798b34bee42d4cb3",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-13T16:26:41.212Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#304)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "850582ffc2246b1d6c6ba1e0759cb1dd58ed5647",
+      "author": "Andrew Clark",
+      "date": "2023-01-13T20:49:55.938Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#305)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5a49896009f1575ac9629a469e0cf0c54ca11160",
+      "author": "Luna Ruan",
+      "date": "2023-01-14T00:13:50.996Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#306)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "daadd9e9db6ea3150f81fa12622383be6c7bfac0",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-14T03:58:44.624Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#307)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6a1679045437b98a0afcbe823a6625df4092d7b3",
+      "author": "Dan Abramov",
+      "date": "2023-01-14T07:10:46.611Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#308)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2e0459d35414930d1bafb3eac222f1851e03ef1b",
+      "author": "Sophie Alpert",
+      "date": "2023-01-14T11:52:04.584Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#309)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a0b15ab8fae215b2ec58c1358039418eb91b7814",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-14T15:41:06.832Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#310)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8f09d7f2596265d7711c654c65fee0c3522e1652",
+      "author": "Andrew Clark",
+      "date": "2023-01-14T19:22:38.525Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#311)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "878c2cec36827feadf40ea95792895e0cd50cec5",
+      "author": "Luna Ruan",
+      "date": "2023-01-14T23:26:10.576Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#312)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d88f191399b62e7d2c911f352ff259411532c3c8",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-15T04:00:22.347Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#313)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bffadf9e1aed53b6861a7e3a2331ac1b5eb8b4de",
+      "author": "Dan Abramov",
+      "date": "2023-01-15T07:02:00.215Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#314)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "515917e4a6d12ffb8599779c4ed4ede93b00312a",
+      "author": "Sophie Alpert",
+      "date": "2023-01-15T11:22:57.353Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#315)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "11b00a5bd276b6901d6533a42a548d9ea209d144",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-15T14:18:15.257Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#316)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "46960327a1c2cf21c3729ac6f1e7dbb397c49039",
+      "author": "Andrew Clark",
+      "date": "2023-01-15T14:59:19.466Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#317)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e9b291968b3c97acd6ab8179be4783c0ef4ce851",
+      "author": "Luna Ruan",
+      "date": "2023-01-15T19:30:13.742Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#318)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d4337f8f9e01b72e523a36be650f2bffac55b217",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-15T20:13:31.653Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#319)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "97e3b347c6fed7f938d1596a651470b652c8bc6c",
+      "author": "Dan Abramov",
+      "date": "2023-01-15T21:16:39.717Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#320)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e9d37263de5d9ca20f78c074f18438a7284f4c94",
+      "author": "Sophie Alpert",
+      "date": "2023-01-15T22:05:25.811Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#321)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0bbb763ef8702dde55a050f62ff0b438a48acb94",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-15T22:52:33.029Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#322)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "99098b66295636c89b8ea4c10fda40dc3a62ae35",
+      "author": "Andrew Clark",
+      "date": "2023-01-16T00:58:50.910Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#323)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1b13c51622e966ea065db7338bba1a03c25907a2",
+      "author": "Luna Ruan",
+      "date": "2023-01-16T05:11:11.253Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#324)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "16d168ae2338c4e16bf102ab176d9515ee7aadbe",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-16T06:26:05.277Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#325)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2bff02d4c23c28a5a0b8214eba433803aa3b9a2d",
+      "author": "Dan Abramov",
+      "date": "2023-01-16T07:24:48.386Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#326)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3e7f147afc90a4cc51c0e318bded1052510bcc71",
+      "author": "Sophie Alpert",
+      "date": "2023-01-16T12:47:52.571Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#327)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "56ae855e83ed0c180a868a12a88c1c1fc6db88d3",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-16T14:31:24.734Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#328)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e5067dc29ec5f147e89bdfc9019fd0188eae060a",
+      "author": "Andrew Clark",
+      "date": "2023-01-16T16:03:48.236Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#329)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e17dd0b407b5bd2864d9e6b5aa9b8c486f588390",
+      "author": "Luna Ruan",
+      "date": "2023-01-16T18:20:29.426Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#330)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4959b7cf152909b03d15f59b219f9e842b5fcd5b",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-16T22:58:08.470Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#331)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ae61ded74f74e2c429f330e0ae4f07ae7005136a",
+      "author": "Dan Abramov",
+      "date": "2023-01-17T04:21:01.449Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#332)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "51fa02332fe063b766418bd82b7be5ec15990110",
+      "author": "Sophie Alpert",
+      "date": "2023-01-17T08:37:28.746Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#333)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c1c2f4496f9d716e59cfd99f0bb05a0da3135bcf",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-17T10:27:10.840Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#334)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3f5e5c1e93e79e519a67377f709d854680d8b974",
+      "author": "Andrew Clark",
+      "date": "2023-01-17T13:07:57.820Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#335)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "795a34f69979298f18922f5ec68c4396f2d634df",
+      "author": "Luna Ruan",
+      "date": "2023-01-17T14:52:27.887Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#336)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ac16ce3b62209e0f100eb1676190265b4e0d58df",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-17T15:34:52.090Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#337)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d86dfa3c33d56ef6cae02bcbc92d6245a14dae64",
+      "author": "Dan Abramov",
+      "date": "2023-01-17T18:47:25.510Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#338)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5a668bc2e59fc91dcb705c2a1b602e429b1783c3",
+      "author": "Sophie Alpert",
+      "date": "2023-01-17T19:39:31.392Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#339)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        },
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6ccf7813ae3eef6511d1708ac53ee20a64c3e758",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-17T22:05:28.353Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#340)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c861662ac81a80fc2a9c671d5c209c257539c95d",
+      "author": "Andrew Clark",
+      "date": "2023-01-17T22:46:42.658Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#341)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2eba4d0e5936222f536092c2846a5b87112745d9",
+      "author": "Luna Ruan",
+      "date": "2023-01-18T01:16:37.149Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#342)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "25e68cc7f71d2bf32a0a77e8f4f1fa00ec9085cd",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-18T05:42:25.200Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#343)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a4cf86636104fc6e0e10730842aac5c472b1e0b1",
+      "author": "Dan Abramov",
+      "date": "2023-01-18T08:53:03.935Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#344)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b95cf3a9b5ea74e560b4701a527fe52eaf0b3dc7",
+      "author": "Sophie Alpert",
+      "date": "2023-01-18T09:53:38.187Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#345)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2bfaaf3491cbe85b55e57278a4bb8433ac555dd0",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-18T11:20:13.886Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#346)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0275f11898b456703de9b4365956bdfcc877238a",
+      "author": "Andrew Clark",
+      "date": "2023-01-18T13:36:48.819Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#347)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b77089cad55a09f60e325173d159254f94867334",
+      "author": "Luna Ruan",
+      "date": "2023-01-18T17:18:55.641Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#348)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1bd02585a26c68240c6546d6d2145f29fbd46e81",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-18T21:33:14.013Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#349)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "55fb9beaa0f1da08e3d7821321da419f1ad52a21",
+      "author": "Dan Abramov",
+      "date": "2023-01-19T00:17:46.030Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#350)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fd7e3809b2154d55b4228b8052ccd516084fb4a7",
+      "author": "Sophie Alpert",
+      "date": "2023-01-19T03:07:02.592Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#351)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b6b71ee2b9b1eedfeadc4a1c0d7c04208637eb7d",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-19T07:24:23.775Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#352)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a06256272d7af90b5f4286965636d28b9966dd85",
+      "author": "Andrew Clark",
+      "date": "2023-01-19T07:59:50.204Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#353)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1dba08ac6774ce98bdac288374750baf7c996e16",
+      "author": "Luna Ruan",
+      "date": "2023-01-19T09:56:13.172Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#354)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6ef20abdd3db5f7831550575a1d1ebaf0d947676",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-19T12:48:35.202Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#355)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f37922fb571839ea1e3341b50a079990db5dfff5",
+      "author": "Dan Abramov",
+      "date": "2023-01-19T17:58:48.315Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#356)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f55777a8a5dad87412a841b75a0df98cd35d2ec1",
+      "author": "Sophie Alpert",
+      "date": "2023-01-19T21:00:50.695Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#357)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8be6e18dc3e97fd4f5315e4d705b24bf00649ddf",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-20T00:30:24.851Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#358)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5ff4626bb137d62236d35fbd9c56f16a3b36018d",
+      "author": "Andrew Clark",
+      "date": "2023-01-20T04:25:11.922Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#359)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "aeca60c3d7127bb29dfa19cee611366227726dff",
+      "author": "Luna Ruan",
+      "date": "2023-01-20T06:59:56.843Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#360)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1cdd9700c4e701db24a56c0ccd7073c06535ccb2",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-20T08:56:17.494Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#361)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d39fa86863b8f2dd1b6b7b3bfd8041b33b34d0f6",
+      "author": "Dan Abramov",
+      "date": "2023-01-20T11:17:13.530Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#362)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "30f88e45b4d775a554f475464dca7dca9deb04fd",
+      "author": "Sophie Alpert",
+      "date": "2023-01-20T13:30:15.637Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#363)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "adcffdc900a90ad1bec044fe6879cb39e97a13dd",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-20T15:51:45.457Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#364)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9b3fab3ea9e1fccd9ed70b921d36e9c6925014c0",
+      "author": "Andrew Clark",
+      "date": "2023-01-20T20:57:09.896Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#365)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4893cbbff77651a25015007f7a454375009e4c0a",
+      "author": "Luna Ruan",
+      "date": "2023-01-21T00:39:56.496Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#366)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8d1df42aa406f2a278187d47df08a6b06c80cbef",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-21T01:32:50.667Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#367)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3115c004c1aa19b5e54a3ac38b8f6f3445aa1db0",
+      "author": "Dan Abramov",
+      "date": "2023-01-21T05:03:40.280Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#368)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fe38172f1ff527c22a193d7125ced42ec02e60ac",
+      "author": "Sophie Alpert",
+      "date": "2023-01-21T07:56:42.819Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#369)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c42d2fcab65ebe341e184048f144f5f3c96e0739",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-21T11:08:54.664Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#370)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "227a1f8491f0e65d6087b60bfc14efe9b6fdaba5",
+      "author": "Andrew Clark",
+      "date": "2023-01-21T13:32:28.060Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#371)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6d08cf011c54b94093ff2a007b428bbc34014ccb",
+      "author": "Luna Ruan",
+      "date": "2023-01-21T18:31:18.749Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#372)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f34735029b7a6edf768d301791e89787d78cbb3a",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-21T22:52:14.004Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#373)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ee3d35d8903f34d51729aaf3a06bdd8ef1a9e8a7",
+      "author": "Dan Abramov",
+      "date": "2023-01-21T23:29:37.764Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#374)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5fae5a5080ccdd5c0095a6dd1dc9eb9115913c82",
+      "author": "Sophie Alpert",
+      "date": "2023-01-22T00:21:20.877Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#375)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "726f4a64569097d9eaa4ac61ad45ec021f9b13bf",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-22T04:22:28.827Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#376)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fc71bcfd9364ada1007047426db5c447a5292ee1",
+      "author": "Andrew Clark",
+      "date": "2023-01-22T07:03:02.917Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#377)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6656661400860d6bf41651d71f513ddb0117d005",
+      "author": "Luna Ruan",
+      "date": "2023-01-22T10:32:42.010Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#378)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f7037fb9236b397b412848fe0fbf2cef2d5ac482",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-22T13:42:09.952Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#379)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6e0c1934a5e6355142a7bd68483b523c02fbe320",
+      "author": "Dan Abramov",
+      "date": "2023-01-22T16:31:48.438Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#380)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        },
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4b5660e0818e57ffca5804ed6adad8bc8425a080",
+      "author": "Sophie Alpert",
+      "date": "2023-01-22T20:23:07.972Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#381)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "53418f24865dfb706953108c678466c154bac1a2",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-22T22:13:53.775Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#382)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a20f45c96b412be85f6208e2f4a038c4f5eaf855",
+      "author": "Andrew Clark",
+      "date": "2023-01-22T23:19:58.722Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#383)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "06100a657c33f78ef19b94cb61cf2e84d7ef76fb",
+      "author": "Luna Ruan",
+      "date": "2023-01-23T02:44:32.210Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#384)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bbc53d64e573e4a7ff82660433933a046a105b33",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-23T04:24:46.225Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#385)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "01b381bbeed4377c80b4e1c5484f37e04b05f58b",
+      "author": "Dan Abramov",
+      "date": "2023-01-23T05:47:12.177Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#386)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d7c63b9522963ed2a3e43036ab6bdb105599b2f8",
+      "author": "Sophie Alpert",
+      "date": "2023-01-23T09:24:41.457Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#387)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d637b147fe2d2e64fb58a746ee56ae821f29ffbf",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-23T10:09:55.934Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#388)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bb80ef1c42cc466bf249f8e620e4ec5fcbf22140",
+      "author": "Andrew Clark",
+      "date": "2023-01-23T10:44:25.762Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#389)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "faf258e6aaa142a4999f390c8cb32bca3b8fc178",
+      "author": "Luna Ruan",
+      "date": "2023-01-23T13:22:40.666Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#390)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0a215deda1f0f425be40d9fa52e477e1a2f63318",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-23T17:23:31.043Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#391)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "41f46158996350461c70e7374e7a9753e887a0d9",
+      "author": "Dan Abramov",
+      "date": "2023-01-23T20:55:10.035Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#392)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c4618d9154507d3c77098dabd044aba9e42d6ed1",
+      "author": "Sophie Alpert",
+      "date": "2023-01-23T22:27:57.415Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#393)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e245de7e725fa9a6ee13f05652253637f29a546d",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-23T23:44:32.615Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#394)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3af98e8ea955bf60306372d6ccc413a67c197cdc",
+      "author": "Andrew Clark",
+      "date": "2023-01-24T02:36:35.761Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#395)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "41c89870ebf0accdc04949dbcb9ad9fc25827c7b",
+      "author": "Luna Ruan",
+      "date": "2023-01-24T05:36:10.760Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#396)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "111a61623c03a6df9703c5884b3da176f21fead2",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-24T08:29:02.935Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#397)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1e89d906c19d5fe70495625b08ceee2b733bb411",
+      "author": "Dan Abramov",
+      "date": "2023-01-24T13:00:20.764Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#398)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "09978c4b95512968cf96972c0d78ddd961b9f476",
+      "author": "Sophie Alpert",
+      "date": "2023-01-24T14:03:58.890Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#399)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4f8e8c8ffa8e22ba1a36480c30f1b6dba00d95b9",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-24T15:09:07.317Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#400)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0c75396b90a9cd3a0bde6cea63e7959e8e6dc430",
+      "author": "Andrew Clark",
+      "date": "2023-01-24T16:04:39.619Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#401)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b77782682ead1adddbab2f09fd2f5f9e861594c8",
+      "author": "Luna Ruan",
+      "date": "2023-01-24T20:21:06.687Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#402)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9bbbd756c1a70a5d6f52a79716550840ece6d832",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-24T21:43:37.581Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#403)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "63b26eb1814ba3af06cb44f95e3202a843906234",
+      "author": "Dan Abramov",
+      "date": "2023-01-25T00:28:46.693Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#404)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a2c8a0b62575142972c59312ebe9eaac99704aff",
+      "author": "Sophie Alpert",
+      "date": "2023-01-25T04:13:41.245Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#405)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d1fb1fde048c7f1cfdcec57d19ee3e30edfbd469",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-25T07:20:45.084Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#406)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "80c3cafd2542359f637f5e0701f0ed80e8d0823a",
+      "author": "Andrew Clark",
+      "date": "2023-01-25T10:24:09.016Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#407)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "74f2b3c7e9edbe0d50df685214b89179718643aa",
+      "author": "Luna Ruan",
+      "date": "2023-01-25T12:24:28.480Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#408)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c348ae5264ab546948d690fc0b5c990c9184040a",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-25T17:10:25.616Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#409)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3123a1e5b2c65b3ea62032bef2b9c1ced5e09543",
+      "author": "Dan Abramov",
+      "date": "2023-01-25T18:03:20.189Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#410)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "97571687dd658b7232558a11d7552a9ed792a857",
+      "author": "Sophie Alpert",
+      "date": "2023-01-25T22:07:02.542Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#411)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c31246c547a6d13d82d802c4b6fd77d528baf170",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-26T00:31:17.495Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#412)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9ec54dcafa7c308be82b06a10bb405d0c554525d",
+      "author": "Andrew Clark",
+      "date": "2023-01-26T05:00:01.919Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#413)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "93e86ecb30981c1debb78659a1df3ab892e4be58",
+      "author": "Luna Ruan",
+      "date": "2023-01-26T09:30:57.013Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#414)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5394faa77e101c7d8f9e14de8c3f44d5d603dfb2",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-26T13:02:28.895Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#415)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b0c5ceed7f0891630d6aaaa2a4086c804620abde",
+      "author": "Dan Abramov",
+      "date": "2023-01-26T14:49:17.695Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#416)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8d96259a451e44426534b3843f96498dd8582a7e",
+      "author": "Sophie Alpert",
+      "date": "2023-01-26T17:14:32.095Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#417)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "98b7db995e50efd24e61af1682e4bb7717b25c2f",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-26T18:01:28.157Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#418)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fd2baad74920ca8b3577d98d62bfd2ce9f0ca213",
+      "author": "Andrew Clark",
+      "date": "2023-01-26T21:43:56.303Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#419)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "22dae85baaee91bc9909224b0eaad8e830beca8f",
+      "author": "Luna Ruan",
+      "date": "2023-01-27T02:06:14.728Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#420)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c6cb5da5266e9558a2bc3ea7f71e53e3927f749e",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-27T07:21:36.146Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#421)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "72b598ae8f75a2143be52a7969e9eca647a0343f",
+      "author": "Dan Abramov",
+      "date": "2023-01-27T11:41:12.893Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#422)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "333c2b5a064c32e048d05cc336b1a41c4c9dbc90",
+      "author": "Sophie Alpert",
+      "date": "2023-01-27T15:17:11.916Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#423)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7d944a17fc873e3e9affd3893cbed3ea76147690",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-27T20:16:01.687Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#424)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7a9b61b7bb630a94141dc485947013bb718639e2",
+      "author": "Andrew Clark",
+      "date": "2023-01-28T00:44:57.490Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#425)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3b771f578247a7dcb7dfd3894c5cade0b68ecd62",
+      "author": "Luna Ruan",
+      "date": "2023-01-28T02:20:30.441Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#426)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1897d9f9e0e9b36e09a1b35e277bb6e011b3653c",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-28T06:23:43.772Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#427)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ade869694b89ea5b1016bf992c4ccaabf397fb87",
+      "author": "Dan Abramov",
+      "date": "2023-01-28T11:52:01.605Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#428)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c00f1985e691ba978d7c58156b02dbbc77e60661",
+      "author": "Sophie Alpert",
+      "date": "2023-01-28T17:10:07.982Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#429)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3325ddd3907d738b3687fe6345856fa44e850dcd",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-28T19:01:17.019Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#430)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6b64ac3b083b61a89ef2c26bdda7466188f57be1",
+      "author": "Andrew Clark",
+      "date": "2023-01-28T22:32:08.913Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#431)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5d0053fbc54d70256f98b0c495d44da60cf557b2",
+      "author": "Luna Ruan",
+      "date": "2023-01-28T23:41:21.121Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#432)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4d8a31ef7d099841b4299a7638cd2e88e2399f0e",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-29T02:01:31.083Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#433)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d56ad08e7400a9bb992635198f28950ae6522f01",
+      "author": "Dan Abramov",
+      "date": "2023-01-29T04:30:11.265Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#434)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1ceec48a4e39c2422fac0ba1deb40673870b7199",
+      "author": "Sophie Alpert",
+      "date": "2023-01-29T08:15:50.256Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#435)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f33c76a7daff93061b93055078f2f98c74c09d97",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-29T10:30:18.028Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#436)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9e6922779fd8e864bd09bc478ec6fc4090701670",
+      "author": "Andrew Clark",
+      "date": "2023-01-29T11:05:38.317Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#437)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e4c9e8c306882d5f5c2704040d35ee5934d8bfca",
+      "author": "Luna Ruan",
+      "date": "2023-01-29T13:16:24.593Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#438)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "eafc27e8a7e08bf6f7d23930e5d26b025a9834d0",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-29T17:38:42.215Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#439)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c81ecc97f53757c4daf38e2ef3372e88e4bea857",
+      "author": "Dan Abramov",
+      "date": "2023-01-29T22:18:02.107Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#440)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "efae4f6a9d20ba20956760bbe7e1783a5ed7f25c",
+      "author": "Sophie Alpert",
+      "date": "2023-01-30T02:31:47.527Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#441)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e05a5de295eb427042ae0f69eabd9f996d7abc10",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-30T05:42:33.101Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#442)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "24c29a5e1651a934ca26fe56d17b19f6b0d53cd7",
+      "author": "Andrew Clark",
+      "date": "2023-01-30T10:39:59.442Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#443)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "14b164cb62f4eae60412afbd838518b27017cad1",
+      "author": "Luna Ruan",
+      "date": "2023-01-30T13:12:56.231Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#444)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d8690781c4787f257b9a3424ede8ba07df8f4347",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-30T14:58:59.743Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#445)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ecfe4415f4fe277e498e710fc7c424bc796fe522",
+      "author": "Dan Abramov",
+      "date": "2023-01-30T17:09:04.848Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#446)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7b6a697d57c27082360b4a58e872aac317e99cf5",
+      "author": "Sophie Alpert",
+      "date": "2023-01-30T18:46:45.761Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#447)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "717681ee69057b3cdb59befe963e16f55aa38e06",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-30T21:45:51.908Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#448)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "fd54882ffb8d4c6915a0dd41883cc1f925c5ad39",
+      "author": "Andrew Clark",
+      "date": "2023-01-30T22:28:55.752Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#449)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f3516d74f910a1de316d512fa9a816c1470bc6b4",
+      "author": "Luna Ruan",
+      "date": "2023-01-31T00:40:13.253Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#450)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ee3d1b0303fe4c535993bdc8654f6241ac953642",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-31T02:59:49.470Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#451)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6926ee48698941493c18eef56a9051f94320390f",
+      "author": "Dan Abramov",
+      "date": "2023-01-31T05:45:02.200Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#452)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c2f1d778f4761e5f325ce9ceba6945c067ea6f97",
+      "author": "Sophie Alpert",
+      "date": "2023-01-31T09:10:35.445Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#453)",
+      "files": [
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "38cfbb88ba4082eddf9e50b3e5bcbffda4b39ba2",
+      "author": "Sebastian Markbåge",
+      "date": "2023-01-31T12:00:02.618Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#454)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9f8a007a8967091c62e035334def4ca3eeb01d89",
+      "author": "Andrew Clark",
+      "date": "2023-01-31T14:13:02.600Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#455)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3c6c52ae858dc0e11e9b8118c44b860804672849",
+      "author": "Luna Ruan",
+      "date": "2023-01-31T14:54:04.605Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#456)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b02a39e13c6b413c06caf3e8cd49576cff4ea175",
+      "author": "Dominic Gannaway",
+      "date": "2023-01-31T16:55:19.794Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#457)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0395b574f9c63dc0085de1d5e0980d5bd9948590",
+      "author": "Dan Abramov",
+      "date": "2023-01-31T20:08:11.492Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#458)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "709d208cc4f7ea755e44f47eb58cd833b1e97c91",
+      "author": "Sophie Alpert",
+      "date": "2023-01-31T22:33:47.143Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#459)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0fc47398decf823b3a5f9df0407fcbab6579c9bb",
+      "author": "Sebastian Markbåge",
+      "date": "2023-02-01T03:05:18.604Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#460)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a41d2bb427f31a3f08e1b678f206931d8d8019dd",
+      "author": "Andrew Clark",
+      "date": "2023-02-01T06:24:29.027Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#461)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ee970de29e13cd11f753e030b9b258f00f93ba88",
+      "author": "Luna Ruan",
+      "date": "2023-02-01T07:27:07.926Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#462)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "962c7b3c3094f22e0fcf0202fdb5c9c6b33244d8",
+      "author": "Dominic Gannaway",
+      "date": "2023-02-01T10:23:35.631Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#463)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0b5236ed1c4d632fd6086509224f1b0eff35caee",
+      "author": "Dan Abramov",
+      "date": "2023-02-01T12:28:05.059Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#464)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a7819565e5448cc70e525d600f34e293cdbd0925",
+      "author": "Sophie Alpert",
+      "date": "2023-02-01T13:33:01.974Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#465)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "60aff00b0443f86e5cf3c24e20dea0a9950db091",
+      "author": "Sebastian Markbåge",
+      "date": "2023-02-01T15:09:12.349Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#466)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f16b01873d49a47da73076d239acbdc67f68285e",
+      "author": "Andrew Clark",
+      "date": "2023-02-01T17:33:10.533Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#467)",
+      "files": [
+        {
+          "path": "scripts/rollup/build.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "dbdf1bb1c69ea5d3a7fd93be7c557fedd232f6ad",
+      "author": "Luna Ruan",
+      "date": "2023-02-01T18:43:07.548Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#468)",
+      "files": [
+        {
+          "path": "packages/react/src/React.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6f2525e113da9fcebc624892d63026f41b9a910a",
+      "author": "Dominic Gannaway",
+      "date": "2023-02-01T20:15:35.336Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#469)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "41860e794e151cbdff8f01defb1498cdb3c9df7a",
+      "author": "Dan Abramov",
+      "date": "2023-02-02T01:10:43.019Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#470)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactHooks.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bfcf40bd9563240784403a4579b1ce6cb1f702a1",
+      "author": "Sophie Alpert",
+      "date": "2023-02-02T03:16:17.759Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#471)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMRoot.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "48805029c27264c400cce01ffced7366e060f58d",
+      "author": "Sebastian Markbåge",
+      "date": "2023-02-02T05:28:55.516Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#472)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2d7aaa2887413f6be25e33f5949d65da083a2d47",
+      "author": "Andrew Clark",
+      "date": "2023-02-02T09:09:08.575Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#473)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "300e8ded79c58f58e77b8933c851c98fd0878574",
+      "author": "Luna Ruan",
+      "date": "2023-02-02T09:59:13.408Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#474)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "93870cc53d97e8a79ad26ed46cb15046127a681f",
+      "author": "Dominic Gannaway",
+      "date": "2023-02-02T12:32:39.886Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#475)",
+      "files": [
+        {
+          "path": "scripts/release/prepare.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3b3fe8cc3c85363cc5bb59d8f51fc5aac04d41ce",
+      "author": "Dan Abramov",
+      "date": "2023-02-02T13:09:58.164Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#476)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bc06c834877429b348704f6c9b9cc09af9de4299",
+      "author": "Sophie Alpert",
+      "date": "2023-02-02T18:32:17.784Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#477)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5e4fe2d0647b07c13e56715aea8d713d5af42f19",
+      "author": "Sebastian Markbåge",
+      "date": "2023-02-02T20:10:10.035Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#478)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2b6aff3e9b57e5409116dde1e78465e39b28f940",
+      "author": "Andrew Clark",
+      "date": "2023-02-03T00:43:48.558Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#479)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7faf1317c9bfcac53b9e0d67c71631fde3530ac6",
+      "author": "Luna Ruan",
+      "date": "2023-02-03T05:07:30.818Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#480)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberWorkLoop.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a795bdb712b68b9780f51016a29efbb3337b5e25",
+      "author": "Dominic Gannaway",
+      "date": "2023-02-03T09:43:15.436Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#481)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/client/ReactDOMComponent.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3b6c7677176960f1151d7d3e6bf31a963b7415b2",
+      "author": "Dan Abramov",
+      "date": "2023-02-03T13:25:46.981Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#482)",
+      "files": [
+        {
+          "path": "packages/react-dom/src/events/DOMPluginEventSystem.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9b5321b97b4acff9806825c7208b5157e31eca66",
+      "author": "Sophie Alpert",
+      "date": "2023-02-03T17:20:48.765Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#483)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/Scheduler.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "37b2fe48b532fa6db934f62a5e0cbcbe0a3d2257",
+      "author": "Sebastian Markbåge",
+      "date": "2023-02-03T20:30:43.276Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#484)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberBeginWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c29d2edc0de6ad310b42d811ef3df52f599ffc5f",
+      "author": "Andrew Clark",
+      "date": "2023-02-04T01:07:47.699Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#485)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a81f9ad44b00528ab13d41bd1007fc00177e8bdd",
+      "author": "Luna Ruan",
+      "date": "2023-02-04T05:06:49.347Z",
+      "message": "fix(dom): preserve input selection range on synthetic re-render (#486)",
+      "files": [
+        {
+          "path": "scripts/jest/config.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f283418642234b1f886ff12805cbdf2d5a545a85",
+      "author": "Dominic Gannaway",
+      "date": "2023-02-04T09:41:16.959Z",
+      "message": "perf(reconciler): memoize alternate fibers during transition bailouts (#487)",
+      "files": [
+        {
+          "path": "packages/react-reconciler/src/ReactFiberCommitWork.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "af976b40009a6365c884845a29e1a048048c5195",
+      "author": "Dan Abramov",
+      "date": "2023-02-04T14:29:51.338Z",
+      "message": "feat(hooks): introduce useActionState for form mutations (#488)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "55f81578d9a14eb84f90a123aa878cd966648650",
+      "author": "Sophie Alpert",
+      "date": "2023-02-04T16:16:36.770Z",
+      "message": "refactor(scheduler): vectorize min-heap task priority queue (#489)",
+      "files": [
+        {
+          "path": "packages/react/src/ReactElement.js",
+          "status": "M"
+        },
+        {
+          "path": "packages/react/index.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2d2f3274f2f3dca232215658befd0cebde229f61",
+      "author": "Sebastian Markbåge",
+      "date": "2023-02-04T21:21:06.092Z",
+      "message": "feat(fiber): enable continuous priority lane scheduling (#490)",
+      "files": [
+        {
+          "path": "packages/scheduler/src/SchedulerPriorities.js",
+          "status": "M"
+        }
+      ]
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Sophie Alpert",
+      "commits": 49,
+      "color": "#ff0055"
+    },
+    {
+      "name": "Sebastian Markbåge",
+      "commits": 49,
+      "color": "#ffe600"
+    },
+    {
+      "name": "Dan Abramov",
+      "commits": 48,
+      "color": "#00f0ff"
+    },
+    {
+      "name": "Andrew Clark",
+      "commits": 48,
+      "color": "#00ff66"
+    },
+    {
+      "name": "Luna Ruan",
+      "commits": 48,
+      "color": "#a855f7"
+    },
+    {
+      "name": "Dominic Gannaway",
+      "commits": 48,
+      "color": "#ff7700"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-pixel {
+    font-family: 'Press Start 2P', monospace;
+  }
+  .font-orbitron {
+    font-family: 'Orbitron', monospace, sans-serif;
+  }
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #04050b;
+  color: #f3f4f6;
+  font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+  user-select: none;
+}
+
+/* CRT Scanlines Overlay */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.35) 50%
+  ),
+  linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 4px 100%;
+  pointer-events: none;
+}
+
+/* Neon Text Glows */
+.text-glow-cyan {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-glow-fuchsia {
+  text-shadow: 0 0 8px rgba(255, 0, 128, 0.7), 0 0 20px rgba(255, 0, 128, 0.3);
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.7), 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25), inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.box-glow-fuchsia {
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.25), inset 0 0 10px rgba(255, 0, 128, 0.1);
+}
+
+/* Arcade glitch keyframes */
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+  }
+  50% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 16px rgba(255, 0, 128, 0.9));
+  }
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes gridScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.animate-grid-scroll {
+  animation: gridScroll 4s linear infinite;
+}

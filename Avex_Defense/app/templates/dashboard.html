@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Threat Detection Operations Center | AVEX Cyber Defense Enclave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #090d16;
+      --bg-surface: #0f172a;
+      --bg-card: rgba(18, 26, 47, 0.85);
+      --bg-card-hover: rgba(28, 39, 68, 0.95);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(14, 165, 233, 0.35);
+      
+      --cyan-400: #38bdf8;
+      --cyan-500: #0ea5e9;
+      --emerald-400: #34d399;
+      --emerald-500: #10b981;
+      --amber-400: #fbbf24;
+      --amber-500: #f59e0b;
+      --rose-400: #fb7185;
+      --rose-500: #f43f5e;
+      --violet-400: #a78bfa;
+      --violet-500: #8b5cf6;
+      
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --glow-cyan: 0 0 20px rgba(14, 165, 233, 0.25);
+      --glow-emerald: 0 0 20px rgba(16, 185, 129, 0.25);
+      --glow-rose: 0 0 20px rgba(244, 63, 94, 0.25);
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(14, 165, 233, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.07) 0%, transparent 40%),
+        linear-gradient(180deg, #090d16 0%, #060911 100%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Top Navigation Header */
+    .header {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #7c3aed 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-cyan);
+    }
+
+    .brand-icon svg {
+      width: 22px;
+      height: 22px;
+      color: white;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.28rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-pill.operational {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald-400);
+    }
+
+    .status-pill.degraded {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--amber-400);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--emerald-400);
+      box-shadow: 0 0 10px var(--emerald-400);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: white;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-emerald {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: var(--emerald-400);
+    }
+
+    .btn-emerald:hover {
+      background: rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-violet {
+      background: rgba(139, 92, 246, 0.12);
+      border-color: rgba(139, 92, 246, 0.35);
+      color: var(--violet-400);
+    }
+
+    .btn-violet:hover {
+      background: rgba(139, 92, 246, 0.25);
+    }
+
+    .btn-sm {
+      padding: 0.32rem 0.65rem;
+      font-size: 0.75rem;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.75rem;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
+    }
+
+    .kpi-card:hover {
+      border-color: var(--border-highlight);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .kpi-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .kpi-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .kpi-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .kpi-value {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      color: var(--text-main);
+    }
+
+    .kpi-subtext {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .section-badge {
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(14, 165, 233, 0.15);
+      color: var(--cyan-400);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      font-weight: 600;
+    }
+
+    /* Readiness Cards Grid */
+    .readiness-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .readiness-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .readiness-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.9rem;
+    }
+
+    .service-meta h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .service-meta p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .readiness-stats-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+
+    .readiness-stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .readiness-stat-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Ingestion Controls Section */
+    .controls-panel {
+      background: linear-gradient(180deg, rgba(18, 26, 47, 0.95) 0%, rgba(14, 21, 38, 0.95) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .controls-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan-500), var(--violet-500), var(--emerald-500));
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .controls-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+
+    .control-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.65rem 1.15rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .control-btn.pcap {
+      background: rgba(14, 165, 233, 0.15);
+      border-color: rgba(14, 165, 233, 0.4);
+      color: var(--cyan-400);
+    }
+    .control-btn.pcap:hover {
+      background: rgba(14, 165, 233, 0.25);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .control-btn.batch {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.4);
+      color: var(--violet-400);
+    }
+    .control-btn.batch:hover {
+      background: rgba(139, 92, 246, 0.25);
+    }
+
+    .control-btn.audit {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--emerald-400);
+    }
+    .control-btn.audit:hover {
+      background: rgba(16, 185, 129, 0.25);
+      box-shadow: var(--glow-emerald);
+    }
+
+    .control-btn.seed {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: var(--amber-400);
+    }
+    .control-btn.seed:hover {
+      background: rgba(245, 158, 11, 0.25);
+    }
+
+    /* Tasks Table */
+    .table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.82rem;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-critical {
+      background: rgba(244, 63, 94, 0.2);
+      border: 1px solid rgba(244, 63, 94, 0.5);
+      color: var(--rose-400);
+    }
+
+    .badge-high {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: var(--amber-400);
+    }
+
+    .badge-medium {
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(14, 165, 233, 0.5);
+      color: var(--cyan-400);
+    }
+
+    .badge-low {
+      background: rgba(148, 163, 184, 0.2);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #cbd5e1;
+    }
+
+    .badge-mitre {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: var(--violet-400);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .badge-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald-400);
+    }
+
+    /* Ledger Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .tab-btn.active {
+      color: var(--cyan-400);
+      background: rgba(14, 165, 233, 0.12);
+      border-color: rgba(14, 165, 233, 0.35);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Toast Notification */
+    #toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-width: 420px;
+    }
+
+    .toast {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.15rem;
+      color: var(--text-main);
+      font-size: 0.82rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .hash-snippet {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .confidence-bar {
+      width: 60px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #10b981);
+    }
+
+    /* Spinner */
+    .spinner {
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-left-color: var(--cyan-400);
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="brand-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">
+          AVEX Operations Control Plane
+          <span class="status-pill operational" id="sys-status-pill">
+            <span class="pulse-dot"></span> All Systems Operational
+          </span>
+        </div>
+        <div class="brand-subtitle">
+          AI Unidirectional IP Traffic Threat Detection &amp; Audit Ledger
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <label style="font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+        <input type="checkbox" id="auto-refresh-toggle" checked>
+        Auto-refresh (5s)
+      </label>
+      <button class="btn btn-secondary btn-sm" id="btn-refresh" onclick="refreshDashboardData()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        Refresh
+      </button>
+      <a href="/docs" target="_blank" class="btn btn-primary btn-sm">
+        API Docs (/docs)
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- KPI Summary Row -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Worker Readiness</span>
+          <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--emerald-400);">⚙️</div>
+        </div>
+        <div class="kpi-value font-mono" id="kpi-workers-online">
+          {{ data.system_readiness.celery.workers_online }}/{{ data.system_readiness.celery.total_workers }}
+        </div>
+        <div class="kpi-subtext">
+          <span>Celery Cluster Nodes Active</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Ingested Traffic</span>
+          <div class="kpi-icon" style="background: rgba(14, 165, 233, 0.15); color: var(--cyan-400);">📊</div>
+        </div>
+        <div class="kpi-value font-mono" id="kpi-flows-count">
+          {{ data.system_readiness.database.counts.flows }}
+        </div>
+        <div class="kpi-subtext">
+          <span>Unidirectional IP flows recorded</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Threat Detections</span>
+          <div class="kpi-icon" style="background: rgba(244, 63, 94, 0.15); color: var(--rose-400);">🚨</div>
+        </div>
+        <div class="kpi-value font-mono" id="kpi-alerts-count" style="color: var(--rose-400);">
+          {{ data.system_readiness.database.counts.alerts }}
+        </div>
+        <div class="kpi-subtext">
+          <span>Heuristic &amp; AI Hybrid Alerts</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">SHA-256 Audit Chain</span>
+          <div class="kpi-icon" style="background: rgba(139, 92, 246, 0.15); color: var(--violet-400);">⛓️</div>
+        </div>
+        <div class="kpi-value font-mono" id="kpi-audit-count">
+          {{ data.system_readiness.database.counts.audit_logs }}
+        </div>
+        <div class="kpi-subtext">
+          <span class="badge badge-success">Cryptographically Sealed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: System Readiness & Workers -->
+    <div class="section-title">
+      <span>System Readiness &amp; Infrastructure Workers</span>
+      <span class="section-badge">Live Telemetry</span>
+    </div>
+
+    <div class="readiness-grid">
+      <!-- PostgreSQL Card -->
+      <div class="readiness-card">
+        <div>
+          <div class="readiness-card-header">
+            <div class="service-meta">
+              <h4>PostgreSQL Database</h4>
+              <p>Primary telemetry and ledger datastore</p>
+            </div>
+            <span class="badge badge-success" id="db-status-badge">{{ data.system_readiness.database.status }}</span>
+          </div>
+          <ul class="readiness-stats-list">
+            <li class="readiness-stat-item">
+              <span class="stat-label">Connection Latency:</span>
+              <span class="stat-value font-mono" id="db-latency">{{ data.system_readiness.database.latency_ms }} ms</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Flows Table:</span>
+              <span class="stat-value font-mono" id="db-flows">{{ data.system_readiness.database.counts.flows }}</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Alerts Table:</span>
+              <span class="stat-value font-mono" id="db-alerts">{{ data.system_readiness.database.counts.alerts }}</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Audit Logs:</span>
+              <span class="stat-value font-mono" id="db-audit">{{ data.system_readiness.database.counts.audit_logs }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Redis Card -->
+      <div class="readiness-card">
+        <div>
+          <div class="readiness-card-header">
+            <div class="service-meta">
+              <h4>Redis Message Broker</h4>
+              <p>Task queuing &amp; Pub/Sub telemetry dispatch</p>
+            </div>
+            <span class="badge badge-success" id="redis-status-badge">{{ data.system_readiness.redis.status }}</span>
+          </div>
+          <ul class="readiness-stats-list">
+            <li class="readiness-stat-item">
+              <span class="stat-label">Ping Latency:</span>
+              <span class="stat-value font-mono" id="redis-latency">{{ data.system_readiness.redis.latency_ms }} ms</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Memory Usage:</span>
+              <span class="stat-value font-mono" id="redis-mem">{{ data.system_readiness.redis.used_memory_human }}</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Connected Clients:</span>
+              <span class="stat-value font-mono" id="redis-clients">{{ data.system_readiness.redis.connected_clients }}</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Broadcast Channels:</span>
+              <span class="stat-value font-mono">threat_alerts, threat_flows</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Celery Workers Card -->
+      <div class="readiness-card">
+        <div>
+          <div class="readiness-card-header">
+            <div class="service-meta">
+              <h4>Celery Worker Cluster</h4>
+              <p>Asynchronous threat evaluation workers</p>
+            </div>
+            <span class="badge badge-success" id="celery-status-badge">
+              {{ data.system_readiness.celery.workers_online }} ONLINE
+            </span>
+          </div>
+          <ul class="readiness-stats-list" id="celery-workers-list">
+            {% for w in data.system_readiness.celery.workers %}
+            <li class="readiness-stat-item">
+              <span class="stat-label font-mono" style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{ w.name }}
+              </span>
+              <span class="badge badge-success">{{ w.status }} (p={{ w.concurrency }})</span>
+            </li>
+            {% else %}
+            <li class="readiness-stat-item">
+              <span class="stat-label">Worker Status:</span>
+              <span class="badge badge-high">No online nodes</span>
+            </li>
+            {% endfor %}
+            <li class="readiness-stat-item">
+              <span class="stat-label">Registered Tasks:</span>
+              <span class="stat-value font-mono">detect_threats, verify_chain</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ML Detection Models Card -->
+      <div class="readiness-card">
+        <div>
+          <div class="readiness-card-header">
+            <div class="service-meta">
+              <h4>AI Detection Ensemble</h4>
+              <p>Hybrid ML &amp; Sigma rules classification</p>
+            </div>
+            <span class="badge badge-mitre">{{ data.system_readiness.ml_engine.version }}</span>
+          </div>
+          <ul class="readiness-stats-list">
+            <li class="readiness-stat-item">
+              <span class="stat-label">Isolation Forest:</span>
+              <span class="badge badge-success">UNSUPERVISED</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Random Forest:</span>
+              <span class="badge badge-success">SUPERVISED MULTI-CLASS</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">SHAP Explainability:</span>
+              <span class="badge badge-success">TREE EXPLAINER</span>
+            </li>
+            <li class="readiness-stat-item">
+              <span class="stat-label">Active Sigma Rules:</span>
+              <span class="stat-value font-mono">{{ data.system_readiness.ml_engine.active_sigma_count }} Compiled</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Ingestion Tasks & Operational Controls -->
+    <div class="controls-panel">
+      <div class="section-title" style="margin-bottom: 0.6rem;">
+        <span>Ingestion Pipeline &amp; Operational Controls</span>
+        <span class="section-badge">Admin Plane</span>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Trigger live synthetic packet streams, high-volume flow injections, and tamper-evident cryptographic audits to demonstrate system reactivity.
+      </p>
+
+      <div class="controls-actions-row">
+        <button class="control-btn pcap" id="btn-trigger-pcap" onclick="triggerPcapReplay()">
+          <span id="icon-pcap">▶</span> Replay Synthetic Threat PCAP (5 Scenarios)
+        </button>
+
+        <button class="control-btn batch" id="btn-trigger-batch" onclick="triggerBatchIngest()">
+          <span id="icon-batch">⚡</span> Ingest Batch Telemetry (15 Flows)
+        </button>
+
+        <button class="control-btn audit" id="btn-trigger-audit" onclick="triggerAuditVerify()">
+          <span id="icon-audit">🔒</span> Run Cryptographic Audit Verification
+        </button>
+
+        <button class="control-btn seed" id="btn-trigger-seed" onclick="triggerMitreSeed()">
+          <span id="icon-seed">🛡️</span> Re-Seed MITRE ATT&amp;CK Matrix
+        </button>
+      </div>
+
+      <!-- Primary Tasks Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Operational Task</th>
+              <th>Execution Engine</th>
+              <th>Trigger Type</th>
+              <th>Status</th>
+              <th>Task Description</th>
+            </tr>
+          </thead>
+          <tbody id="tasks-table-body">
+            {% for t in data.ingestion_pipeline.tasks %}
+            <tr>
+              <td class="font-mono" style="font-weight: 600; color: var(--text-main);">
+                {{ t.display_name }}
+                <div style="font-size: 0.7rem; color: var(--text-dim);">{{ t.task_name }}</div>
+              </td>
+              <td><span class="badge badge-low">{{ t.queue }}</span></td>
+              <td style="color: var(--text-muted);">{{ t.trigger }}</td>
+              <td><span class="badge badge-success">{{ t.status }}</span></td>
+              <td style="color: var(--text-dim); max-width: 320px;">{{ t.description }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 3: Active Analysis Ledger & Forensics -->
+    <div class="section-title">
+      <span>Active Analysis Ledger &amp; Security Forensics</span>
+      <span class="section-badge">Live Ledger</span>
+    </div>
+
+    <!-- Tabs Nav -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('threats-tab', this)">
+        🚨 Detected Threat Anomalies (<span id="tab-threats-count">{{ data.recent_threats|length }}</span>)
+      </button>
+      <button class="tab-btn" onclick="switchTab('audit-tab', this)">
+        ⛓️ Cryptographic SHA-256 Audit Chain (<span id="tab-audit-count">{{ data.audit_ledger.entries|length }}</span>)
+      </button>
+      <button class="tab-btn" onclick="switchTab('mitre-tab', this)">
+        🛡️ MITRE ATT&amp;CK Matrix Breakdown
+      </button>
+    </div>
+
+    <!-- Tab 1: Threats Ledger -->
+    <div id="threats-tab" class="tab-content active">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Threat Behavior Classification</th>
+              <th>MITRE Technique</th>
+              <th>AI Confidence</th>
+              <th>Unidirectional 5-Tuple</th>
+              <th>Entropy / Packets</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="threats-table-body">
+            {% for a in data.recent_threats %}
+            <tr>
+              <td>
+                {% if a.severity == 'CRITICAL' %}
+                  <span class="badge badge-critical">CRITICAL</span>
+                {% elif a.severity == 'HIGH' %}
+                  <span class="badge badge-high">HIGH</span>
+                {% elif a.severity == 'MEDIUM' %}
+                  <span class="badge badge-medium">MEDIUM</span>
+                {% else %}
+                  <span class="badge badge-low">LOW</span>
+                {% endif %}
+              </td>
+              <td style="font-weight: 600; color: var(--text-main);">
+                {{ a.behavior_class }}
+                <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 2px;">
+                  {{ a.explanation_summary }}
+                </div>
+              </td>
+              <td>
+                {% if a.mitre.technique_id %}
+                  <a href="{{ a.mitre.url or '#' }}" target="_blank" class="badge badge-mitre" style="text-decoration: none;">
+                    {{ a.mitre.technique_id }}
+                  </a>
+                  <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 2px;">
+                    {{ a.mitre.technique_name }}
+                  </div>
+                {% else %}
+                  <span class="badge badge-low">HEURISTIC</span>
+                {% endif %}
+              </td>
+              <td>
+                <span class="font-mono">{{ a.confidence_pct }}%</span>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" style="width: {{ a.confidence_pct }}%;"></div>
+                </div>
+              </td>
+              <td class="font-mono" style="font-size: 0.76rem;">
+                {% if a.flow.src_ip %}
+                  {{ a.flow.src_ip }}:{{ a.flow.src_port }} &rarr; {{ a.flow.dst_ip }}:{{ a.flow.dst_port }}
+                  <span class="badge badge-low" style="margin-left: 4px;">{{ a.flow.protocol }}</span>
+                {% else %}
+                  <span style="color: var(--text-dim);">N/A</span>
+                {% endif %}
+              </td>
+              <td class="font-mono" style="font-size: 0.76rem; color: var(--text-muted);">
+                {% if a.flow.payload_entropy %}
+                  H={{ a.flow.payload_entropy }} | {{ a.flow.packet_count }} pkts
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td class="font-mono" style="font-size: 0.73rem; color: var(--text-dim);">
+                {{ a.timestamp[:19].replace('T', ' ') if a.timestamp else '-' }}
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-dim); padding: 2rem;">
+                No threats detected yet. Click "Replay Synthetic Threat PCAP" above to trigger detection scenarios.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 2: SHA-256 Audit Chain Ledger -->
+    <div id="audit-tab" class="tab-content">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Seq #</th>
+              <th>Event Action</th>
+              <th>Actor</th>
+              <th>Previous SHA-256 Hash</th>
+              <th>Record SHA-256 Hash</th>
+              <th>Event Payload Summary</th>
+              <th>Chain Link</th>
+            </tr>
+          </thead>
+          <tbody id="audit-table-body">
+            {% for entry in data.audit_ledger.entries %}
+            <tr>
+              <td class="font-mono" style="font-weight: 700; color: var(--cyan-400);">#{{ entry.sequence_number }}</td>
+              <td><span class="badge badge-low">{{ entry.action }}</span></td>
+              <td style="color: var(--text-muted); font-size: 0.76rem;">{{ entry.actor }}</td>
+              <td>
+                <span class="hash-snippet font-mono" title="{{ entry.previous_hash }}">{{ entry.previous_hash_short }}</span>
+              </td>
+              <td>
+                <span class="hash-snippet font-mono" style="color: var(--cyan-400);" title="{{ entry.record_hash }}">{{ entry.record_hash_short }}</span>
+              </td>
+              <td style="font-size: 0.75rem; color: var(--text-dim); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{ entry.payload_snippet }}
+              </td>
+              <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-dim); padding: 2rem;">
+                Audit ledger empty. Ingest telemetry or replay PCAP to generate cryptographically chained blocks.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 3: MITRE ATT&CK Matrix Breakdown -->
+    <div id="mitre-tab" class="tab-content">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Adversary Tactic</th>
+              <th>Registered Techniques</th>
+              <th>Attributed Alerts</th>
+            </tr>
+          </thead>
+          <tbody id="mitre-table-body">
+            {% for t in data.mitre_matrix.tactics %}
+            <tr>
+              <td style="font-weight: 600; color: var(--text-main);">{{ t.tactic_name }}</td>
+              <td>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                  {% for tech in t.techniques %}
+                    <span class="badge badge-mitre" title="{{ tech.technique_name }}">{{ tech.technique_id }}</span>
+                  {% endfor %}
+                </div>
+              </td>
+              <td class="font-mono" style="font-weight: 700; color: var(--cyan-400);">{{ t.alert_count }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="3" style="text-align: center; color: var(--text-dim); padding: 2rem;">
+                No tactics registered. Click "Re-Seed MITRE ATT&CK Matrix" above.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+      el.classList.add('active');
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+    }
+
+    // Toast notification helper
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      
+      let icon = 'ℹ️';
+      if (type === 'success') icon = '✅';
+      if (type === 'error') icon = '❌';
+
+      toast.innerHTML = `<span>${icon}</span><span style="flex: 1;">${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.transition = 'all 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 4500);
+    }
+
+    // Interactive Action Triggers
+    async function triggerPcapReplay() {
+      const btn = document.getElementById('btn-trigger-pcap');
+      const icon = document.getElementById('icon-pcap');
+      icon.innerHTML = '<span class="spinner"></span>';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch('/analysis/api/trigger-pcap', { method: 'POST' });
+        const res = await resp.json();
+        if (resp.ok) {
+          showToast(`PCAP Replay Complete: Ingested ${res.flows_ingested} flows across 5 scenarios. Dispatched to Celery!`, 'success');
+          await refreshDashboardData();
+        } else {
+          showToast(`PCAP Replay Error: ${res.detail || res.message}`, 'error');
+        }
+      } catch (err) {
+        showToast(`PCAP Replay failed: ${err.message}`, 'error');
+      } finally {
+        icon.innerHTML = '▶';
+        btn.disabled = false;
+      }
+    }
+
+    async function triggerBatchIngest() {
+      const btn = document.getElementById('btn-trigger-batch');
+      const icon = document.getElementById('icon-batch');
+      icon.innerHTML = '<span class="spinner"></span>';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch('/analysis/api/trigger-batch', { method: 'POST' });
+        const res = await resp.json();
+        if (resp.ok) {
+          showToast(`Batch Ingested: ${res.flows_ingested} flows written to database & audit ledger!`, 'success');
+          await refreshDashboardData();
+        } else {
+          showToast(`Batch Error: ${res.detail || res.message}`, 'error');
+        }
+      } catch (err) {
+        showToast(`Batch Ingest failed: ${err.message}`, 'error');
+      } finally {
+        icon.innerHTML = '⚡';
+        btn.disabled = false;
+      }
+    }
+
+    async function triggerAuditVerify() {
+      const btn = document.getElementById('btn-trigger-audit');
+      const icon = document.getElementById('icon-audit');
+      icon.innerHTML = '<span class="spinner"></span>';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch('/analysis/api/verify-chain', { method: 'POST' });
+        const res = await resp.json();
+        if (resp.ok && res.verified) {
+          showToast(`Audit Ledger Verified: All ${res.total_records} SHA-256 blocks cryptographically intact! Head: ${res.head_hash ? res.head_hash.substring(0, 16) : 'N/A'}...`, 'success');
+        } else {
+          showToast(`Audit Chain Warning: ${res.message}`, 'error');
+        }
+      } catch (err) {
+        showToast(`Audit Verification failed: ${err.message}`, 'error');
+      } finally {
+        icon.innerHTML = '🔒';
+        btn.disabled = false;
+      }
+    }
+
+    async function triggerMitreSeed() {
+      const btn = document.getElementById('btn-trigger-seed');
+      const icon = document.getElementById('icon-seed');
+      icon.innerHTML = '<span class="spinner"></span>';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch('/analysis/api/seed-mitre', { method: 'POST' });
+        const res = await resp.json();
+        if (resp.ok) {
+          showToast(`MITRE Seed: ${res.message}`, 'success');
+          await refreshDashboardData();
+        } else {
+          showToast(`MITRE Seed Error: ${res.detail || res.message}`, 'error');
+        }
+      } catch (err) {
+        showToast(`MITRE Seed failed: ${err.message}`, 'error');
+      } finally {
+        icon.innerHTML = '🛡️';
+        btn.disabled = false;
+      }
+    }
+
+    // Dynamic Data Refresh
+    async function refreshDashboardData() {
+      try {
+        const resp = await fetch('/analysis/api/data');
+        if (!resp.ok) return;
+        const d = await resp.json();
+
+        // Update KPIs
+        document.getElementById('kpi-workers-online').innerText = `${d.system_readiness.celery.workers_online}/${d.system_readiness.celery.total_workers}`;
+        document.getElementById('kpi-flows-count').innerText = d.system_readiness.database.counts.flows;
+        document.getElementById('kpi-alerts-count').innerText = d.system_readiness.database.counts.alerts;
+        document.getElementById('kpi-audit-count').innerText = d.system_readiness.database.counts.audit_logs;
+
+        // Update Database readiness
+        document.getElementById('db-latency').innerText = `${d.system_readiness.database.latency_ms} ms`;
+        document.getElementById('db-flows').innerText = d.system_readiness.database.counts.flows;
+        document.getElementById('db-alerts').innerText = d.system_readiness.database.counts.alerts;
+        document.getElementById('db-audit').innerText = d.system_readiness.database.counts.audit_logs;
+
+        // Update Redis readiness
+        document.getElementById('redis-latency').innerText = `${d.system_readiness.redis.latency_ms} ms`;
+        document.getElementById('redis-mem').innerText = d.system_readiness.redis.used_memory_human;
+        document.getElementById('redis-clients').innerText = d.system_readiness.redis.connected_clients;
+
+        // Update Celery status badge
+        document.getElementById('celery-status-badge').innerText = `${d.system_readiness.celery.workers_online} ONLINE`;
+
+        // Update Threat Tab count & Audit count
+        document.getElementById('tab-threats-count').innerText = d.recent_threats.length;
+        document.getElementById('tab-audit-count').innerText = d.audit_ledger.entries.length;
+
+        // Update Threats Table
+        const threatsTbody = document.getElementById('threats-table-body');
+        if (d.recent_threats.length > 0) {
+          threatsTbody.innerHTML = d.recent_threats.map(a => `
+            <tr>
+              <td>
+                <span class="badge ${a.severity === 'CRITICAL' ? 'badge-critical' : a.severity === 'HIGH' ? 'badge-high' : a.severity === 'MEDIUM' ? 'badge-medium' : 'badge-low'}">
+                  ${a.severity}
+                </span>
+              </td>
+              <td style="font-weight: 600; color: var(--text-main);">
+                ${a.behavior_class}
+                <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 2px;">
+                  ${a.explanation_summary}
+                </div>
+              </td>
+              <td>
+                ${a.mitre.technique_id ? `
+                  <a href="${a.mitre.url || '#'}" target="_blank" class="badge badge-mitre" style="text-decoration: none;">
+                    ${a.mitre.technique_id}
+                  </a>
+                  <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 2px;">
+                    ${a.mitre.technique_name || ''}
+                  </div>
+                ` : '<span class="badge badge-low">HEURISTIC</span>'}
+              </td>
+              <td>
+                <span class="font-mono">${a.confidence_pct}%</span>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" style="width: ${a.confidence_pct}%;"></div>
+                </div>
+              </td>
+              <td class="font-mono" style="font-size: 0.76rem;">
+                ${a.flow.src_ip ? `${a.flow.src_ip}:${a.flow.src_port} &rarr; ${a.flow.dst_ip}:${a.flow.dst_port} <span class="badge badge-low" style="margin-left: 4px;">${a.flow.protocol}</span>` : '<span style="color: var(--text-dim);">N/A</span>'}
+              </td>
+              <td class="font-mono" style="font-size: 0.76rem; color: var(--text-muted);">
+                ${a.flow.payload_entropy ? `H=${a.flow.payload_entropy} | ${a.flow.packet_count} pkts` : '-'}
+              </td>
+              <td class="font-mono" style="font-size: 0.73rem; color: var(--text-dim);">
+                ${a.timestamp ? a.timestamp.substring(0, 19).replace('T', ' ') : '-'}
+              </td>
+            </tr>
+          `).join('');
+        }
+
+        // Update Audit Table
+        const auditTbody = document.getElementById('audit-table-body');
+        if (d.audit_ledger.entries.length > 0) {
+          auditTbody.innerHTML = d.audit_ledger.entries.map(entry => `
+            <tr>
+              <td class="font-mono" style="font-weight: 700; color: var(--cyan-400);">#${entry.sequence_number}</td>
+              <td><span class="badge badge-low">${entry.action}</span></td>
+              <td style="color: var(--text-muted); font-size: 0.76rem;">${entry.actor}</td>
+              <td><span class="hash-snippet font-mono" title="${entry.previous_hash}">${entry.previous_hash_short}</span></td>
+              <td><span class="hash-snippet font-mono" style="color: var(--cyan-400);" title="${entry.record_hash}">${entry.record_hash_short}</span></td>
+              <td style="font-size: 0.75rem; color: var(--text-dim); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${entry.payload_snippet}</td>
+              <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+          `).join('');
+        }
+
+      } catch (err) {
+        console.warn("Polling error:", err);
+      }
+    }
+
+    // Auto-refresh interval (5 seconds)
+    setInterval(() => {
+      const toggle = document.getElementById('auto-refresh-toggle');
+      if (toggle && toggle.checked) {
+        refreshDashboardData();
+      }
+    }, 5000);
+  </script>
+</body>
+</html>

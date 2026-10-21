@@ -1,0 +1,47 @@
+{
+  "users": {
+    "user_id_1": {
+      "profile": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com",
+        "dob": "1990-01-15",
+        "device_token": "fcm_device_token_for_user"
+      },
+      "emergency_contacts": [
+        {
+          "name": "John Doe",
+          "relationship": "Husband",
+          "phone_number": "+11234567890"
+        }
+      ]
+    }
+  },
+  "alerts": {
+    "alert_id_1": {
+      "user_id": "user_id_1",
+      "timestamp": "2024-07-30T10:00:00Z",
+      "alert_type": "fall",
+      "location": {
+        "latitude": 34.0522,
+        "longitude": -118.2437
+      }
+    },
+    "alert_id_2": {
+      "user_id": "user_id_1",
+      "timestamp": "2024-07-30T10:05:00Z",
+      "alert_type": "panic",
+      "location": {
+        "latitude": 34.0522,
+        "longitude": -118.2437
+      }
+    }
+  },
+  "cycle_logs": {
+    "log_id_1": {
+      "user_id": "user_id_1",
+      "start_date": "2024-07-01",
+      "end_date": "2024-07-05",
+      "symptoms": ["cramps", "headache"]
+    }
+  }
+}

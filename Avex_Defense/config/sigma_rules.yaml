@@ -1,0 +1,138 @@
+# =============================================================================
+# Sigma-Inspired Detection Rules for Unidirectional IP Network Traffic
+# Evaluated concurrently with ML models for hybrid signature & anomaly defense
+# =============================================================================
+
+rules:
+  # ---------------------------------------------------------------------------
+  # Rule 1: DNS Covert Tunnel High-Entropy Exfiltration
+  # ---------------------------------------------------------------------------
+  - title: DNS Covert Tunnel High Entropy Exfiltration
+    id: 1a8c3d55-8930-4e55-88f1-8d2a6a8b1101
+    status: production
+    description: Detects abnormally high Shannon entropy payloads transmitting over port 53 / DNS, indicative of data exfiltration via DNS tunneling.
+    references:
+      - https://attack.mitre.org/techniques/T1071/004/
+      - https://attack.mitre.org/techniques/T1048/003/
+    tags:
+      - attack.exfiltration
+      - attack.t1048.003
+      - attack.t1071.004
+      - diode.tunneling
+    level: high
+    detection:
+      selection_port:
+        dst_port: 53
+      selection_entropy:
+        payload_entropy | gte: 7.0
+      selection_volume:
+        byte_count | gte: 300
+      condition: selection_port and selection_entropy and selection_volume
+
+  # ---------------------------------------------------------------------------
+  # Rule 2: Unidirectional Port Sweep / Reconnaissance
+  # ---------------------------------------------------------------------------
+  - title: Unidirectional Port Probe Sweep
+    id: 2b9d4e66-9041-4f66-99e2-9e3b7b9c2202
+    status: production
+    description: Detects isolated low-packet probes to sensitive management or remote access ports across unidirectional boundaries without three-way handshake completion.
+    references:
+      - https://attack.mitre.org/techniques/T1046/
+    tags:
+      - attack.discovery
+      - attack.t1046
+      - diode.recon
+    level: medium
+    detection:
+      selection_packets:
+        packet_count | lte: 3
+        duration_ms | lte: 100
+      selection_targets:
+        dst_port | in: [21, 22, 23, 25, 80, 110, 143, 443, 445, 3389, 8080, 8443]
+      condition: selection_packets and selection_targets
+
+  # ---------------------------------------------------------------------------
+  # Rule 3: Periodic C2 Heartbeat Beaconing
+  # ---------------------------------------------------------------------------
+  - title: Rigid C2 Heartbeat Beaconing Pattern
+    id: 3c0e5f77-0152-4a77-aa03-af4c8cad3303
+    status: production
+    description: Detects highly regular inter-arrival timing with near-zero Shannon entropy over extended durations, typical of automated adversary C2 frameworks (Cobalt Strike, Sliver).
+    references:
+      - https://attack.mitre.org/techniques/T1071/
+      - https://attack.mitre.org/techniques/T1095/
+    tags:
+      - attack.command_and_control
+      - attack.t1071.004
+      - diode.beaconing
+    level: high
+    detection:
+      selection_entropy:
+        iat_entropy | lte: 1.2
+      selection_samples:
+        packet_count | gte: 6
+        duration_ms | gte: 4000
+      condition: selection_entropy and selection_samples
+
+  # ---------------------------------------------------------------------------
+  # Rule 4: Unauthorized Traffic Targeting SCADA Enclave
+  # ---------------------------------------------------------------------------
+  - title: Unauthorized Ingress to Core SCADA Enclave
+    id: 4d1f6a88-1263-4b88-bb14-ba5d9dbe4404
+    status: production
+    description: Detects traffic directed into the Core Industrial Control Subnet (10.0.0.0/24) targeting non-industrial protocol ports.
+    references:
+      - https://attack.mitre.org/tactics/TA0108/
+    tags:
+      - attack.initial_access
+      - ot.scada_violation
+      - asset.critical
+    level: critical
+    detection:
+      selection_subnet:
+        dst_ip | cidr: 10.0.0.0/24
+      filter_allowed_scada_ports:
+        dst_port | in: [502, 44818, 102] # Modbus, Ethernet/IP, Siemens S7
+      condition: selection_subnet and not filter_allowed_scada_ports
+
+  # ---------------------------------------------------------------------------
+  # Rule 5: Multi-Device TTL Spoofing / Masquerade
+  # ---------------------------------------------------------------------------
+  - title: Multiple Operating System TTL Variance on Single IP
+    id: 5e2a7b99-2374-4c99-cc25-cb6e0ecf5505
+    status: production
+    description: Detects anomalous variance in IP TTL header values from an identical source IP, indicating multi-device traffic masquerading or raw IP header spoofing.
+    references:
+      - https://attack.mitre.org/techniques/T1036/
+    tags:
+      - attack.defense_evasion
+      - attack.t1036
+      - diode.spoofing
+    level: medium
+    detection:
+      selection_variance:
+        ttl_variance | gte: 4.0
+        packet_count | gte: 5
+      condition: selection_variance
+
+  # ---------------------------------------------------------------------------
+  # Rule 6: Volumetric High-Rate Traffic Flood
+  # ---------------------------------------------------------------------------
+  - title: Volumetric Bandwidth Flood on Diode Interface
+    id: 6f3b8c00-3485-4d00-dd36-dc7f1fd06606
+    status: production
+    description: Detects extreme packet transmission bursts exceeding safe bandwidth thresholds through unidirectional taps.
+    references:
+      - https://attack.mitre.org/techniques/T1498/
+    tags:
+      - attack.impact
+      - attack.t1498
+      - diode.dos
+    level: high
+    detection:
+      selection_rate:
+        bytes_per_second | gte: 500000
+      selection_burst:
+        packet_count | gte: 300
+        duration_ms | lte: 3000
+      condition: selection_rate or selection_burst

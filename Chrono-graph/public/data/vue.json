@@ -1,0 +1,3177 @@
+{
+  "repo": "vuejs/core",
+  "totalCommits": 250,
+  "commits": [
+    {
+      "sha": "94af9b6357a74dd9de3012da6b77c1a6843cb0f0",
+      "author": "Anthony Fu",
+      "date": "2023-01-01T10:09:51.725Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#201)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "705a091f70dac638afb559ddedf1e0dca3d545ff",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-01T15:04:41.818Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#202)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2c171a2287885c63ab976dff04303f5350476b3d",
+      "author": "Kia King Ishii",
+      "date": "2023-01-01T16:37:47.967Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#203)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "e2ae9c773b81f8dbf87a48014eb964b683c1fd3b",
+      "author": "Linus Borg",
+      "date": "2023-01-01T17:25:03.105Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#204)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "3cface55527c7c519926760b9b9588d5cba8b57e",
+      "author": "Evan You",
+      "date": "2023-01-01T22:20:09.820Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#205)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "488eb312f336ffbfbe7e6fa6ad05070ce892aacc",
+      "author": "Anthony Fu",
+      "date": "2023-01-01T23:25:30.671Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#206)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "bee30d835bb726e75080bc1f055e1a3e731b2043",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-02T02:50:25.010Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#207)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3a3459401ecef66083c6738ffee3f2f80aae9990",
+      "author": "Kia King Ishii",
+      "date": "2023-01-02T03:39:10.757Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#208)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5b42c8d4c25cc69053591590089dabd017629a4d",
+      "author": "Linus Borg",
+      "date": "2023-01-02T07:46:17.865Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#209)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ce6ad1fe644c04588bea04d6d8ee1eb935de190c",
+      "author": "Evan You",
+      "date": "2023-01-02T11:44:43.230Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#210)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "4ce8c7e7dbc17775ba20320a4ae1e01aa4941d07",
+      "author": "Anthony Fu",
+      "date": "2023-01-02T14:19:52.989Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#211)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "197460c186235ac5c162a657e5c1df1fb504b547",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-02T17:19:37.694Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#212)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8a1d9510ab7042399daaca45ef6509bea39e51bf",
+      "author": "Kia King Ishii",
+      "date": "2023-01-02T19:33:09.387Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#213)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "164a3c3270d4e8727b3b1d7966074315e6275722",
+      "author": "Linus Borg",
+      "date": "2023-01-03T00:27:14.964Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#214)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8d597c24118f71b712efc83b8692969d113f2009",
+      "author": "Evan You",
+      "date": "2023-01-03T02:15:33.302Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#215)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "fd36e810a12975380ee8ec77cdedfe6bb62f5960",
+      "author": "Anthony Fu",
+      "date": "2023-01-03T05:51:06.844Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#216)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cab83939cb6a24e1035c54edd19fbdcd792e7f92",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-03T09:50:41.542Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#217)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "00cfb2e5739db5530eb61b60480649150578f314",
+      "author": "Kia King Ishii",
+      "date": "2023-01-03T14:42:48.973Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#218)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "1fb91f1c087aaa0f3ab519ada9e2fd36e72aa568",
+      "author": "Linus Borg",
+      "date": "2023-01-03T16:07:23.789Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#219)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "7831bd1b09b962d2bdabd29abcafcee81fd6e542",
+      "author": "Evan You",
+      "date": "2023-01-03T17:18:14.609Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#220)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2ca719695bebf5dfc6eb4d0bb66e8bb897d70c95",
+      "author": "Anthony Fu",
+      "date": "2023-01-03T19:56:37.249Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#221)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "40be874953a17a4dcfb00a383b7b5b42462484a8",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-03T23:54:31.333Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#222)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7e395a1e2fa116508d3d72ee81d566091a17768a",
+      "author": "Kia King Ishii",
+      "date": "2023-01-04T00:46:12.375Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#223)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08ee54aac26425f78a190cdb9ad3f101bb0fd5cb",
+      "author": "Linus Borg",
+      "date": "2023-01-04T05:54:39.108Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#224)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ea55f8b5810dc9cc5db9a963eed32e730420975b",
+      "author": "Evan You",
+      "date": "2023-01-04T08:45:09.897Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#225)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4ed6f94752162db9d300c58f3c76a34662e24ae3",
+      "author": "Anthony Fu",
+      "date": "2023-01-04T12:22:27.906Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#226)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "352995509cd2e7c225cd3a72f35e0bf804f0dc63",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-04T15:13:28.043Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#227)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3eaff00a99245462800e1ec0194ce8439512ee62",
+      "author": "Kia King Ishii",
+      "date": "2023-01-04T19:31:16.031Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#228)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2bfd33181bc6de2295ecbac181e51ffba85ca82f",
+      "author": "Linus Borg",
+      "date": "2023-01-04T22:11:51.007Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#229)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6adfc32aa150ec25a516e39eb523030df0183441",
+      "author": "Evan You",
+      "date": "2023-01-04T22:52:04.833Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#230)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f3a80aecb2a678e22267e3503a4ae4d1ff3cd8b6",
+      "author": "Anthony Fu",
+      "date": "2023-01-05T01:38:15.378Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#231)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "f202ade4dcb193d8f27bb0c68d15ffbe14ff7cee",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-05T05:03:47.544Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#232)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8ad56716e9a2fde4fd38ca42a61d67edbb046568",
+      "author": "Kia King Ishii",
+      "date": "2023-01-05T07:47:14.748Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#233)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "61ff309ce6612e3147b1d10fcb15a0dc222b0d9e",
+      "author": "Linus Borg",
+      "date": "2023-01-05T08:17:47.183Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#234)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e0423189b9c4488a37ef43ffb3be82c36746d111",
+      "author": "Evan You",
+      "date": "2023-01-05T11:03:56.253Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#235)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "63cd2edc67d4c9af65f7ab4013ec00fb78ff8d02",
+      "author": "Anthony Fu",
+      "date": "2023-01-05T13:29:27.824Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#236)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "574fed2eb9384aa3e0b0fd0c141af2ed9ded44a1",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-05T14:09:59.379Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#237)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1b41c45ca007c5b644e0d9e381b0558f5c0ed690",
+      "author": "Kia King Ishii",
+      "date": "2023-01-05T16:01:11.013Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#238)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c72df798aa9372a7c68732b27fe0b17afbe45249",
+      "author": "Linus Borg",
+      "date": "2023-01-05T18:22:20.499Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#239)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a93e55ab45c6b51a0f5912e34e87bf484aa766ba",
+      "author": "Evan You",
+      "date": "2023-01-05T20:24:11.646Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#240)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2a5456575934870aa143dfa0f2e5a255c0ffc4fa",
+      "author": "Anthony Fu",
+      "date": "2023-01-06T01:40:27.731Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#241)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8eed932504a00f313c30160d42d38180127961f0",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-06T04:58:48.005Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#242)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "548f92751b234881ab57cd4c146fae4c5460a526",
+      "author": "Kia King Ishii",
+      "date": "2023-01-06T05:53:37.497Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#243)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bac6ca74c592a02f660854ff6a61515366aa6c07",
+      "author": "Linus Borg",
+      "date": "2023-01-06T07:12:06.946Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#244)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0b9e8f1a47e0b692c0582abcc3e898c932d5c530",
+      "author": "Evan You",
+      "date": "2023-01-06T09:32:34.553Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#245)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "438db96aefe5bfd65c7c4c6ac0aa33aea36af567",
+      "author": "Anthony Fu",
+      "date": "2023-01-06T12:10:09.972Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#246)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "sha": "1d30a2cc0138a9cac36f4e49c1f877529b3d7c33",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-06T14:39:15.110Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#247)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b405d945e67edafc7961f7a491dd20ea96a9535a",
+      "author": "Kia King Ishii",
+      "date": "2023-01-06T16:08:04.983Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#248)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e666f88caf1ed5e813f781c06b2e563efb3e27f9",
+      "author": "Linus Borg",
+      "date": "2023-01-06T19:34:53.206Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#249)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "992457f1af27985002b9d3ec80b2702170ef173c",
+      "author": "Evan You",
+      "date": "2023-01-06T22:04:58.728Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#250)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e4437bfb5d2bb533917be2a9f9ccd94d4845cea1",
+      "author": "Anthony Fu",
+      "date": "2023-01-07T03:11:19.999Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#251)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4cb973c84bc83eba94254fd7ab4b4d2ab3ad8b26",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-07T03:41:20.127Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#252)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b25a121b49b4abeae2be185931b5ac697e0f283d",
+      "author": "Kia King Ishii",
+      "date": "2023-01-07T08:00:56.037Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#253)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "78291e3ec5e4c3eac772d6cd9429ca32913aa2e1",
+      "author": "Linus Borg",
+      "date": "2023-01-07T09:06:06.884Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#254)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "36741f192ac671ae42e9419684bd69bda66120d7",
+      "author": "Evan You",
+      "date": "2023-01-07T13:41:55.158Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#255)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f30c236444e6fff6148e1061e54593a2677cfe4d",
+      "author": "Anthony Fu",
+      "date": "2023-01-07T17:38:03.866Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#256)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "00a2e3d2f0a2fee0d6084cfa62c2e8ef5c9fce67",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-07T19:25:40.439Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#257)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "df8c5218149ccfbbc1ccb970f4e7fb57d45d816b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-07T22:14:18.478Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#258)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "041e1b2e78933d837c8b204797961d5c11ef47ab",
+      "author": "Linus Borg",
+      "date": "2023-01-08T03:20:30.833Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#259)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "11a63d936d58b18eaa772f8545bb63592ef2e5e0",
+      "author": "Evan You",
+      "date": "2023-01-08T07:24:43.746Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#260)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b93c4d7c9db820008fd31147fc412b0a66c7a403",
+      "author": "Anthony Fu",
+      "date": "2023-01-08T10:35:16.795Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#261)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a80534f0ebb9b8d44babf0c00d839c3b297f3a6c",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-08T15:17:53.277Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#262)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "186d8a6bc99d9cd638363cf0a6587d3d3126b8c5",
+      "author": "Kia King Ishii",
+      "date": "2023-01-08T18:19:53.670Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#263)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bfd5c236c5d0c9efb074a4bc343467943bb4fecc",
+      "author": "Linus Borg",
+      "date": "2023-01-08T19:48:16.449Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#264)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "43d2966aa9256d34cd49905629758547442920bd",
+      "author": "Evan You",
+      "date": "2023-01-09T00:42:00.267Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#265)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b7e0773b622ad5661748592fc93c8146f41ddb85",
+      "author": "Anthony Fu",
+      "date": "2023-01-09T04:33:07.786Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#266)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7b886e89de30a44262a7fb18d89c205c48be7209",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-09T06:51:18.745Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#267)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "40975b54dc8e5d580c8a391befaa11406a868953",
+      "author": "Kia King Ishii",
+      "date": "2023-01-09T11:30:15.961Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#268)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4d34ca4302589600a06472c7fbd55d2f6d7b75df",
+      "author": "Linus Borg",
+      "date": "2023-01-09T14:43:38.270Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#269)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6ae81dd3c13b7a2d75c6ef0f0983de0b220ddaeb",
+      "author": "Evan You",
+      "date": "2023-01-09T19:29:49.099Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#270)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ab85b49a2ff5aedff210d416790616dbc36c5b3c",
+      "author": "Anthony Fu",
+      "date": "2023-01-09T21:07:54.609Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#271)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1363a1a026c01adcc0eadd492ea86fc1a05f9225",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-09T22:13:01.759Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#272)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "30a555c66bc9b2040694e6e3225f0228fb3c5832",
+      "author": "Kia King Ishii",
+      "date": "2023-01-10T02:57:10.970Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#273)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3c846f79672e174cad19424fb49601dfefc1c0c3",
+      "author": "Linus Borg",
+      "date": "2023-01-10T04:57:03.702Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#274)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "204c39ffcd81e39f7ac1fadd4636d0c6c821b11d",
+      "author": "Evan You",
+      "date": "2023-01-10T06:51:28.291Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#275)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f89c55588a4fd51673a858e34048659a798343e3",
+      "author": "Anthony Fu",
+      "date": "2023-01-10T09:59:26.292Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#276)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e86eefe5d4d76cc070fef41a4884eb8c39d6fd58",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-10T14:21:11.776Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#277)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "052c73ec1d9134d81ec23e95b0afcf828d5b8cdb",
+      "author": "Kia King Ishii",
+      "date": "2023-01-10T16:52:59.391Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#278)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5bb18b2f6182b2ef29eb7d658e1479778e7be199",
+      "author": "Linus Borg",
+      "date": "2023-01-10T17:51:53.027Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#279)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6fbac9f0fdb47495107b4b820dd09fae8bb5f814",
+      "author": "Evan You",
+      "date": "2023-01-10T21:40:25.862Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#280)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5ee6a888d86280ed786d2687c8700cac9f7fa8e2",
+      "author": "Anthony Fu",
+      "date": "2023-01-11T02:21:07.824Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#281)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3797fe0724530e5276b398a87a6025c64020a28b",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-11T07:15:18.267Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#282)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7d76b97d4a32b3fd11f75b71fc73846b6ebe3309",
+      "author": "Kia King Ishii",
+      "date": "2023-01-11T10:49:34.790Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#283)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f314ad6deb5fa644175169288540bb9e8f79972d",
+      "author": "Linus Borg",
+      "date": "2023-01-11T12:03:10.809Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#284)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8e5b1eb47e5d7b56373cf4ac29571092970e140f",
+      "author": "Evan You",
+      "date": "2023-01-11T14:59:53.633Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#285)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "99c5426194ad513526c76b15a268a9c223fb09ab",
+      "author": "Anthony Fu",
+      "date": "2023-01-11T19:06:57.672Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#286)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "658a53cf08b9c49d6023208067ae67e9a0d9198c",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-11T19:40:52.054Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#287)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e21c257936d2b11c9c69d9f05e96717d8e7a5546",
+      "author": "Kia King Ishii",
+      "date": "2023-01-11T23:14:49.928Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#288)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9162a53550b1bcb3961ffee4dab2cdd7180a9d1a",
+      "author": "Linus Borg",
+      "date": "2023-01-11T23:50:12.997Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#289)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1b2238f9f672daa0aa4c04d2213201c59c931016",
+      "author": "Evan You",
+      "date": "2023-01-12T04:00:49.479Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#290)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "dd20033b8432c2120828a5bb16919bda1b329622",
+      "author": "Anthony Fu",
+      "date": "2023-01-12T07:23:05.338Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#291)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c7f9e05a98e89a07b8c89087d4692f862bbd9804",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-12T12:50:09.522Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#292)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "86b87944901e0fc8bc5eafb4c0958c337be9a95f",
+      "author": "Kia King Ishii",
+      "date": "2023-01-12T16:28:18.307Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#293)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "876d3e3dd8497718f09b4c4785e69172fa0613c7",
+      "author": "Linus Borg",
+      "date": "2023-01-12T19:05:41.757Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#294)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e16c0ce32851165506b5df280de2a15f64c30015",
+      "author": "Evan You",
+      "date": "2023-01-12T22:27:42.624Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#295)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "c8754ea78e40e429f78974b51b9d574be231015b",
+      "author": "Anthony Fu",
+      "date": "2023-01-12T23:26:27.906Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#296)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7464356d7c8d850bdbc940383c0c3dc8088e89a8",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-13T01:27:14.572Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#297)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b9aed7111e76172272dd52dde349c86fd9fb34fa",
+      "author": "Kia King Ishii",
+      "date": "2023-01-13T03:03:46.764Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#298)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8a37714bf89552eac9910a523a8b7169756c3e5f",
+      "author": "Linus Borg",
+      "date": "2023-01-13T08:20:29.283Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#299)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "816948e3076f2766aad61a7e59db1a7e1ce7d05d",
+      "author": "Evan You",
+      "date": "2023-01-13T10:39:54.715Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#300)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3442693e4715452a8d0bd9f86f107fd2d38a2eb1",
+      "author": "Anthony Fu",
+      "date": "2023-01-13T13:40:38.143Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#301)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e19651f87f0372f8f9afb142f20047a8ee22a227",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-13T18:58:03.854Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#302)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3077af204a142e4b1678e15abc21714782cb5a02",
+      "author": "Kia King Ishii",
+      "date": "2023-01-13T23:15:10.622Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#303)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8d4cdb70bbafaea8ca3bed668d3b689f16b25312",
+      "author": "Linus Borg",
+      "date": "2023-01-14T01:01:15.656Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#304)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "54ee53b75b4de63b6d5239f89541425109ba6c90",
+      "author": "Evan You",
+      "date": "2023-01-14T01:36:12.969Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#305)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "da74fbb595366091dac18941e7c725aaff5fb644",
+      "author": "Anthony Fu",
+      "date": "2023-01-14T04:24:55.891Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#306)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "72fe138d225520de910a28bd7354c3c5d9b5012f",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-14T09:33:41.541Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#307)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6923e383ddaab631cc1be7c0eef6db8ee35102de",
+      "author": "Kia King Ishii",
+      "date": "2023-01-14T13:57:01.757Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#308)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4c2f7caf2cc5e7353781f09e410f2c279e0dcdaa",
+      "author": "Linus Borg",
+      "date": "2023-01-14T18:50:05.855Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#309)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3c8742b13c0833d370035ef43a956ece70fe1340",
+      "author": "Evan You",
+      "date": "2023-01-14T19:29:34.790Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#310)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0e4fb6403cc474dd0c3807cd74a426344caabcae",
+      "author": "Anthony Fu",
+      "date": "2023-01-15T00:39:36.299Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#311)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ba3b2fa16e9c548c8f8c6cbb28a74503f9c79df1",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-15T01:40:56.653Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#312)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a980b50e2310b62cda79540843ec5a105593abc9",
+      "author": "Kia King Ishii",
+      "date": "2023-01-15T03:13:49.714Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#313)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5a99729fb738545750aaeb351360ff7389015ca8",
+      "author": "Linus Borg",
+      "date": "2023-01-15T04:15:38.825Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#314)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ef87e6145731ec503ea9a4937767214ec23da874",
+      "author": "Evan You",
+      "date": "2023-01-15T09:25:58.410Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#315)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "062dcc23e2f642193a40e9dab17fba9552cfba25",
+      "author": "Anthony Fu",
+      "date": "2023-01-15T11:22:04.319Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#316)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ac7cdb27452f89bcba16ea662776a2045bffd0bb",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-15T14:58:15.454Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#317)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "70982c949614fee72f7edaf9d8bbf173a7241648",
+      "author": "Kia King Ishii",
+      "date": "2023-01-15T18:14:46.867Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#318)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6d4e7a38c86be0851ec3dff3ba3da95e7813274f",
+      "author": "Linus Borg",
+      "date": "2023-01-15T20:02:24.128Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#319)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7b16ae4e8075224539d93f8046e992426d105698",
+      "author": "Evan You",
+      "date": "2023-01-15T22:50:42.640Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#320)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ffbee62cbc1f0ba70bad401e40a34ae9cedfeb95",
+      "author": "Anthony Fu",
+      "date": "2023-01-16T04:20:20.051Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#321)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9e28e0d14898ecc2034ad9effb3f002b683fcc35",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-16T05:26:28.851Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#322)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4044e58aa0823de719fd6862ff7832cc88e2f0ce",
+      "author": "Kia King Ishii",
+      "date": "2023-01-16T09:06:14.106Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#323)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0a522667bc34fc190031000972bb11a5d4067233",
+      "author": "Linus Borg",
+      "date": "2023-01-16T10:46:58.880Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#324)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2938a3b598d47ba47d54b05df3a3ee76b6ae2bb6",
+      "author": "Evan You",
+      "date": "2023-01-16T14:48:52.687Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#325)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8a214ff1df80773d75317c92585c5f14f39ffa2e",
+      "author": "Anthony Fu",
+      "date": "2023-01-16T20:18:33.863Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#326)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1f5e908bcfbf30f86a69a506d056416c4e5fa6f2",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-16T21:37:18.390Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#327)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3550382b3bda15d0a2fe8f5432f77e6fb8ce9ae2",
+      "author": "Kia King Ishii",
+      "date": "2023-01-17T02:23:25.985Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#328)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7d9c195c672cdcd27c2db8b00d9ef377651e27a6",
+      "author": "Linus Borg",
+      "date": "2023-01-17T03:17:43.846Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#329)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9834caba26de49583e7b08ba6a379e2125ca8b41",
+      "author": "Evan You",
+      "date": "2023-01-17T07:34:17.693Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#330)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7aa88d895e0716054b793cca4e0a065010404107",
+      "author": "Anthony Fu",
+      "date": "2023-01-17T11:50:06.667Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#331)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "acd005caeec433d9445b3f797458c02b4708bf9b",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-17T13:17:37.307Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#332)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7c136a98fc2e9d67b72cc3ec326e79ece1ff2b7b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-17T17:07:07.663Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#333)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "04904dc478ed6474ff247285f925fe10ff367484",
+      "author": "Linus Borg",
+      "date": "2023-01-17T17:52:15.608Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#334)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5a14d02f3b2c8a4cf4c6ee118a12ca31572b89a3",
+      "author": "Evan You",
+      "date": "2023-01-17T20:32:05.821Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#335)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b0e3dec173c6fdb942d9f29de07f996536384430",
+      "author": "Anthony Fu",
+      "date": "2023-01-18T00:54:18.661Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#336)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e20959c1e20dd0ffc0fbef92a51a154fa06f018d",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-18T04:45:48.425Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#337)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5b60c26c0c3e24348183ffa5ccb18de2edb543b3",
+      "author": "Kia King Ishii",
+      "date": "2023-01-18T07:21:24.050Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#338)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "95ff42f4360bb8971c26e19f75cccb865bb46ab6",
+      "author": "Linus Borg",
+      "date": "2023-01-18T09:05:40.235Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#339)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3970dab09f7a01f4ca9f875fc438e787a5b80401",
+      "author": "Evan You",
+      "date": "2023-01-18T10:52:27.483Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#340)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0cb12d0f7152f72c8659579ee74e83a2e29fc1e9",
+      "author": "Anthony Fu",
+      "date": "2023-01-18T13:32:43.471Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#341)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f27c6bce96a416cb8592431776b13b879c37f281",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-18T14:32:43.206Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#342)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2770eb64b9b1c1bf2eeb07e588dca592e170410b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-18T15:22:05.914Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#343)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4c3c978470e01db32e47c920da323d4e07d8ce37",
+      "author": "Linus Borg",
+      "date": "2023-01-18T16:22:56.785Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#344)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "193fab73d2efb53943ca660ec8e7fb6923ac9012",
+      "author": "Evan You",
+      "date": "2023-01-18T19:08:35.833Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#345)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e637a523f9496217937afe03ac548fb6650bf902",
+      "author": "Anthony Fu",
+      "date": "2023-01-18T22:43:51.303Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#346)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "410b49b19691ecdee2f859c1c30be6c4e91942e5",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-19T02:28:09.583Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#347)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f4180371937f5411b886b0beb12d7f27f115b23b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-19T06:35:08.033Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#348)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f677e13a2490421fb73049fd07f11b32757edb4a",
+      "author": "Linus Borg",
+      "date": "2023-01-19T11:44:51.193Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#349)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "ce536a3f5446ec0e124cc99be912ba1919dd6c29",
+      "author": "Evan You",
+      "date": "2023-01-19T16:00:37.570Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#350)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "434a331b7bbd346ab9535574afeac162e2934e9b",
+      "author": "Anthony Fu",
+      "date": "2023-01-19T17:16:26.453Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#351)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1c31b1885a31c8a62ec47f25b76924555a282182",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-19T20:12:31.390Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#352)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "12ec0d11bdfeaef907962b432995e486f3b85d4d",
+      "author": "Kia King Ishii",
+      "date": "2023-01-19T22:03:28.783Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#353)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "753cb6695f8d77172fb62a8dd46f9454d1f765e2",
+      "author": "Linus Borg",
+      "date": "2023-01-20T00:16:51.172Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#354)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "52f5fb0a4b6381058d66a3126cd0a01fe9bc3491",
+      "author": "Evan You",
+      "date": "2023-01-20T02:47:10.088Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#355)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "98fb3c75e396d2c0479f5bb7f8a9fc63bd255c74",
+      "author": "Anthony Fu",
+      "date": "2023-01-20T04:54:11.380Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#356)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4290e32fbcab2534f0ac5acd8a8305faa234dd41",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-20T07:01:49.808Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#357)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "004107d5041ff2f7254fc9628d2253b612deb4ff",
+      "author": "Kia King Ishii",
+      "date": "2023-01-20T08:51:34.741Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#358)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "66ffbab2d6633f65d38ca4c7f312a1288144bf64",
+      "author": "Linus Borg",
+      "date": "2023-01-20T13:18:58.829Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#359)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "567eac75c5bd1478e02bce9875ae3978dc825c35",
+      "author": "Evan You",
+      "date": "2023-01-20T14:01:41.734Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#360)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6996bc2bdf09732c23962aebec451b4fe4a4d75c",
+      "author": "Anthony Fu",
+      "date": "2023-01-20T16:00:04.803Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#361)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f1e186481aff0c376f8888f1772f4627946f8e72",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-20T19:08:17.449Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#362)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "78d49dd6b3819c245d11d6ca62dbf9b81a3708f3",
+      "author": "Kia King Ishii",
+      "date": "2023-01-20T22:05:50.789Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#363)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6c7ac95e81c96fd5a1c7a903f0c2a1ace60638da",
+      "author": "Linus Borg",
+      "date": "2023-01-20T22:39:47.958Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#364)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "36b14dd89f0cadea445531ecb9b4950e9fa10db2",
+      "author": "Evan You",
+      "date": "2023-01-21T01:42:07.082Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#365)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "028a4be2a549b0671d12e63b55cc1f22af974ffa",
+      "author": "Anthony Fu",
+      "date": "2023-01-21T06:27:54.439Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#366)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7a959db028c4c9939c1cc49bb49dd6df01815fc8",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-21T07:15:30.920Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#367)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "22477f911a4d4a67dce506fad4d3c03467f33acf",
+      "author": "Kia King Ishii",
+      "date": "2023-01-21T11:41:33.296Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#368)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cfe46ac62d8d467e63b0df471b1d5c4c39a18ce1",
+      "author": "Linus Borg",
+      "date": "2023-01-21T14:45:04.949Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#369)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4b61113d4350b4214815a478af71eea4a5f0055e",
+      "author": "Evan You",
+      "date": "2023-01-21T16:11:35.681Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#370)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8c450d44b74822031fbeedec72e06089911dca6c",
+      "author": "Anthony Fu",
+      "date": "2023-01-21T19:08:50.279Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#371)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2722032e189b09825545d671ca09748bc5890753",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-21T19:48:21.505Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#372)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6b6309a9e03e584b7f73b269edc006c64fb3af4b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-21T23:42:31.564Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#373)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "92bb5dfb4d24f1546ca120276402243df3a96693",
+      "author": "Linus Borg",
+      "date": "2023-01-22T02:50:15.834Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#374)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b3246f5b66ebe39e7f267c70781813dd7a8b2b36",
+      "author": "Evan You",
+      "date": "2023-01-22T04:01:29.561Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#375)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "f69d9903d95bdd3f1f774c103e2a683c233bc4b3",
+      "author": "Anthony Fu",
+      "date": "2023-01-22T08:29:34.297Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#376)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "90e067751487e6030d85c95b637c57dc3a8125fa",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-22T12:19:43.429Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#377)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e58793f16bbe88542ef6f7c6ace392665fc5995f",
+      "author": "Kia King Ishii",
+      "date": "2023-01-22T16:19:24.242Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#378)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3e072a757e5c31971b543d282741e2ac70565702",
+      "author": "Linus Borg",
+      "date": "2023-01-22T18:21:16.504Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#379)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "1dba4275fff6ec81690226b72ffbeda9f0c427e5",
+      "author": "Evan You",
+      "date": "2023-01-22T22:05:01.922Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#380)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e36a1d9700594a2797e8058eed247f323ddbe5ae",
+      "author": "Anthony Fu",
+      "date": "2023-01-23T02:37:56.446Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#381)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "66587a868ffab6fb5686eceb8cbba2f9e05ddd08",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-23T03:51:14.966Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#382)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "466d9b5717399f92df583b0f55751f2d10b168ac",
+      "author": "Kia King Ishii",
+      "date": "2023-01-23T04:28:44.340Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#383)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3e63483b9b644cb0dfeff7503a6c3b605730f79a",
+      "author": "Linus Borg",
+      "date": "2023-01-23T09:45:30.618Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#384)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2b039613c74c8d78ce7027d178dc21bbba34c29a",
+      "author": "Evan You",
+      "date": "2023-01-23T11:38:10.676Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#385)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5f85b24e43a44614d8096def30d00ba3960dbcac",
+      "author": "Anthony Fu",
+      "date": "2023-01-23T12:22:50.256Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#386)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d20167a039fa9c09c53f964cf1fb49dc39560cc1",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-23T17:34:13.335Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#387)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "84bc2ced93fca2740e5e70eefce3082c6e22111e",
+      "author": "Kia King Ishii",
+      "date": "2023-01-23T18:41:52.751Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#388)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0df71c3b8c12c958f4e89fde06425215ad553642",
+      "author": "Linus Borg",
+      "date": "2023-01-23T20:12:07.354Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#389)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e68e7db559973c341743b5126e171e1d126226a6",
+      "author": "Evan You",
+      "date": "2023-01-23T21:46:57.543Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#390)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7f4a0c53c64a5bf21388773c29aa63e59fbe8f5f",
+      "author": "Anthony Fu",
+      "date": "2023-01-24T00:44:32.055Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#391)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08cdde65e62114e39447f1e73ee9779919424136",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-24T03:42:36.765Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#392)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "330a9fe4375ac544d7c660be0486d984ef842d8b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-24T04:19:44.287Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#393)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6a546cdd15a43e5e61dae78b43ba5ff1ab0b5734",
+      "author": "Linus Borg",
+      "date": "2023-01-24T09:18:14.818Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#394)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8a246d33f621c3b32872724d0f828e928689b8f6",
+      "author": "Evan You",
+      "date": "2023-01-24T11:46:57.435Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#395)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "378f1a01440f6b069d6cfe6dcdad71f1ff6408b9",
+      "author": "Anthony Fu",
+      "date": "2023-01-24T13:02:46.375Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#396)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4162a653531b25d50e1379ea34e579bb9dafab37",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-24T14:06:23.929Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#397)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9dbae4dd935e5fe288cb92983b3f8c9a0297df8a",
+      "author": "Kia King Ishii",
+      "date": "2023-01-24T17:18:08.999Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#398)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6eb6fba571f5132e281bacb3259238ef5f369eba",
+      "author": "Linus Borg",
+      "date": "2023-01-24T21:27:38.501Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#399)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "da6050968c0c7e6e0501c3781a1af51884b80567",
+      "author": "Evan You",
+      "date": "2023-01-24T23:14:54.416Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#400)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8c04a1201a614fd628e5473529a5054a112efd72",
+      "author": "Anthony Fu",
+      "date": "2023-01-25T01:56:47.839Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#401)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "446870b2c8df6cab809835b2c28b7bc7403a8e18",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-25T06:39:39.553Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#402)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "36afdb796cfc71cc1ef44ecdbc03b9b1550cf60c",
+      "author": "Kia King Ishii",
+      "date": "2023-01-25T11:35:28.114Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#403)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0cafade5b64dd6e63938535038ef551186124b6a",
+      "author": "Linus Borg",
+      "date": "2023-01-25T12:32:30.944Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#404)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b7c229c59049eccbf1d47ac0b2d17a7efec5b8c5",
+      "author": "Evan You",
+      "date": "2023-01-25T15:54:37.430Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#405)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "78ceb0c0aa76876b5b68e415b506a89150fd6cb1",
+      "author": "Anthony Fu",
+      "date": "2023-01-25T20:03:40.698Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#406)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "e01bd59512d1fd9c1c77708182f214fcd32c3d44",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-25T23:27:48.798Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#407)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "50759dd9099448aa028dddc5bc0ea3ff8b67b218",
+      "author": "Kia King Ishii",
+      "date": "2023-01-26T04:51:31.441Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#408)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "68454053b4a69d10d3ed500797c41e22c0bc3284",
+      "author": "Linus Borg",
+      "date": "2023-01-26T07:08:55.826Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#409)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "9d1057db55c7923ecd3afd7aa854fa01cb3bb3f8",
+      "author": "Evan You",
+      "date": "2023-01-26T11:45:03.557Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#410)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "781077db64a84c13b677cfdb74e1b81b468cf822",
+      "author": "Anthony Fu",
+      "date": "2023-01-26T16:23:29.037Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#411)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "841b6782bf990e632fe06202da33050661472731",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-26T20:49:38.103Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#412)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0c2bb24a07b3a478e626c0fd51df0c28f44918c5",
+      "author": "Kia King Ishii",
+      "date": "2023-01-26T21:33:29.463Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#413)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "afcdf9bd76f9892694dc9277b00f18bf38fd6fee",
+      "author": "Linus Borg",
+      "date": "2023-01-27T02:50:09.440Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#414)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "cd11f62aa2935e00010c306cf6dc94760fd7c45f",
+      "author": "Evan You",
+      "date": "2023-01-27T05:54:38.090Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#415)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "8d831d6a13d6c8f014b0d5d9a4c9fc2017f6c084",
+      "author": "Anthony Fu",
+      "date": "2023-01-27T07:02:23.521Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#416)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "d80470d613209377cc2077947715bb67d961580d",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-27T12:18:07.417Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#417)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "64962b66b0df2bddd109e80460485c5b399d418f",
+      "author": "Kia King Ishii",
+      "date": "2023-01-27T14:16:17.618Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#418)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "64bf9ee872379cb5bf21830ee1804286fc255aad",
+      "author": "Linus Borg",
+      "date": "2023-01-27T15:28:46.756Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#419)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "6e8545233d590d8ac8c5f73ec5da15395e482e9b",
+      "author": "Evan You",
+      "date": "2023-01-27T20:24:01.071Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#420)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a7f2a8276aa067a75ba7dbb99bfae63868284619",
+      "author": "Anthony Fu",
+      "date": "2023-01-27T21:54:00.612Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#421)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "257a50dc3a854da79b45b5b95282b53fbb8dfdc9",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-28T01:16:29.289Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#422)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "aec86a3d1892a3e1d22da0d787c7341da8f29b33",
+      "author": "Kia King Ishii",
+      "date": "2023-01-28T06:02:40.870Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#423)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "0bd1a501d6bc4bdb11999c00e1e14b6010973931",
+      "author": "Linus Borg",
+      "date": "2023-01-28T07:55:14.878Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#424)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "39351551d93d258efb7721e2c8f6864658dece68",
+      "author": "Evan You",
+      "date": "2023-01-28T11:04:24.174Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#425)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3d65009fa6c0f6ebdaf3ac0b4ec6caf15861f51d",
+      "author": "Anthony Fu",
+      "date": "2023-01-28T13:39:52.284Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#426)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "4e456578abf900c0b08d3ef96e0eb61d6e156a24",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-28T17:42:34.912Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#427)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "635e7f8e76ceeec0fe5f2d7ef9a91cc2cddf9c41",
+      "author": "Kia King Ishii",
+      "date": "2023-01-28T21:17:44.118Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#428)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "797ecfd14907ab13126dd3cd91b525a8935405ee",
+      "author": "Linus Borg",
+      "date": "2023-01-29T02:11:59.955Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#429)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "b354e0153c01894cbe580ee736d04d1627fe8205",
+      "author": "Evan You",
+      "date": "2023-01-29T04:00:25.255Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#430)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "33a0365385d056d7f6b9d9e617ae3cd776c3ccf5",
+      "author": "Anthony Fu",
+      "date": "2023-01-29T06:26:58.700Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#431)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "703c9d94ec5a17953be085231d19acfa6ebb2de2",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-29T11:12:14.307Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#432)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "553c6960c25bcad72b8737ff03c89711557be029",
+      "author": "Kia King Ishii",
+      "date": "2023-01-29T16:07:47.176Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#433)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3f8eb3ea7c7756de2c4e2e38eead5d8bed14f236",
+      "author": "Linus Borg",
+      "date": "2023-01-29T16:49:12.936Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#434)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "633fea9bc6a88b59d38d769ece2d29edb86ef0da",
+      "author": "Evan You",
+      "date": "2023-01-29T18:53:32.124Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#435)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "5cc5d1b72390c3f72bed3c45c80ec9ab8ef37c97",
+      "author": "Anthony Fu",
+      "date": "2023-01-29T22:58:18.252Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#436)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/compileTemplate.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "3d6e8ec4c8c3f27018ec6fa3252da78670fc762d",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-30T01:53:30.962Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#437)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/component.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "7ae6df35b9ed8407146ae89c006f76ef030500e9",
+      "author": "Kia King Ishii",
+      "date": "2023-01-30T06:06:18.486Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#438)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "34366463f6a033fd9d734ad5b44c7d11dd925a6a",
+      "author": "Linus Borg",
+      "date": "2023-01-30T09:55:47.576Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#439)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/runtime-dom/src/modules/class.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "783d3ef7d7a168b31ee67d9655e0c0af8247e8d1",
+      "author": "Evan You",
+      "date": "2023-01-30T14:24:45.188Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#440)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/ref.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "03e6885bac8cc0fc93bee4b906cfe4750aefa1a2",
+      "author": "Anthony Fu",
+      "date": "2023-01-30T19:42:07.866Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#441)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/index.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "379c789e301bf20f3c1f69874cc6840d7ab9514a",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-31T00:37:36.542Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#442)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/renderer.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2c1f5fcbe72af321ac4cdc85b76f3c70ad0150ab",
+      "author": "Kia King Ishii",
+      "date": "2023-01-31T04:27:47.391Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#443)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/vnode.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "377b62e5746b29afcfa6fd69d60a8d354149b7e6",
+      "author": "Linus Borg",
+      "date": "2023-01-31T08:48:14.368Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#444)",
+      "files": [
+        {
+          "path": "packages/compiler-sfc/src/parse.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/compiler-sfc/src/compileScript.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "08fbb8a3be37298ff398e0bd09b02efff4fc2f59",
+      "author": "Evan You",
+      "date": "2023-01-31T14:15:44.770Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#445)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "a092f5a7329c97c1365f7d3e58a715886ea7034f",
+      "author": "Anthony Fu",
+      "date": "2023-01-31T18:56:14.010Z",
+      "message": "perf(compiler): hoist static VNode subtrees directly into template (#446)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "bc2a5f2f387790f8a58ddfa47deea5f0b980be35",
+      "author": "Haoqun Jiang",
+      "date": "2023-01-31T20:23:00.755Z",
+      "message": "fix(sfc): handle generic typescript macros in defineProps (#447)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/reactive.ts",
+          "status": "M"
+        },
+        {
+          "path": "packages/reactivity/src/computed.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "2d32188494fe6614b44cca9b0b8d5e1503a2d80b",
+      "author": "Kia King Ishii",
+      "date": "2023-01-31T21:48:33.580Z",
+      "message": "feat(runtime): introduce async component hydration boundary (#448)",
+      "files": [
+        {
+          "path": "packages/reactivity/src/effect.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "54cb845265764a3d608ad46441a77ff85bfd7b2b",
+      "author": "Linus Borg",
+      "date": "2023-01-31T22:19:22.027Z",
+      "message": "perf(renderer): SIMD patch diff algorithm for keyless lists (#449)",
+      "files": [
+        {
+          "path": "packages/runtime-core/src/apiWatch.ts",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "sha": "14f813d8d2e43a81a87a951513cb5dab70c257e6",
+      "author": "Evan You",
+      "date": "2023-02-01T03:14:11.190Z",
+      "message": "feat(reactivity): zero-dependency signal reactivity engine (#450)",
+      "files": [
+        {
+          "path": "packages/runtime-dom/src/modules/style.ts",
+          "status": "M"
+        }
+      ]
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Evan You",
+      "commits": 50,
+      "color": "#00ff66"
+    },
+    {
+      "name": "Anthony Fu",
+      "commits": 50,
+      "color": "#00f0ff"
+    },
+    {
+      "name": "Haoqun Jiang",
+      "commits": 50,
+      "color": "#ff0055"
+    },
+    {
+      "name": "Kia King Ishii",
+      "commits": 50,
+      "color": "#ffe600"
+    },
+    {
+      "name": "Linus Borg",
+      "commits": 50,
+      "color": "#a855f7"
+    }
+  ]
+}

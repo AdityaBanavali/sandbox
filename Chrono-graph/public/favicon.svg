@@ -1,0 +1,36 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ChronoGraph Favicon: Readable voxel cube + clock face + 2 towers at 16x16 / 32x32 -->
+  <rect width="32" height="32" rx="6" fill="#0a0a1a"/>
+
+  <!-- Left Face -->
+  <polygon points="5,11 16,17 16,28 5,22" fill="#0c0e1f" stroke="#22d3ee" stroke-width="1.2"/>
+
+  <!-- Right Face -->
+  <polygon points="16,17 27,11 27,22 16,28" fill="#171a36" stroke="#e879f9" stroke-width="1.2"/>
+
+  <!-- Top Face (Clock Platform) -->
+  <polygon points="16,5 27,11 16,17 5,11" fill="#1a1e40" stroke="#22d3ee" stroke-width="1.2"/>
+
+  <!-- 4 Primary Clock Ticks (12, 3, 6, 9) -->
+  <line x1="16" y1="6.5" x2="16" y2="8" stroke="#e879f9" stroke-width="1.2"/>
+  <line x1="16" y1="14" x2="16" y2="15.5" stroke="#e879f9" stroke-width="1.2"/>
+  <line x1="24.5" y1="11" x2="23" y2="11" stroke="#e879f9" stroke-width="1.2"/>
+  <line x1="7.5" y1="11" x2="9" y2="11" stroke="#e879f9" stroke-width="1.2"/>
+
+  <!-- Clock Center & Hands -->
+  <rect x="15.5" y="10.5" width="1" height="1" fill="#ffffff"/>
+  <!-- Minute Hand pointing up -->
+  <line x1="16" y1="11" x2="16" y2="8" stroke="#22d3ee" stroke-width="1.2"/>
+  <!-- Hour Hand pointing right -->
+  <line x1="16" y1="11" x2="20" y2="11" stroke="#e879f9" stroke-width="1.2"/>
+
+  <!-- Tower 1 (Right voxel tower) -->
+  <polygon points="21,12 25,10 25,16 21,18" fill="#161b44" stroke="#22d3ee" stroke-width="0.8"/>
+  <polygon points="25,10 29,12 29,18 25,16" fill="#1f285c" stroke="#22d3ee" stroke-width="0.8"/>
+  <polygon points="25,8 29,10 25,12 21,10" fill="#22d3ee"/>
+
+  <!-- Tower 2 (Front-right voxel tower) -->
+  <polygon points="17,16 21,14 21,21 17,23" fill="#24143a" stroke="#e879f9" stroke-width="0.8"/>
+  <polygon points="21,14 25,16 25,23 21,21" fill="#381b5c" stroke="#e879f9" stroke-width="0.8"/>
+  <polygon points="21,12 25,14 21,16 17,14" fill="#e879f9"/>
+</svg>
