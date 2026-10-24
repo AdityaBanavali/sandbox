@@ -50,7 +50,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAlgD_Z8JUxbg4n9BlHZ372Z09q5ArLZgw',
+    apiKey: String.fromEnvironment('FIREBASE_WEB_API_KEY'),
     appId: '1:170637405271:web:2f68c70daefbfed970c712',
     messagingSenderId: '170637405271',
     projectId: 'safe-her-app-498605',
@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAhj1S39N5DufZXi-I_dPNKcgaz7QoFjpw',
+    apiKey: String.fromEnvironment('FIREBASE_ANDROID_API_KEY'),
     appId: '1:170637405271:android:e1594010a2bd877370c712',
     messagingSenderId: '170637405271',
     projectId: 'safe-her-app-498605',
