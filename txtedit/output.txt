@@ -1,0 +1,15 @@
+> > Hello World
+> > Hello Beautiful World
+> > Hello World
+> > Hello Beautiful World
+> > Hello Beautiful World!
+> === Piece Table Debug ===
+Total Length: 22 chars | Total Pieces: 4
+[Piece 0] SRC: ADD | Offset: 0 | Len: 5 | Text: "Hello" | Prev: NULL (Head) | Next: OK
+[Piece 1] SRC: ADD | Offset: 11 | Len: 10 | Text: " Beautiful" | Prev: OK | Next: OK
+[Piece 2] SRC: ADD | Offset: 5 | Len: 6 | Text: " World" | Prev: OK | Next: OK
+[Piece 3] SRC: ADD | Offset: 21 | Len: 1 | Text: "!" | Prev: OK | Next: NULL (Tail)
+=========================
+> > Hello Beautiful World
+> > Hello Beautiful World!
+> 

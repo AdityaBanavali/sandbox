@@ -1,0 +1,16 @@
+insert 0 Hello World
+print
+insert 5  Beautiful
+print
+delete 5 10
+print
+undo
+print
+insert 21 !
+print
+debug
+undo
+print
+redo
+print
+exit
