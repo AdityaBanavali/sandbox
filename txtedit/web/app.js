@@ -21,12 +21,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   const inspectorContainer = document.getElementById('inspector-container');
   const toast = document.getElementById('toast');
 
+  // Terminal (REPL) Elements
+  const terminalWindow = document.getElementById('terminal-window');
+  const terminalOutput = document.getElementById('terminal-output');
+  const replInput = document.getElementById('repl-input');
+  const btnReplDemo = document.getElementById('btn-repl-demo');
+  const btnReplClear = document.getElementById('btn-repl-clear');
+  const btnReplReset = document.getElementById('btn-repl-reset');
+
   // Application State
   let Module = null;
   let lastEngineText = '';
   let activeIndex = 0;
   let currentSuggestions = [];
   let loadedWordCount = 0;
+
+  // REPL State
+  const replHistory = [];
+  let replHistoryIndex = -1;
+  let replSessionActive = true;
+  let isDemoRunning = false;
 
   // Show Toast Helper
   function showToast(msg) {
@@ -41,7 +55,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     Module = await createEditor({
       locateFile: (path) => path
     });
-    Module.ccall('editor_init', null, ['string'], ['Welcome to txtedit!\nType code or text to test the Piece Table engine.\n']);
+    // Fresh engine state for REPL
+    Module.ccall('editor_init', null, ['string'], ['']);
   } catch (err) {
     console.error('Failed to load editor.wasm:', err);
     showToast('Failed to load WASM engine. Check console.');
@@ -118,7 +133,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const text = editor.value;
     const pos = editor.selectionStart;
 
-    // Line and Column
     const lines = text.substring(0, pos).split('\n');
     const line = lines.length;
     const col = lines[lines.length - 1].length + 1;
@@ -140,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     piecesCountBadge.textContent = `${pieces.length} Piece${pieces.length === 1 ? '' : 's'}`;
 
     if (pieces.length === 0) {
-      inspectorContainer.innerHTML = '<div class="empty-state">Piece table is empty. Type to create pieces!</div>';
+      inspectorContainer.innerHTML = '<div class="empty-state">Piece table is empty. Type in the editor or REPL to create pieces!</div>';
       return;
     }
 
@@ -151,7 +165,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       const tagClass = isOrig ? 'tag-orig' : 'tag-add';
       const sourceName = isOrig ? 'ORIGINAL BUF' : 'ADD BUFFER';
 
-      // Escape HTML and visualize spaces and newlines
       const escaped = p.text
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -191,11 +204,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const spanOffsetLeft = span.offsetLeft;
     caretMirror.removeChild(span);
 
-    // Coordinate relative to textarea scroll
     const top = spanOffsetTop - textarea.scrollTop + 32;
     let left = spanOffsetLeft - textarea.scrollLeft + 16;
 
-    // Keep dropdown inside container bounds
     const maxLeft = textarea.clientWidth - 330;
     if (left > maxLeft) left = Math.max(16, maxLeft);
 
@@ -259,7 +270,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     suggestionList.innerHTML = html;
 
-    // Click handler for suggestion items
     suggestionList.querySelectorAll('.suggestion-item').forEach(el => {
       el.addEventListener('mousedown', (e) => {
         e.preventDefault();
@@ -282,9 +292,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     hideAutocomplete();
   }
 
-  // --- Keyboard Shortcuts & Input Interception ---
+  // --- Document Editor Keyboard Shortcuts & Input Interception ---
   editor.addEventListener('keydown', (e) => {
-    // 1. Undo / Redo Shortcuts
     const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     const isCmdOrCtrl = isMac ? e.metaKey : e.ctrlKey;
 
@@ -306,7 +315,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    // 2. Autocomplete Navigation
     if (!popup.hidden && currentSuggestions.length > 0) {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
@@ -333,7 +341,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // --- BeforeInput Event: Every typing keystroke routes to WASM ---
   editor.addEventListener('beforeinput', (e) => {
     const start = editor.selectionStart;
     const end = editor.selectionEnd;
@@ -376,7 +383,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Paste Event
   editor.addEventListener('paste', (e) => {
     e.preventDefault();
     const text = (e.clipboardData || window.clipboardData).getData('text/plain');
@@ -391,7 +397,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     syncFromEngine(start + text.length);
   });
 
-  // Caret / Selection Navigation
   editor.addEventListener('keyup', (e) => {
     if (['ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown'].includes(e.key)) {
       updateStatusBar();
@@ -404,7 +409,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     checkAutocomplete();
   });
 
-  // --- Toolbar Button Actions ---
   btnUndo.addEventListener('click', () => {
     editorUndo();
     syncFromEngine(editor.selectionStart);
@@ -456,7 +460,268 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   });
 
+  // -------------------------------------------------------------
+  // --- Terminal (REPL) Controller (piece_table_repl CLI Mode) ---
+  // -------------------------------------------------------------
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function appendTerminalLine(text, className) {
+    const div = document.createElement('div');
+    div.className = `term-line ${className || ''}`;
+    div.textContent = text;
+    terminalOutput.appendChild(div);
+    terminalWindow.scrollTop = terminalWindow.scrollHeight;
+  }
+
+  function appendCommandEcho(cmd) {
+    const div = document.createElement('div');
+    div.className = 'term-line';
+    div.innerHTML = `<span class="term-prompt">&gt; </span><span class="term-cmd">${escapeHtml(cmd)}</span>`;
+    terminalOutput.appendChild(div);
+    terminalWindow.scrollTop = terminalWindow.scrollHeight;
+  }
+
+  function executeReplCommand(rawLine) {
+    if (!replSessionActive) {
+      appendTerminalLine("Session ended. Click 'Reset' to start a new session.", "term-err");
+      return;
+    }
+
+    const line = rawLine.trimEnd();
+    appendCommandEcho(line);
+
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('./') || trimmed.startsWith('#')) {
+      return;
+    }
+
+    const parts = trimmed.split(/\s+/);
+    const cmd = parts[0].toLowerCase();
+
+    if (cmd === 'exit') {
+      replSessionActive = false;
+      replInput.disabled = true;
+      appendTerminalLine("Session ended.", "term-out");
+      return;
+    }
+
+    if (cmd === 'help') {
+      appendTerminalLine("Available commands:", "term-out");
+      appendTerminalLine("  insert <idx> <text>  Insert text at character index", "term-out");
+      appendTerminalLine("  delete <idx> <len>   Delete <len> characters at index", "term-out");
+      appendTerminalLine("  print                Display current document text", "term-out");
+      appendTerminalLine("  undo                 Revert last edit", "term-out");
+      appendTerminalLine("  redo                 Re-apply reverted edit", "term-out");
+      appendTerminalLine("  debug                Inspect piece table chain", "term-out");
+      appendTerminalLine("  clear                Clear terminal screen", "term-out");
+      appendTerminalLine("  reset                Reset piece table state", "term-out");
+      appendTerminalLine("  help                 Show this help message", "term-out");
+      appendTerminalLine("  exit                 End session", "term-out");
+      return;
+    }
+
+    if (cmd === 'clear') {
+      terminalOutput.innerHTML = '';
+      return;
+    }
+
+    if (cmd === 'reset') {
+      resetRepl();
+      appendTerminalLine("Piece table reset.", "term-welcome");
+      return;
+    }
+
+    if (cmd === 'print') {
+      const text = callGetText();
+      appendTerminalLine(text, "term-out");
+      return;
+    }
+
+    if (cmd === 'undo') {
+      editorUndo();
+      syncFromEngine();
+      return;
+    }
+
+    if (cmd === 'redo') {
+      editorRedo();
+      syncFromEngine();
+      return;
+    }
+
+    if (cmd === 'debug') {
+      const jsonStr = callGetPiecesJson();
+      let pieces = [];
+      try {
+        pieces = JSON.parse(jsonStr);
+      } catch (e) {
+        pieces = [];
+      }
+
+      let totalLen = 0;
+      pieces.forEach(p => { totalLen += p.length; });
+
+      appendTerminalLine("=== Piece Table Debug ===", "term-out");
+      appendTerminalLine(`Total Length: ${totalLen} chars | Total Pieces: ${pieces.length}`, "term-out");
+
+      const n = pieces.length;
+      pieces.forEach((p, idx) => {
+        const prevStatus = (idx === 0) ? "NULL (Head)" : "OK";
+        const nextStatus = (idx === n - 1) ? "NULL (Tail)" : "OK";
+        appendTerminalLine(`[Piece ${idx}] SRC: ${p.source} | Offset: ${p.offset} | Len: ${p.length} | Text: "${p.text}" | Prev: ${prevStatus} | Next: ${nextStatus}`, "term-out");
+      });
+      appendTerminalLine("=========================", "term-out");
+      return;
+    }
+
+    if (cmd === 'delete') {
+      if (parts.length < 3) {
+        appendTerminalLine("Usage: delete <idx> <len>", "term-err");
+        return;
+      }
+      const idx = parseInt(parts[1], 10);
+      const len = parseInt(parts[2], 10);
+      if (isNaN(idx) || isNaN(len) || idx < 0 || len < 0) {
+        appendTerminalLine("Usage: delete <idx> <len>", "term-err");
+        return;
+      }
+      editorDelete(idx, len);
+      syncFromEngine();
+      return;
+    }
+
+    if (cmd === 'insert') {
+      const insertIdx = line.indexOf('insert');
+      const afterInsert = line.slice(insertIdx + 6).trimStart();
+      const firstSpace = afterInsert.search(/\s/);
+      if (firstSpace === -1) {
+        appendTerminalLine("Usage: insert <idx> <text>", "term-err");
+        return;
+      }
+      const idxStr = afterInsert.slice(0, firstSpace);
+      const idx = parseInt(idxStr, 10);
+      if (isNaN(idx) || idx < 0) {
+        appendTerminalLine("Usage: insert <idx> <text>", "term-err");
+        return;
+      }
+      // Everything after <pos> plus one space; preserves extra spaces
+      const textToInsert = afterInsert.slice(firstSpace + 1);
+      editorInsert(idx, textToInsert);
+      syncFromEngine();
+      return;
+    }
+
+    appendTerminalLine(`Unknown command: '${cmd}'. Type 'help' for available commands.`, "term-err");
+  }
+
+  function resetRepl() {
+    Module.ccall('editor_init', null, ['string'], ['']);
+    replSessionActive = true;
+    replInput.disabled = false;
+    syncFromEngine(0);
+    terminalOutput.innerHTML = '';
+  }
+
+  // Click anywhere inside terminal box focuses input
+  terminalWindow.addEventListener('click', () => {
+    if (replSessionActive && !isDemoRunning) {
+      replInput.focus();
+    }
+  });
+
+  // Enter runs command, Up/Down cycles history
+  replInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const val = replInput.value;
+      if (!val.trim()) return;
+
+      replHistory.push(val);
+      replHistoryIndex = replHistory.length;
+      replInput.value = '';
+
+      executeReplCommand(val);
+      return;
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (replHistory.length === 0) return;
+      if (replHistoryIndex > 0) {
+        replHistoryIndex--;
+      } else if (replHistoryIndex === -1) {
+        replHistoryIndex = replHistory.length - 1;
+      }
+      replInput.value = replHistory[replHistoryIndex] || '';
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (replHistory.length === 0) return;
+      if (replHistoryIndex < replHistory.length - 1) {
+        replHistoryIndex++;
+        replInput.value = replHistory[replHistoryIndex] || '';
+      } else {
+        replHistoryIndex = replHistory.length;
+        replInput.value = '';
+      }
+      return;
+    }
+  });
+
+  // Button: Run Demo (replays web/commands.txt with ~400ms delay)
+  btnReplDemo.addEventListener('click', async () => {
+    if (isDemoRunning) return;
+    isDemoRunning = true;
+    btnReplDemo.disabled = true;
+    replInput.disabled = true;
+
+    resetRepl();
+    appendTerminalLine("Replaying web/commands.txt demo...", "term-welcome");
+
+    try {
+      const resp = await fetch('commands.txt');
+      if (!resp.ok) throw new Error('commands.txt not found');
+      const fileText = await resp.text();
+      const lines = fileText.split('\n');
+
+      for (let i = 0; i < lines.length; i++) {
+        const rawLine = lines[i].trim();
+        if (!rawLine || rawLine.startsWith('#') || rawLine.startsWith('./')) {
+          continue;
+        }
+
+        await new Promise(r => setTimeout(r, 400));
+        executeReplCommand(rawLine);
+      }
+      showToast("Demo playback completed!");
+    } catch (err) {
+      appendTerminalLine(`Demo error: ${err.message}`, "term-err");
+    } finally {
+      isDemoRunning = false;
+      btnReplDemo.disabled = false;
+      if (replSessionActive) {
+        replInput.disabled = false;
+        replInput.focus();
+      }
+    }
+  });
+
+  btnReplClear.addEventListener('click', () => {
+    terminalOutput.innerHTML = '';
+  });
+
+  btnReplReset.addEventListener('click', () => {
+    resetRepl();
+    appendTerminalLine("Piece table reset.", "term-welcome");
+    showToast("Terminal & Piece Table reset.");
+  });
+
   // Initialize
   await loadDefaultVocabulary();
-  syncFromEngine(editor.value.length);
+  syncFromEngine(0);
 });

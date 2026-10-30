@@ -147,6 +147,35 @@
           <div class="empty-state">No pieces loaded yet. Type in the editor above to observe piece splitting in real time!</div>
         </div>
       </section>
+
+      <!-- Terminal (REPL) Section -->
+      <section class="sidebar-section terminal-section">
+        <div class="section-header">
+          <div class="terminal-header-title">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+            <h3>Terminal (REPL)</h3>
+          </div>
+          <div class="terminal-controls">
+            <button type="button" class="btn btn-tool btn-demo" id="btn-repl-demo" title="Replay web/commands.txt">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Run Demo
+            </button>
+            <button type="button" class="btn btn-tool" id="btn-repl-clear" title="Clear terminal screen">Clear</button>
+            <button type="button" class="btn btn-tool" id="btn-repl-reset" title="Reset piece table state">Reset</button>
+          </div>
+        </div>
+        <div class="terminal-window" id="terminal-window">
+          <div class="terminal-output" id="terminal-output">
+            <div class="term-line term-welcome">Piece Table Interactive REPL. Type 'help' for available commands.</div>
+          </div>
+          <div class="terminal-prompt-line" id="terminal-prompt-line">
+            <span class="term-prompt">&gt;&nbsp;</span>
+            <input type="text" id="repl-input" class="repl-input" spellcheck="false" autocomplete="off" placeholder="insert 0 Hello | print | debug | undo...">
+          </div>
+        </div>
+      </section>
     </aside>
   </main>
 
