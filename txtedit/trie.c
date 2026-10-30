@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_WORD_LEN 256
 
@@ -17,7 +18,7 @@ bool trie_insert(TrieNode *root, const char *word) {
 
     TrieNode *curr = root;
     for (size_t i = 0; word[i] != '\0'; i++) {
-        unsigned char c = (unsigned char)word[i];
+        unsigned char c = (unsigned char)tolower((unsigned char)word[i]);
         if (c >= TRIE_ALPHABET_SIZE) {
             continue;
         }
@@ -86,7 +87,7 @@ TrieSearchResults *trie_search_prefix(TrieNode *root, const char *prefix, size_t
     size_t prefix_len = strlen(prefix);
 
     for (size_t i = 0; i < prefix_len; i++) {
-        unsigned char c = (unsigned char)prefix[i];
+        unsigned char c = (unsigned char)tolower((unsigned char)prefix[i]);
         if (c >= TRIE_ALPHABET_SIZE || !curr->children[c]) {
             return res;
         }
@@ -95,7 +96,9 @@ TrieSearchResults *trie_search_prefix(TrieNode *root, const char *prefix, size_t
 
     char buffer[MAX_WORD_LEN];
     if (prefix_len < MAX_WORD_LEN) {
-        memcpy(buffer, prefix, prefix_len);
+        for (size_t i = 0; i < prefix_len; i++) {
+            buffer[i] = (char)tolower((unsigned char)prefix[i]);
+        }
         collect_suggestions(curr, buffer, prefix_len, res, max_results);
     }
 

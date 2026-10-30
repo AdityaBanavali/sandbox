@@ -1,5 +1,3 @@
-./piece_table_repl
-
 insert 0 Hello World
 print
 insert 5  Beautiful

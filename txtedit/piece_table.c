@@ -229,6 +229,24 @@ bool insert_text(PieceTable *pt, size_t index, const char *str) {
         return false;
     }
 
+    /* Check if this insertion is contiguous to an existing ADD piece */
+    Piece *prev_piece = NULL;
+    if (offset_in_piece == target->length) {
+        prev_piece = target;
+    } else if (offset_in_piece == 0) {
+        prev_piece = target->prev;
+    }
+
+    if (prev_piece && prev_piece->buffer == BUFFER_ADD &&
+        (prev_piece->offset + prev_piece->length == add_offset)) {
+        /* Merge into existing ADD piece */
+        free(new_piece);
+        prev_piece->length += str_len;
+        Piece *after_head = clone_piece_list(pt->head, NULL);
+        record_action(pt, ACTION_INSERT, index, str_len, before_head, after_head);
+        return true;
+    }
+
     /* Case 1: Inserting at head */
     if (target == pt->head && offset_in_piece == 0) {
         new_piece->next = pt->head;
@@ -556,6 +574,9 @@ size_t piece_table_extract_active_prefix(const PieceTable *pt, size_t cursor,
     size_t count = 0;
     Piece *curr = piece;
     long pos = (long)offset_in_piece;
+    if (pos >= (long)curr->length) {
+        pos = (long)curr->length - 1;
+    }
 
     while (curr && count < sizeof(temp) - 1 && count < max_buf_size - 1) {
         const char *base = (curr->buffer == BUFFER_ORIGINAL)
@@ -563,7 +584,7 @@ size_t piece_table_extract_active_prefix(const PieceTable *pt, size_t cursor,
                            : pt->add_buf.data;
         while (pos >= 0 && count < sizeof(temp) - 1 && count < max_buf_size - 1) {
             char c = base[curr->offset + (size_t)pos];
-            if (isspace((unsigned char)c) || ispunct((unsigned char)c)) {
+            if (!isalnum((unsigned char)c)) {
                 goto scan_done;
             }
             temp[count++] = c;

@@ -2198,3 +2198,16 @@ utf8
 vector
 virtual
 workspace
+type
+typed
+types
+typeset
+typesetting
+typewriter
+typewriting
+typical
+typically
+typing
+typist
+typography
+typographic

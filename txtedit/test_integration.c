@@ -103,14 +103,40 @@ int main(void) {
     assert(strcmp(txt, "Hello World") == 0);
     editor_free_string(txt);
 
-    /* Trie load words & suggestions JSON */
-    trie_load_words("binary\nbitmap\nbitset\nbyte\nblock\n");
-    char *sugg_json = trie_suggest_json("bi", 5);
-    assert(sugg_json != NULL);
-    assert(strstr(sugg_json, "binary") != NULL);
-    assert(strstr(sugg_json, "bitmap") != NULL);
-    assert(strstr(sugg_json, "bitset") != NULL);
-    editor_free_string(sugg_json);
+    /* Test consecutive append piece merging: typing "appl" creates 1 ADD piece */
+    editor_init("");
+    editor_insert(0, "a");
+    editor_insert(1, "p");
+    editor_insert(2, "p");
+    editor_insert(3, "l");
+    char *appl_txt = editor_get_text();
+    assert(strcmp(appl_txt, "appl") == 0);
+    editor_free_string(appl_txt);
+
+    char *appl_pieces = editor_get_pieces_json();
+    assert(strstr(appl_pieces, "\"length\":4") != NULL);
+    assert(strstr(appl_pieces, "\"index\":1") == NULL); /* Must be only 1 piece (index 0) */
+    editor_free_string(appl_pieces);
+
+    /* Undo removes only 'l' */
+    editor_undo();
+    char *app_txt = editor_get_text();
+    assert(strcmp(app_txt, "app") == 0);
+    editor_free_string(app_txt);
+
+    /* Test prefix extraction in middle of text across pieces */
+    editor_init("Hello World\n");
+    editor_insert(6, "appl"); /* "Hello applWorld\n" */
+    char *mid_pfx = editor_get_prefix(10); /* Right after "appl" */
+    assert(strcmp(mid_pfx, "appl") == 0);
+    editor_free_string(mid_pfx);
+
+    /* Case-insensitive suggestions */
+    trie_load_words("apple\napplication\napply\n");
+    char *case_sugg = trie_suggest_json("APPL", 5);
+    assert(case_sugg != NULL);
+    assert(strstr(case_sugg, "apple") != NULL);
+    editor_free_string(case_sugg);
 
     editor_cleanup();
 

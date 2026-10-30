@@ -102,7 +102,13 @@ void editor_cleanup(void) {
 
 EMSCRIPTEN_KEEPALIVE
 void editor_init(const char *initial_text) {
-    editor_cleanup();
+    if (g_initialized) {
+        piece_table_free(&g_pt);
+        if (g_orig_buf) {
+            free(g_orig_buf);
+            g_orig_buf = NULL;
+        }
+    }
 
     if (initial_text && initial_text[0] != '\0') {
         g_orig_buf = strdup(initial_text);
@@ -112,7 +118,9 @@ void editor_init(const char *initial_text) {
         piece_table_init(&g_pt, "", 0);
     }
 
-    g_trie = trie_create_node();
+    if (!g_trie) {
+        g_trie = trie_create_node();
+    }
     g_initialized = true;
 }
 
@@ -213,8 +221,11 @@ char *editor_get_prefix(int cursor_pos) {
 
 EMSCRIPTEN_KEEPALIVE
 void trie_load_words(const char *newline_separated_words) {
-    if (!g_initialized || !g_trie || !newline_separated_words) {
+    if (!newline_separated_words) {
         return;
+    }
+    if (!g_trie) {
+        g_trie = trie_create_node();
     }
 
     const char *p = newline_separated_words;
@@ -243,7 +254,7 @@ void trie_load_words(const char *newline_separated_words) {
 
 EMSCRIPTEN_KEEPALIVE
 char *trie_suggest_json(const char *prefix, int max) {
-    if (!g_initialized || !g_trie || !prefix || max <= 0) {
+    if (!g_trie || !prefix || max <= 0) {
         return strdup("[]");
     }
 

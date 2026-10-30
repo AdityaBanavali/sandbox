@@ -42,25 +42,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   let replSessionActive = true;
   let isDemoRunning = false;
 
-  // Show Toast Helper
   function showToast(msg) {
     toast.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2400);
-  }
-
-  // Initialize WASM Module
-  try {
-    vocabCountBadge.textContent = 'Loading Engine...';
-    Module = await createEditor({
-      locateFile: (path) => path
-    });
-    // Fresh engine state for REPL
-    Module.ccall('editor_init', null, ['string'], ['']);
-  } catch (err) {
-    console.error('Failed to load editor.wasm:', err);
-    showToast('Failed to load WASM engine. Check console.');
-    return;
   }
 
   // --- C Function Wrappers (Zero Leaks) ---
@@ -139,9 +124,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     cursorStatus.textContent = `Ln ${line}, Col ${col}`;
     lengthStatus.textContent = `${text.length} chars`;
+
+    const prefix = callGetPrefix(pos);
+    activePrefixLabel.textContent = prefix ? prefix : '-';
   }
 
   // --- Piece Table Inspector Visualizer ---
+  function formatPieceText(str) {
+    if (!str) return '<span class="empty-txt">&lt;empty&gt;</span>';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<span class="char-nl">&crarr;</span>\n')
+      .replace(/ /g, '<span class="char-space">&middot;</span>');
+  }
+
   function updatePieceTableInspector() {
     const jsonStr = callGetPiecesJson();
     let pieces = [];
@@ -164,13 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const sourceClass = isOrig ? 'piece-orig' : 'piece-add';
       const tagClass = isOrig ? 'tag-orig' : 'tag-add';
       const sourceName = isOrig ? 'ORIGINAL BUF' : 'ADD BUFFER';
-
-      const escaped = p.text
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/\n/g, '<span style="color:#ef4444">&crarr;</span>\n')
-        .replace(/ /g, '<span style="opacity:0.4">&middot;</span>');
+      const escaped = formatPieceText(p.text);
 
       html += `
         <div class="piece-card ${sourceClass}" data-index="${p.index}">
@@ -183,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               Offset: <strong>${p.offset}</strong> &bull; Len: <strong>${p.length}</strong>
             </div>
           </div>
-          <div class="piece-content">${escaped || '<em style="color:var(--text-subtle)">&lt;empty&gt;</em>'}</div>
+          <div class="piece-content">${escaped}</div>
         </div>
       `;
     });
@@ -193,22 +185,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // --- Caret Positioning for Popup Dropdown ---
   function getCaretCoordinates(textarea, position) {
-    const text = textarea.value.substring(0, position);
-    caretMirror.textContent = text;
+    const textBefore = textarea.value.substring(0, position);
+    caretMirror.textContent = textBefore;
 
     const span = document.createElement('span');
-    span.textContent = '|';
+    span.textContent = '\u200b';
     caretMirror.appendChild(span);
 
-    const spanOffsetTop = span.offsetTop;
-    const spanOffsetLeft = span.offsetLeft;
-    caretMirror.removeChild(span);
+    const spanTop = span.offsetTop;
+    const spanLeft = span.offsetLeft;
 
-    const top = spanOffsetTop - textarea.scrollTop + 32;
-    let left = spanOffsetLeft - textarea.scrollLeft + 16;
+    const top = spanTop - textarea.scrollTop + 30;
+    let left = spanLeft - textarea.scrollLeft;
 
-    const maxLeft = textarea.clientWidth - 330;
-    if (left > maxLeft) left = Math.max(16, maxLeft);
+    const maxLeft = Math.max(16, textarea.clientWidth - 330);
+    if (left > maxLeft) left = maxLeft;
+    if (left < 16) left = 16;
 
     return { top, left };
   }
@@ -217,7 +209,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function checkAutocomplete() {
     const pos = editor.selectionStart;
     const prefix = callGetPrefix(pos);
-    activePrefixLabel.textContent = prefix || '-';
+    activePrefixLabel.textContent = prefix ? prefix : '-';
 
     if (!prefix || prefix.length < 1) {
       hideAutocomplete();
@@ -255,10 +247,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function renderSuggestions(suggestions, prefix) {
     let html = '';
+    const lowerPrefix = prefix.toLowerCase();
     suggestions.forEach((word, idx) => {
       const isSelected = idx === activeIndex ? 'active' : '';
-      const matchPrefix = word.substring(0, prefix.length);
-      const matchSuffix = word.substring(prefix.length);
+      const matchPrefix = word.substring(0, lowerPrefix.length);
+      const matchSuffix = word.substring(lowerPrefix.length);
 
       html += `
         <li class="suggestion-item ${isSelected}" data-index="${idx}">
@@ -271,11 +264,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     suggestionList.innerHTML = html;
 
     suggestionList.querySelectorAll('.suggestion-item').forEach(el => {
-      el.addEventListener('mousedown', (e) => {
+      const handleSelect = (e) => {
         e.preventDefault();
         const idx = parseInt(el.getAttribute('data-index'), 10);
         acceptSuggestion(currentSuggestions[idx]);
-      });
+      };
+      el.addEventListener('mousedown', handleSelect);
+      el.addEventListener('click', handleSelect);
     });
   }
 
@@ -292,7 +287,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     hideAutocomplete();
   }
 
-  // --- Document Editor Keyboard Shortcuts & Input Interception ---
+  // --- Document Editor Event Listeners ---
   editor.addEventListener('keydown', (e) => {
     const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     const isCmdOrCtrl = isMac ? e.metaKey : e.ctrlKey;
@@ -341,67 +336,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  editor.addEventListener('beforeinput', (e) => {
-    const start = editor.selectionStart;
-    const end = editor.selectionEnd;
-    const hasSelection = end > start;
+  // Handle all text input via diffing against WASM engine
+  editor.addEventListener('input', () => {
+    const currentVal = editor.value;
+    if (currentVal !== lastEngineText) {
+      let start = 0;
+      while (start < lastEngineText.length && start < currentVal.length && lastEngineText[start] === currentVal[start]) {
+        start++;
+      }
+      let oldEnd = lastEngineText.length;
+      let newEnd = currentVal.length;
+      while (oldEnd > start && newEnd > start && lastEngineText[oldEnd - 1] === currentVal[newEnd - 1]) {
+        oldEnd--;
+        newEnd--;
+      }
+      const deleteCount = oldEnd - start;
+      if (deleteCount > 0) {
+        editorDelete(start, deleteCount);
+      }
+      const inserted = currentVal.substring(start, newEnd);
+      if (inserted.length > 0) {
+        editorInsert(start, inserted);
+      }
 
-    if (e.inputType === 'insertText' || e.inputType === 'insertReplacementText') {
-      e.preventDefault();
-      if (hasSelection) {
-        editorDelete(start, end - start);
-      }
-      if (e.data) {
-        editorInsert(start, e.data);
-        syncFromEngine(start + e.data.length);
-      }
-    } else if (e.inputType === 'insertLineBreak' || e.inputType === 'insertParagraph') {
-      e.preventDefault();
-      if (hasSelection) {
-        editorDelete(start, end - start);
-      }
-      editorInsert(start, '\n');
-      syncFromEngine(start + 1);
-    } else if (e.inputType === 'deleteContentBackward') {
-      e.preventDefault();
-      if (hasSelection) {
-        editorDelete(start, end - start);
-        syncFromEngine(start);
-      } else if (start > 0) {
-        editorDelete(start - 1, 1);
-        syncFromEngine(start - 1);
-      }
-    } else if (e.inputType === 'deleteContentForward') {
-      e.preventDefault();
-      if (hasSelection) {
-        editorDelete(start, end - start);
-        syncFromEngine(start);
-      } else {
-        editorDelete(start, 1);
-        syncFromEngine(start);
-      }
+      const curPos = editor.selectionStart;
+      const engineText = callGetText();
+      lastEngineText = engineText;
+      editor.value = engineText;
+      editor.selectionStart = editor.selectionEnd = curPos;
+
+      updatePieceTableInspector();
     }
+
+    updateStatusBar();
+    checkAutocomplete();
   });
 
-  editor.addEventListener('paste', (e) => {
-    e.preventDefault();
-    const text = (e.clipboardData || window.clipboardData).getData('text/plain');
-    if (!text) return;
-
-    const start = editor.selectionStart;
-    const end = editor.selectionEnd;
-    if (end > start) {
-      editorDelete(start, end - start);
-    }
-    editorInsert(start, text);
-    syncFromEngine(start + text.length);
-  });
-
-  editor.addEventListener('keyup', (e) => {
-    if (['ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown'].includes(e.key)) {
-      updateStatusBar();
-      checkAutocomplete();
-    }
+  editor.addEventListener('keyup', () => {
+    updateStatusBar();
+    checkAutocomplete();
   });
 
   editor.addEventListener('click', () => {
@@ -430,7 +403,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       vocabCountBadge.textContent = 'Loading Words...';
       const resp = await fetch('words.txt');
-      if (!resp.ok) throw new Error('words.txt not found');
+      if (!resp.ok) throw new Error('words.txt not found (HTTP ' + resp.status + ')');
       const text = await resp.text();
       callLoadWords(text);
       const lines = text.split('\n').filter(w => w.trim().length > 0);
@@ -607,7 +580,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         appendTerminalLine("Usage: insert <idx> <text>", "term-err");
         return;
       }
-      // Everything after <pos> plus one space; preserves extra spaces
       const textToInsert = afterInsert.slice(firstSpace + 1);
       editorInsert(idx, textToInsert);
       syncFromEngine();
@@ -625,14 +597,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     terminalOutput.innerHTML = '';
   }
 
-  // Click anywhere inside terminal box focuses input
   terminalWindow.addEventListener('click', () => {
     if (replSessionActive && !isDemoRunning) {
       replInput.focus();
     }
   });
 
-  // Enter runs command, Up/Down cycles history
   replInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -673,7 +643,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Button: Run Demo (replays web/commands.txt with ~400ms delay)
   btnReplDemo.addEventListener('click', async () => {
     if (isDemoRunning) return;
     isDemoRunning = true;
@@ -721,7 +690,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     showToast("Terminal & Piece Table reset.");
   });
 
-  // Initialize
-  await loadDefaultVocabulary();
-  syncFromEngine(0);
+  // --- Boot Sequence ---
+  try {
+    vocabCountBadge.textContent = 'Loading Engine...';
+    Module = await createEditor({
+      locateFile: (path) => path
+    });
+    // Clean starting text with no stray HTML
+    Module.ccall('editor_init', null, ['string'], ['Welcome to txtedit!\nType code or text to test the Piece Table engine.\n']);
+    
+    // Load words BEFORE accepting any input
+    await loadDefaultVocabulary();
+    
+    // Sync initial state
+    syncFromEngine(editor.value.length);
+  } catch (err) {
+    console.error('Failed to load editor.wasm:', err);
+    showToast('Failed to load WASM engine. Check console.');
+  }
 });
