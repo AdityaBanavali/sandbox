@@ -3,23 +3,47 @@
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // DOM Elements
+  // --- DOM Elements ---
   const editor = document.getElementById('editor');
+  const lineNumbers = document.getElementById('line-numbers');
   const caretMirror = document.getElementById('caret-mirror');
   const popup = document.getElementById('autocomplete-popup');
   const suggestionList = document.getElementById('suggestion-list');
   const btnUndo = document.getElementById('btn-undo');
   const btnRedo = document.getElementById('btn-redo');
   const btnClear = document.getElementById('btn-clear');
+  const btnSampleText = document.getElementById('btn-sample-text');
+  const btnEmptySample = document.getElementById('btn-empty-sample');
+
+  // Status Bar Elements
   const cursorStatus = document.getElementById('cursor-status');
   const activePrefixLabel = document.getElementById('active-prefix-label');
   const lengthStatus = document.getElementById('length-status');
+  const editorPiecesCount = document.getElementById('editor-pieces-count');
+
+  // Inspector Elements (Hero)
   const piecesCountBadge = document.getElementById('pieces-count-badge');
+  const pieceBarTrack = document.getElementById('piece-bar-track');
+  const pieceDetailCard = document.getElementById('piece-detail-card');
+  const detailTag = document.getElementById('detail-tag');
+  const detailSrc = document.getElementById('detail-src');
+  const detailOffset = document.getElementById('detail-offset');
+  const detailLen = document.getElementById('detail-len');
+  const detailPrev = document.getElementById('detail-prev');
+  const detailNext = document.getElementById('detail-next');
+  const detailText = document.getElementById('detail-text');
+  const pieceDataTableBody = document.getElementById('piece-data-table-body');
+  const inspectorEmptyState = document.getElementById('inspector-empty-state');
+  const statOrigLen = document.getElementById('stat-orig-len');
+  const statAddLen = document.getElementById('stat-add-len');
+  const inspectorContainer = document.getElementById('inspector-container');
+
+  // Vocabulary Elements
   const vocabCountBadge = document.getElementById('vocab-count-badge');
   const vocabFileName = document.getElementById('vocab-file-name');
   const dictUpload = document.getElementById('dict-upload');
-  const inspectorContainer = document.getElementById('inspector-container');
-  const toast = document.getElementById('toast');
+  const vocabPreviewChips = document.getElementById('vocab-preview-chips');
+  const vocabLoadedBadge = document.getElementById('vocab-loaded-badge');
 
   // Terminal (REPL) Elements
   const terminalWindow = document.getElementById('terminal-window');
@@ -29,12 +53,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   const btnReplClear = document.getElementById('btn-repl-clear');
   const btnReplReset = document.getElementById('btn-repl-reset');
 
+  // Layout & Global Controls
+  const themeToggle = document.getElementById('theme-toggle');
+  const btnHowItWorks = document.getElementById('btn-how-it-works');
+  const howItWorksPanel = document.getElementById('how-it-works-panel');
+  const toast = document.getElementById('toast');
+
   // Application State
   let Module = null;
   let lastEngineText = '';
   let activeIndex = 0;
   let currentSuggestions = [];
   let loadedWordCount = 0;
+  let prevPiecesSignature = '';
+  let selectedPieceIndex = null;
 
   // REPL State
   const replHistory = [];
@@ -42,7 +74,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   let replSessionActive = true;
   let isDemoRunning = false;
 
+  const SAMPLE_TEXT = 'Welcome to txtedit!\nType code or text to test the Piece Table engine.\n';
+
   function showToast(msg) {
+    if (!toast) return;
     toast.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2400);
@@ -97,6 +132,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     Module.ccall('trie_load_words', null, ['string'], [wordsText]);
   }
 
+  // --- Line Numbers Gutter Sync ---
+  function updateLineNumbers() {
+    if (!lineNumbers || !editor) return;
+    const lineCount = (editor.value.match(/\n/g) || []).length + 1;
+    let nums = '';
+    for (let i = 1; i <= lineCount; i++) {
+      nums += i + '\n';
+    }
+    lineNumbers.textContent = nums;
+    lineNumbers.scrollTop = editor.scrollTop;
+  }
+
+  editor.addEventListener('scroll', () => {
+    if (lineNumbers) {
+      lineNumbers.scrollTop = editor.scrollTop;
+    }
+  });
+
   // --- Synchronize Editor Display with WASM Engine ---
   function syncFromEngine(newCursorPos) {
     const text = callGetText();
@@ -108,6 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       editor.selectionEnd = Math.min(newCursorPos, text.length);
     }
 
+    updateLineNumbers();
     updateStatusBar();
     updatePieceTableInspector();
     checkAutocomplete();
@@ -129,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     activePrefixLabel.textContent = prefix ? prefix : '-';
   }
 
-  // --- Piece Table Inspector Visualizer ---
+  // --- Piece Table Inspector Visualizer (Hero Element) ---
   function formatPieceText(str) {
     if (!str) return '<span class="empty-txt">&lt;empty&gt;</span>';
     return str
@@ -149,38 +203,170 @@ document.addEventListener('DOMContentLoaded', async () => {
       pieces = [];
     }
 
-    piecesCountBadge.textContent = `${pieces.length} Piece${pieces.length === 1 ? '' : 's'}`;
+    const count = pieces.length;
+    piecesCountBadge.textContent = count;
+    if (editorPiecesCount) {
+      editorPiecesCount.textContent = `${count} piece${count === 1 ? '' : 's'}`;
+    }
 
-    if (pieces.length === 0) {
-      inspectorContainer.innerHTML = '<div class="empty-state">Piece table is empty. Type in the editor or REPL to create pieces!</div>';
+    // Buffer Stats
+    let origLen = 0;
+    let addLen = 0;
+    pieces.forEach(p => {
+      if (p.source === 'ORIG') origLen += p.length;
+      else addLen += p.length;
+    });
+    if (statOrigLen) statOrigLen.textContent = origLen;
+    if (statAddLen) statAddLen.textContent = addLen;
+
+    // Signature check to animate on changes
+    const currentSignature = pieces.map(p => `${p.index}-${p.source}-${p.offset}-${p.length}`).join('|');
+    const hasChanged = currentSignature !== prevPiecesSignature;
+    prevPiecesSignature = currentSignature;
+
+    if (count === 0) {
+      if (inspectorEmptyState) inspectorEmptyState.hidden = false;
+      if (pieceBarTrack) pieceBarTrack.innerHTML = '';
+      if (pieceDataTableBody) pieceDataTableBody.innerHTML = '';
+      if (pieceDetailCard) pieceDetailCard.hidden = true;
+      selectedPieceIndex = null;
       return;
     }
 
-    let html = '';
-    pieces.forEach(p => {
-      const isOrig = p.source === 'ORIG';
-      const sourceClass = isOrig ? 'piece-orig' : 'piece-add';
-      const tagClass = isOrig ? 'tag-orig' : 'tag-add';
-      const sourceName = isOrig ? 'ORIGINAL BUF' : 'ADD BUFFER';
-      const escaped = formatPieceText(p.text);
+    if (inspectorEmptyState) inspectorEmptyState.hidden = true;
 
-      html += `
-        <div class="piece-card ${sourceClass}" data-index="${p.index}">
-          <div class="piece-meta">
-            <div>
-              <span class="piece-tag ${tagClass}">Piece #${p.index}</span>
-              <span style="margin-left: 6px; font-weight: 600;">${sourceName}</span>
+    // Render Horizontal Piece Bar
+    if (pieceBarTrack) {
+      let barHtml = '';
+      const totalLen = Math.max(1, origLen + addLen);
+
+      pieces.forEach((p, idx) => {
+        const isOrig = p.source === 'ORIG';
+        const blockClass = isOrig ? 'piece-block-orig' : 'piece-block-add';
+        const flashClass = hasChanged ? 'piece-flash' : '';
+        const activeClass = selectedPieceIndex === idx ? 'active-block' : '';
+        const flexGrow = Math.max(1, p.length);
+        const escapedText = p.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '↵');
+
+        barHtml += `
+          <div class="piece-block ${blockClass} ${flashClass} ${activeClass}" 
+               data-index="${idx}" 
+               style="flex: ${flexGrow} 1 0%;" 
+               title="Piece #${idx} (${p.source}): ${p.length} chars">
+            <div class="piece-block-head">
+              <span>#${idx}</span>
+              <span>${p.source}</span>
             </div>
-            <div class="piece-indices">
-              Offset: <strong>${p.offset}</strong> &bull; Len: <strong>${p.length}</strong>
-            </div>
+            <div class="piece-block-text">${escapedText || '&nbsp;'}</div>
           </div>
-          <div class="piece-content">${escaped}</div>
-        </div>
-      `;
-    });
+        `;
+      });
+      pieceBarTrack.innerHTML = barHtml;
 
-    inspectorContainer.innerHTML = html;
+      // Click and hover handlers on piece blocks
+      pieceBarTrack.querySelectorAll('.piece-block').forEach(el => {
+        const idx = parseInt(el.getAttribute('data-index'), 10);
+        el.addEventListener('click', () => {
+          showPieceDetails(pieces[idx]);
+          highlightTableRow(idx);
+        });
+        el.addEventListener('mouseenter', () => {
+          highlightTableRow(idx);
+        });
+      });
+    }
+
+    // Render Exact Data Table
+    if (pieceDataTableBody) {
+      let tableHtml = '';
+      pieces.forEach((p, idx) => {
+        const isOrig = p.source === 'ORIG';
+        const tagClass = isOrig ? 'tag-orig' : 'tag-add';
+        const rowClass = selectedPieceIndex === idx ? 'highlighted' : '';
+        const escaped = formatPieceText(p.text);
+
+        tableHtml += `
+          <tr class="${rowClass}" data-index="${idx}">
+            <td><strong>#${idx}</strong></td>
+            <td><span class="${tagClass}">${p.source}</span></td>
+            <td>${p.offset}</td>
+            <td>${p.length}</td>
+            <td class="table-cell-text" title="${p.text.replace(/"/g, '&quot;')}">${escaped}</td>
+          </tr>
+        `;
+      });
+      pieceDataTableBody.innerHTML = tableHtml;
+
+      // Table row hover & click handlers
+      pieceDataTableBody.querySelectorAll('tr').forEach(row => {
+        const idx = parseInt(row.getAttribute('data-index'), 10);
+        row.addEventListener('click', () => {
+          showPieceDetails(pieces[idx]);
+          highlightTableRow(idx);
+        });
+        row.addEventListener('mouseenter', () => {
+          highlightPieceBlock(idx);
+        });
+        row.addEventListener('mouseleave', () => {
+          if (selectedPieceIndex !== idx) {
+            unhighlightPieceBlock(idx);
+          }
+        });
+      });
+    }
+
+    // If an item was selected, re-display its updated details
+    if (selectedPieceIndex !== null && pieces[selectedPieceIndex]) {
+      showPieceDetails(pieces[selectedPieceIndex]);
+    } else if (pieces.length > 0 && (!pieceDetailCard || pieceDetailCard.hidden)) {
+      showPieceDetails(pieces[0]);
+    }
+  }
+
+  function showPieceDetails(p) {
+    if (!pieceDetailCard || !p) return;
+    selectedPieceIndex = p.index;
+    detailTag.textContent = `Piece #${p.index}`;
+    detailSrc.textContent = p.source === 'ORIG' ? 'ORIGINAL BUFFER' : 'ADD BUFFER';
+    detailSrc.className = 'detail-src ' + (p.source === 'ORIG' ? 'tag-orig' : 'tag-add');
+    detailOffset.textContent = p.offset;
+    detailLen.textContent = p.length;
+    detailPrev.textContent = p.index === 0 ? 'NULL (Head)' : `#${p.index - 1}`;
+    detailNext.textContent = p.index === parseInt(piecesCountBadge.textContent, 10) - 1 ? 'NULL (Tail)' : `#${p.index + 1}`;
+    detailText.innerHTML = formatPieceText(p.text);
+    pieceDetailCard.hidden = false;
+
+    highlightPieceBlock(p.index);
+    highlightTableRow(p.index);
+  }
+
+  function highlightPieceBlock(idx) {
+    if (!pieceBarTrack) return;
+    pieceBarTrack.querySelectorAll('.piece-block').forEach(el => {
+      if (parseInt(el.getAttribute('data-index'), 10) === idx) {
+        el.classList.add('active-block');
+      } else {
+        el.classList.remove('active-block');
+      }
+    });
+  }
+
+  function unhighlightPieceBlock(idx) {
+    if (!pieceBarTrack) return;
+    const el = pieceBarTrack.querySelector(`.piece-block[data-index="${idx}"]`);
+    if (el) el.classList.remove('active-block');
+  }
+
+  function highlightTableRow(idx) {
+    if (!pieceDataTableBody) return;
+    pieceDataTableBody.querySelectorAll('tr').forEach(row => {
+      if (parseInt(row.getAttribute('data-index'), 10) === idx) {
+        row.classList.add('highlighted');
+        row.scrollIntoView({ block: 'nearest' });
+      } else {
+        row.classList.remove('highlighted');
+      }
+    });
   }
 
   // --- Caret Positioning for Popup Dropdown ---
@@ -195,10 +381,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const spanTop = span.offsetTop;
     const spanLeft = span.offsetLeft;
 
-    const top = spanTop - textarea.scrollTop + 30;
+    const top = spanTop - textarea.scrollTop + 28;
     let left = spanLeft - textarea.scrollLeft;
 
-    const maxLeft = Math.max(16, textarea.clientWidth - 330);
+    const maxLeft = Math.max(16, textarea.clientWidth - 310);
     if (left > maxLeft) left = maxLeft;
     if (left < 16) left = 16;
 
@@ -285,6 +471,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     editorInsert(prefixStart, word);
     syncFromEngine(prefixStart + word.length);
     hideAutocomplete();
+    editor.focus();
   }
 
   // --- Document Editor Event Listeners ---
@@ -368,11 +555,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       updatePieceTableInspector();
     }
 
+    updateLineNumbers();
     updateStatusBar();
     checkAutocomplete();
   });
 
   editor.addEventListener('keyup', () => {
+    updateLineNumbers();
     updateStatusBar();
     checkAutocomplete();
   });
@@ -395,23 +584,65 @@ document.addEventListener('DOMContentLoaded', async () => {
   btnClear.addEventListener('click', () => {
     Module.ccall('editor_init', null, ['string'], ['']);
     syncFromEngine(0);
-    showToast('Editor cleared.');
+    showToast('Editor cleared');
   });
 
-  // --- Vocabulary Loader (Default words.txt + Custom Upload) ---
+  // Sample Text Loaders
+  function loadSampleText() {
+    Module.ccall('editor_init', null, ['string'], [SAMPLE_TEXT]);
+    syncFromEngine(SAMPLE_TEXT.length);
+    editor.focus();
+    showToast('Sample text loaded');
+  }
+
+  if (btnSampleText) btnSampleText.addEventListener('click', loadSampleText);
+  if (btnEmptySample) btnEmptySample.addEventListener('click', loadSampleText);
+
+  // Try Autocomplete Chips
+  document.querySelectorAll('.try-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const prefix = chip.getAttribute('data-prefix');
+      if (!prefix) return;
+
+      const pos = editor.selectionStart;
+      const currentPrefix = callGetPrefix(pos);
+      if (currentPrefix) {
+        editorDelete(pos - currentPrefix.length, currentPrefix.length);
+      }
+      const insertPos = currentPrefix ? pos - currentPrefix.length : pos;
+      editorInsert(insertPos, prefix);
+      syncFromEngine(insertPos + prefix.length);
+      editor.focus();
+      checkAutocomplete();
+    });
+  });
+
+  // --- Vocabulary Trie Loader ---
   async function loadDefaultVocabulary() {
     try {
-      vocabCountBadge.textContent = 'Loading Words...';
+      vocabCountBadge.textContent = '...';
       const resp = await fetch('words.txt');
       if (!resp.ok) throw new Error('words.txt not found (HTTP ' + resp.status + ')');
       const text = await resp.text();
       callLoadWords(text);
       const lines = text.split('\n').filter(w => w.trim().length > 0);
       loadedWordCount = lines.length;
-      vocabCountBadge.textContent = `${loadedWordCount.toLocaleString()} Words`;
-    } catch (err) {
-      console.warn('Could not load default words.txt:', err);
-      vocabCountBadge.textContent = 'Trie Ready';
+      vocabCountBadge.textContent = loadedWordCount.toLocaleString();
+      if (vocabLoadedBadge) vocabLoadedBadge.textContent = `${loadedWordCount} words`;
+
+      // Render sample preview chips
+      if (vocabPreviewChips) {
+        const preview = lines.slice(0, 36);
+        let chipHtml = '';
+        preview.forEach(word => {
+          chipHtml += `<span class="preview-chip">${word}</span>`;
+        });
+        vocabPreviewChips.innerHTML = chipHtml;
+      }
+    } catch (e) {
+      console.warn('Default vocabulary fetch failed:', e);
+      vocabCountBadge.textContent = '0 words';
+      showToast('Notice: web/words.txt could not be preloaded.');
     }
   }
 
@@ -419,80 +650,103 @@ document.addEventListener('DOMContentLoaded', async () => {
     const file = e.target.files[0];
     if (!file) return;
 
+    vocabFileName.textContent = `Uploaded: ${file.name}`;
     const reader = new FileReader();
     reader.onload = (event) => {
       const content = event.target.result;
       callLoadWords(content);
-      const added = content.split('\n').filter(w => w.trim().length > 0).length;
-      loadedWordCount += added;
-      vocabCountBadge.textContent = `${loadedWordCount.toLocaleString()} Words`;
-      vocabFileName.textContent = `Custom: ${file.name} (+${added.toLocaleString()} words)`;
-      showToast(`Loaded ${added.toLocaleString()} words into Trie.`);
+      const count = content.split('\n').filter(w => w.trim().length > 0).length;
+      loadedWordCount += count;
+      vocabCountBadge.textContent = loadedWordCount.toLocaleString();
+      if (vocabLoadedBadge) vocabLoadedBadge.textContent = `${loadedWordCount} words`;
+      showToast(`Added ${count} words to Trie.`);
       checkAutocomplete();
     };
     reader.readAsText(file);
   });
 
-  // -------------------------------------------------------------
-  // --- Terminal (REPL) Controller (piece_table_repl CLI Mode) ---
-  // -------------------------------------------------------------
+  // --- Tabbed Navigation ---
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
 
-  function escapeHtml(str) {
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  function setActiveTab(tabId) {
+    tabButtons.forEach(btn => {
+      const isMatch = btn.getAttribute('data-tab') === tabId;
+      btn.classList.toggle('active', isMatch);
+      btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+
+    tabPanels.forEach(panel => {
+      const isMatch = panel.id === `panel-${tabId}`;
+      panel.classList.toggle('active', isMatch);
+    });
+
+    localStorage.setItem('txtedit_tab', tabId);
   }
 
-  function appendTerminalLine(text, className) {
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      setActiveTab(tabId);
+    });
+  });
+
+  const savedTab = localStorage.getItem('txtedit_tab');
+  if (savedTab && document.getElementById(`panel-${savedTab}`)) {
+    setActiveTab(savedTab);
+  }
+
+  // --- Dark/Light Theme Toggle ---
+  function initTheme() {
+    const savedTheme = localStorage.getItem('txtedit_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('txtedit_theme', next);
+    });
+  }
+  initTheme();
+
+  // --- Collapsible "How It Works" ---
+  if (btnHowItWorks && howItWorksPanel) {
+    btnHowItWorks.addEventListener('click', () => {
+      howItWorksPanel.hidden = !howItWorksPanel.hidden;
+    });
+  }
+
+  // --- Terminal (REPL) Command Interpreter ---
+  function appendTerminalLine(text, className = '') {
     const div = document.createElement('div');
-    div.className = `term-line ${className || ''}`;
+    div.className = `term-line ${className}`;
     div.textContent = text;
     terminalOutput.appendChild(div);
     terminalWindow.scrollTop = terminalWindow.scrollHeight;
   }
 
-  function appendCommandEcho(cmd) {
-    const div = document.createElement('div');
-    div.className = 'term-line';
-    div.innerHTML = `<span class="term-prompt">&gt; </span><span class="term-cmd">${escapeHtml(cmd)}</span>`;
-    terminalOutput.appendChild(div);
-    terminalWindow.scrollTop = terminalWindow.scrollHeight;
-  }
-
   function executeReplCommand(rawLine) {
-    if (!replSessionActive) {
-      appendTerminalLine("Session ended. Click 'Reset' to start a new session.", "term-err");
-      return;
-    }
+    const line = rawLine.trim();
+    if (!line) return;
 
-    const line = rawLine.trimEnd();
-    appendCommandEcho(line);
+    appendTerminalLine(`> ${line}`, "term-cmd");
 
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('./') || trimmed.startsWith('#')) {
-      return;
-    }
-
-    const parts = trimmed.split(/\s+/);
+    const parts = line.split(/\s+/);
     const cmd = parts[0].toLowerCase();
 
-    if (cmd === 'exit') {
-      replSessionActive = false;
-      replInput.disabled = true;
-      appendTerminalLine("Session ended.", "term-out");
-      return;
-    }
-
     if (cmd === 'help') {
-      appendTerminalLine("Available commands:", "term-out");
-      appendTerminalLine("  insert <idx> <text>  Insert text at character index", "term-out");
-      appendTerminalLine("  delete <idx> <len>   Delete <len> characters at index", "term-out");
-      appendTerminalLine("  print                Display current document text", "term-out");
-      appendTerminalLine("  undo                 Revert last edit", "term-out");
-      appendTerminalLine("  redo                 Re-apply reverted edit", "term-out");
-      appendTerminalLine("  debug                Inspect piece table chain", "term-out");
-      appendTerminalLine("  clear                Clear terminal screen", "term-out");
-      appendTerminalLine("  reset                Reset piece table state", "term-out");
-      appendTerminalLine("  help                 Show this help message", "term-out");
-      appendTerminalLine("  exit                 End session", "term-out");
+      appendTerminalLine("Available commands:", "term-welcome");
+      appendTerminalLine("  insert <pos> <text>  - Insert text at zero-indexed character position", "term-out");
+      appendTerminalLine("  delete <pos> <len>   - Delete len characters starting at pos", "term-out");
+      appendTerminalLine("  print                - Print the entire reconstructed document", "term-out");
+      appendTerminalLine("  debug                - Inspect all piece descriptors and chain pointers", "term-out");
+      appendTerminalLine("  undo                 - Revert the most recent text modification", "term-out");
+      appendTerminalLine("  redo                 - Reapply the last reverted edit", "term-out");
+      appendTerminalLine("  clear                - Clear the terminal screen buffer", "term-out");
+      appendTerminalLine("  reset                - Reset piece table to an empty initial state", "term-out");
       return;
     }
 
@@ -643,6 +897,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
+  // Clickable command chips under terminal
+  document.querySelectorAll('.term-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cmd = chip.getAttribute('data-cmd');
+      if (cmd) {
+        executeReplCommand(cmd);
+        replInput.focus();
+      }
+    });
+  });
+
   btnReplDemo.addEventListener('click', async () => {
     if (isDemoRunning) return;
     isDemoRunning = true;
@@ -686,24 +951,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   btnReplReset.addEventListener('click', () => {
     resetRepl();
-    appendTerminalLine("Piece table reset.", "term-welcome");
     showToast("Terminal & Piece Table reset.");
   });
 
   // --- Boot Sequence ---
   try {
-    vocabCountBadge.textContent = 'Loading Engine...';
+    vocabCountBadge.textContent = '...';
     Module = await createEditor({
       locateFile: (path) => path
     });
-    // Clean starting text with no stray HTML
-    Module.ccall('editor_init', null, ['string'], ['Welcome to txtedit!\nType code or text to test the Piece Table engine.\n']);
+    
+    // Clean starting text
+    Module.ccall('editor_init', null, ['string'], [SAMPLE_TEXT]);
     
     // Load words BEFORE accepting any input
     await loadDefaultVocabulary();
     
     // Sync initial state
-    syncFromEngine(editor.value.length);
+    syncFromEngine(SAMPLE_TEXT.length);
   } catch (err) {
     console.error('Failed to load editor.wasm:', err);
     showToast('Failed to load WASM engine. Check console.');

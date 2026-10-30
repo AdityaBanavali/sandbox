@@ -1,188 +1,359 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>txtedit // WASM Piece Table Text Engine & Prefix Trie</title>
+  <title>txtedit // C99 Piece Table Text Engine & Prefix Trie (WASM)</title>
   <meta name="description" content="High-performance text editing engine and real-time autocomplete search REPL implemented in pure C and compiled to WebAssembly.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><path d='M48 18L26 54h22l-6 28 32-40H52z' fill='%2306b6d4'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header & Project Info -->
-  <header class="app-header">
-    <div class="header-top">
-      <div class="brand">
-        <span class="brand-icon">⚡</span>
-        <div class="brand-text">
-          <h1>txtedit</h1>
-          <p class="brand-subtitle">Piece Table Text Engine & Real-Time Prefix Trie (C99 &rarr; WebAssembly)</p>
-        </div>
-      </div>
-      <div class="header-actions">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary github-link" id="github-link">
-          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-          </svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Complexity & Architecture Highlights -->
-    <div class="metrics-bar">
-      <div class="metric-card">
-        <span class="metric-label">Append Keystroke</span>
-        <span class="metric-value">O(1) Amortized</span>
-        <span class="metric-desc">Append-only Add buffer</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-label">In-Line Edit / Split</span>
-        <span class="metric-value">O(P) Piece Traversal</span>
-        <span class="metric-desc">No full document copies</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-label">Prefix Extraction</span>
-        <span class="metric-value">O(K) Stack Scan</span>
-        <span class="metric-desc">Zero heap reallocations</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-label">Trie Autocomplete</span>
-        <span class="metric-value">O(K + &Sigma;&middot;M)</span>
-        <span class="metric-desc">128-ary ASCII DFS lookup</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-label">Undo / Redo</span>
-        <span class="metric-value">O(1) Swap</span>
-        <span class="metric-desc">Piece chain state delta</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Workspace -->
-  <main class="main-layout">
-    <!-- Left Column: Editor & Autocomplete -->
-    <section class="editor-pane">
-      <div class="panel-header">
-        <div class="panel-title-group">
-          <h2>Document Editor</h2>
-          <span class="badge badge-wasm">WASM Engine Driven</span>
-        </div>
-        <div class="editor-controls">
-          <button type="button" class="btn btn-tool" id="btn-undo" title="Undo (Ctrl+Z / Cmd+Z)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"></path></svg>
-            Undo
-          </button>
-          <button type="button" class="btn btn-tool" id="btn-redo" title="Redo (Ctrl+Y / Cmd+Y / Cmd+Shift+Z)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"></path></svg>
-            Redo
-          </button>
-          <button type="button" class="btn btn-tool" id="btn-clear" title="Clear Editor">
-            Clear
-          </button>
-        </div>
-      </div>
-
-      <!-- Editor Container -->
-      <div class="editor-wrapper" id="editor-wrapper">
-        <textarea id="editor" spellcheck="false" autocomplete="off" placeholder="Start typing here... Try typing 'appl', 'algo', 'buff', 'mem' for real-time Trie suggestions!"></textarea>
-        <!-- Caret Mirror for precise dropdown positioning -->
-        <div id="caret-mirror" class="caret-mirror" aria-hidden="true"></div>
-
-        <!-- Live Cursor Autocomplete Dropdown -->
-        <div id="autocomplete-popup" class="autocomplete-popup" hidden>
-          <div class="autocomplete-header">
-            <span class="popup-title">Trie Suggestions</span>
-            <span class="popup-hint">[Tab] or [&crarr;] to complete &bull; [&uarr;&darr;] to navigate</span>
+  <div class="app-shell">
+    <!-- Compact Header -->
+    <header class="app-header">
+      <div class="header-main">
+        <div class="brand">
+          <div class="brand-logo" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
           </div>
-          <ul id="suggestion-list" class="suggestion-list"></ul>
-        </div>
-      </div>
-
-      <!-- Editor Status Footer -->
-      <div class="editor-footer">
-        <div class="status-left">
-          <span class="status-item" id="cursor-status">Ln 1, Col 1</span>
-          <span class="status-item" id="prefix-status">Prefix: <strong id="active-prefix-label">-</strong></span>
-        </div>
-        <div class="status-right">
-          <span class="status-item" id="length-status">0 chars</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Right Column: Piece Table Inspector & Trie Loader -->
-    <aside class="sidebar-pane">
-      <!-- Vocabulary Loader Section -->
-      <section class="sidebar-section">
-        <div class="section-header">
-          <h3>Vocabulary Trie</h3>
-          <span class="badge" id="vocab-count-badge">Loading...</span>
-        </div>
-        <p class="section-desc">Real-time Trie matches prefixes as you type. Custom word lists can be appended below.</p>
-        <div class="vocab-upload-box">
-          <label for="dict-upload" class="btn btn-secondary upload-label">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-            Upload Custom .txt Wordlist
-          </label>
-          <input type="file" id="dict-upload" accept=".txt,text/plain" class="visually-hidden">
-          <span class="vocab-info" id="vocab-file-name">Default: web/words.txt</span>
-        </div>
-      </section>
-
-      <!-- Piece Table Inspector Section -->
-      <section class="sidebar-section inspector-section">
-        <div class="section-header">
-          <h3>Piece Table Inspector</h3>
-          <span class="badge badge-info" id="pieces-count-badge">0 Pieces</span>
-        </div>
-        <div class="inspector-legend">
-          <span class="legend-item"><span class="legend-color legend-orig"></span> Original Buffer</span>
-          <span class="legend-item"><span class="legend-color legend-add"></span> Add Buffer (Append-Only)</span>
-        </div>
-        <div class="inspector-container" id="inspector-container">
-          <!-- Dynamic Piece Blocks rendered here -->
-          <div class="empty-state">No pieces loaded yet. Type in the editor above to observe piece splitting in real time!</div>
-        </div>
-      </section>
-
-      <!-- Terminal (REPL) Section -->
-      <section class="sidebar-section terminal-section">
-        <div class="section-header">
-          <div class="terminal-header-title">
-            <span class="terminal-dot dot-red"></span>
-            <span class="terminal-dot dot-yellow"></span>
-            <span class="terminal-dot dot-green"></span>
-            <h3>Terminal (REPL)</h3>
+          <div class="brand-info">
+            <div class="brand-title-row">
+              <h1 class="brand-title">txtedit</h1>
+              <span class="badge badge-wasm">C99 &rarr; WASM</span>
+            </div>
+            <p class="brand-subtitle">Piece Table Text Engine &amp; Real-Time Prefix Trie</p>
           </div>
-          <div class="terminal-controls">
-            <button type="button" class="btn btn-tool btn-demo" id="btn-repl-demo" title="Replay web/commands.txt">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              Run Demo
+        </div>
+
+        <!-- Complexity Chips Strip -->
+        <div class="complexity-strip" role="region" aria-label="Algorithmic Complexity">
+          <div class="complexity-chip" data-tooltip="Amortized O(1): Appends write directly to end of add buffer and extend piece">
+            <span class="chip-label">Append</span>
+            <span class="chip-val">O(1)</span>
+          </div>
+          <div class="complexity-chip" data-tooltip="O(P): Traverses piece chain; splits piece descriptors without copying buffer text">
+            <span class="chip-label">Split</span>
+            <span class="chip-val">O(P)</span>
+          </div>
+          <div class="complexity-chip" data-tooltip="O(K): Zero-malloc backward scan across piece boundaries on stack buffer">
+            <span class="chip-label">Prefix</span>
+            <span class="chip-val">O(K)</span>
+          </div>
+          <div class="complexity-chip" data-tooltip="O(K + &Sigma;&middot;M): 128-ary ASCII Trie DFS prefix query for suggestions">
+            <span class="chip-label">Trie</span>
+            <span class="chip-val">O(K+&Sigma;&middot;M)</span>
+          </div>
+          <div class="complexity-chip" data-tooltip="O(1): Restores previous piece snapshot via pointer swaps in constant time">
+            <span class="chip-label">Undo</span>
+            <span class="chip-val">O(1)</span>
+          </div>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button type="button" class="btn btn-secondary btn-icon-text" id="btn-how-it-works" title="How txtedit works">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <span>How it works</span>
+          </button>
+          <button type="button" class="btn btn-icon" id="theme-toggle" title="Toggle dark/light theme" aria-label="Toggle theme">
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+          <a href="https://github.com/AdityaBanavali/sandbox" target="_blank" rel="noopener noreferrer" class="btn btn-secondary github-link" id="github-link" title="View Source on GitHub">
+            <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+            <span class="github-text">GitHub</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Collapsible 'How It Works' Section -->
+      <div class="how-it-works-container" id="how-it-works-panel" hidden>
+        <div class="how-it-works-grid">
+          <div class="how-card">
+            <div class="how-step-num">1</div>
+            <h4>Append Buffer &bull; O(1)</h4>
+            <p>New keystrokes append to an immutable Add buffer. Consecutive typing merges into the active piece without allocating new nodes.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-step-num">2</div>
+            <h4>Zero-Copy Split &bull; O(P)</h4>
+            <p>Edits in existing text insert piece descriptors pointing to byte offsets. The underlying file buffers remain untouched.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-step-num">3</div>
+            <h4>Pointer Swap Undo &bull; O(1)</h4>
+            <p>Every keystroke or batch preserves a delta snapshot. Undo/Redo swaps pointer heads in constant time without text copies.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace (Two Columns, Viewport-Fitting) -->
+    <main class="main-layout">
+      <!-- Left Column: Document Editor -->
+      <section class="editor-pane">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2>Document Editor</h2>
+            <button type="button" class="btn btn-tool" id="btn-sample-text" title="Load sample tutorial text">
+              Load sample text
             </button>
-            <button type="button" class="btn btn-tool" id="btn-repl-clear" title="Clear terminal screen">Clear</button>
-            <button type="button" class="btn btn-tool" id="btn-repl-reset" title="Reset piece table state">Reset</button>
+          </div>
+          <div class="editor-controls">
+            <button type="button" class="btn btn-tool" id="btn-undo" title="Undo (Ctrl+Z / Cmd+Z)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"></path></svg>
+              Undo
+            </button>
+            <button type="button" class="btn btn-tool" id="btn-redo" title="Redo (Ctrl+Y / Cmd+Y / Cmd+Shift+Z)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"></path></svg>
+              Redo
+            </button>
+            <button type="button" class="btn btn-tool" id="btn-clear" title="Clear Editor">
+              Clear
+            </button>
           </div>
         </div>
-        <div class="terminal-window" id="terminal-window">
-          <div class="terminal-output" id="terminal-output">
-            <div class="term-line term-welcome">Piece Table Interactive REPL. Type 'help' for available commands.</div>
+
+        <!-- Try Prefix Chips Row -->
+        <div class="try-chips-row">
+          <span class="try-label">Try autocomplete:</span>
+          <div class="try-chips" id="try-chips">
+            <button type="button" class="try-chip" data-prefix="appl">appl</button>
+            <button type="button" class="try-chip" data-prefix="algo">algo</button>
+            <button type="button" class="try-chip" data-prefix="buff">buff</button>
+            <button type="button" class="try-chip" data-prefix="mem">mem</button>
+            <button type="button" class="try-chip" data-prefix="typ">typ</button>
           </div>
-          <div class="terminal-prompt-line" id="terminal-prompt-line">
-            <span class="term-prompt">&gt;&nbsp;</span>
-            <input type="text" id="repl-input" class="repl-input" spellcheck="false" autocomplete="off" placeholder="insert 0 Hello | print | debug | undo...">
+        </div>
+
+        <!-- Editor Container with Line Gutter -->
+        <div class="editor-wrapper" id="editor-wrapper">
+          <div class="editor-gutter" id="line-numbers" aria-hidden="true">1</div>
+          <div class="editor-textarea-container">
+            <textarea id="editor" spellcheck="false" autocomplete="off" placeholder="Start typing here... Try typing 'appl', 'algo', 'buff', 'mem' for real-time Trie suggestions!"></textarea>
+            <!-- Caret Mirror for precise dropdown positioning -->
+            <div id="caret-mirror" class="caret-mirror" aria-hidden="true"></div>
+
+            <!-- Live Cursor Autocomplete Dropdown -->
+            <div id="autocomplete-popup" class="autocomplete-popup" hidden>
+              <div class="autocomplete-header">
+                <span class="popup-title">Trie Suggestions</span>
+                <span class="popup-badge" id="popup-count-badge">Trie</span>
+              </div>
+              <ul id="suggestion-list" class="suggestion-list"></ul>
+              <div class="autocomplete-footer">
+                <span><kbd>Tab</kbd> or <kbd>&crarr;</kbd> to accept &bull; <kbd>&uarr;&darr;</kbd> navigate &bull; <kbd>Esc</kbd></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editor Status Footer -->
+        <div class="editor-footer">
+          <div class="status-left">
+            <span class="status-item" id="cursor-status">Ln 1, Col 1</span>
+            <span class="status-item" id="prefix-status">Prefix: <strong id="active-prefix-label">-</strong></span>
+          </div>
+          <div class="status-right">
+            <span class="status-item" id="length-status">0 chars</span>
+            <span class="status-item" id="editor-pieces-count">0 pieces</span>
           </div>
         </div>
       </section>
-    </aside>
-  </main>
+
+      <!-- Right Column: Tabbed Panel (Piece Table, Terminal, Vocabulary) -->
+      <aside class="sidebar-pane">
+        <!-- Tabs Navigation Bar -->
+        <nav class="tabs-nav" role="tablist">
+          <button type="button" class="tab-btn active" role="tab" id="tab-pieces" aria-selected="true" aria-controls="panel-pieces" data-tab="pieces">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Piece Table</span>
+            <span class="tab-badge" id="pieces-count-badge">0</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" id="tab-terminal" aria-selected="false" aria-controls="panel-terminal" data-tab="terminal">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            <span>Terminal</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" id="tab-vocab" aria-selected="false" aria-controls="panel-vocab" data-tab="vocab">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Vocabulary</span>
+            <span class="tab-badge" id="vocab-count-badge">0</span>
+          </button>
+        </nav>
+
+        <!-- Panel 1: Piece Table Inspector (Hero Element) -->
+        <div class="tab-panel active" id="panel-pieces" role="tabpanel" aria-labelledby="tab-pieces">
+          <div class="inspector-summary-bar">
+            <div class="summary-left">
+              <span class="legend-chip legend-orig"><span class="dot"></span> ORIGINAL</span>
+              <span class="legend-chip legend-add"><span class="dot"></span> ADD BUFFER</span>
+            </div>
+            <div class="summary-right" id="buffer-stats">
+              ORIG: <span id="stat-orig-len">0</span> chars &bull; ADD: <span id="stat-add-len">0</span> chars
+            </div>
+          </div>
+
+          <!-- Horizontal Piece Bar -->
+          <div class="piece-bar-section">
+            <div class="piece-bar-track" id="piece-bar-track">
+              <!-- Dynamically sized piece blocks render here -->
+            </div>
+          </div>
+
+          <!-- Selected Piece Details Card -->
+          <div class="piece-detail-card" id="piece-detail-card" hidden>
+            <div class="detail-header">
+              <span class="detail-tag" id="detail-tag">Piece #0</span>
+              <span class="detail-src" id="detail-src">ORIGINAL BUF</span>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-cell">Offset: <strong id="detail-offset">0</strong></div>
+              <div class="detail-cell">Length: <strong id="detail-len">0</strong></div>
+              <div class="detail-cell">Prev: <strong id="detail-prev">NULL</strong></div>
+              <div class="detail-cell">Next: <strong id="detail-next">NULL</strong></div>
+            </div>
+            <div class="detail-content" id="detail-text">""</div>
+          </div>
+
+          <!-- Compact Exact Values Table -->
+          <div class="piece-table-wrapper">
+            <table class="piece-data-table" id="piece-data-table">
+              <thead>
+                <tr>
+                  <th style="width: 44px;">#</th>
+                  <th style="width: 80px;">Source</th>
+                  <th style="width: 65px;">Offset</th>
+                  <th style="width: 55px;">Len</th>
+                  <th>Buffer Content</th>
+                </tr>
+              </thead>
+              <tbody id="piece-data-table-body">
+                <!-- Rows injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State (Shown when 0 pieces) -->
+          <div class="empty-state" id="inspector-empty-state" hidden>
+            <div class="empty-icon" aria-hidden="true">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <p class="empty-title">Type in the editor to see pieces appear</p>
+            <p class="empty-subtitle">The Piece Table chains descriptors to eliminate costly array shifts.</p>
+            <button type="button" class="btn btn-secondary" id="btn-empty-sample">Load sample text</button>
+          </div>
+
+          <!-- Hidden legacy container to guarantee backward compatibility with any queries -->
+          <div id="inspector-container" style="display: none;"></div>
+        </div>
+
+        <!-- Panel 2: Terminal (REPL) -->
+        <div class="tab-panel" id="panel-terminal" role="tabpanel" aria-labelledby="tab-terminal">
+          <div class="terminal-container">
+            <div class="terminal-mac-header">
+              <div class="mac-dots">
+                <span class="mac-dot dot-red"></span>
+                <span class="mac-dot dot-yellow"></span>
+                <span class="mac-dot dot-green"></span>
+              </div>
+              <span class="terminal-title">txtedit REPL &mdash; piece_table_repl (WASM)</span>
+              <div class="terminal-controls">
+                <button type="button" class="btn btn-tool btn-demo" id="btn-repl-demo" title="Replay web/commands.txt">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  Run Demo
+                </button>
+                <button type="button" class="btn btn-tool" id="btn-repl-clear" title="Clear terminal screen">Clear</button>
+                <button type="button" class="btn btn-tool" id="btn-repl-reset" title="Reset piece table state">Reset</button>
+              </div>
+            </div>
+
+            <div class="terminal-window" id="terminal-window">
+              <div class="terminal-output" id="terminal-output">
+                <div class="term-line term-welcome">Piece Table Interactive REPL (C99 &rarr; WASM). Type 'help' for commands.</div>
+              </div>
+              <div class="terminal-prompt-line" id="terminal-prompt-line">
+                <span class="term-prompt">&gt;&nbsp;</span>
+                <input type="text" id="repl-input" class="repl-input" spellcheck="false" autocomplete="off" placeholder="insert 0 Hello | print | debug | undo...">
+                <span class="term-cursor" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <!-- Clickable Command Chips -->
+            <div class="terminal-chips-bar">
+              <span class="term-chips-label">Quick commands:</span>
+              <div class="term-chips" id="term-chips">
+                <button type="button" class="term-chip" data-cmd="insert 0 Hello">insert 0 Hello</button>
+                <button type="button" class="term-chip" data-cmd="print">print</button>
+                <button type="button" class="term-chip" data-cmd="debug">debug</button>
+                <button type="button" class="term-chip" data-cmd="undo">undo</button>
+                <button type="button" class="term-chip" data-cmd="redo">redo</button>
+                <button type="button" class="term-chip" data-cmd="help">help</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Vocabulary Trie -->
+        <div class="tab-panel" id="panel-vocab" role="tabpanel" aria-labelledby="tab-vocab">
+          <div class="vocab-card">
+            <div class="vocab-header">
+              <div>
+                <h3>Prefix Trie Vocabulary</h3>
+                <p class="vocab-subtitle">Matches active prefix across piece boundaries in $O(K + \Sigma \cdot M)$.</p>
+              </div>
+              <span class="badge badge-wasm" id="vocab-loaded-badge">Ready</span>
+            </div>
+
+            <div class="vocab-upload-box">
+              <label for="dict-upload" class="btn btn-secondary upload-label">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                Upload Custom .txt Wordlist
+              </label>
+              <input type="file" id="dict-upload" accept=".txt,text/plain" class="visually-hidden">
+              <span class="vocab-info" id="vocab-file-name">Default: web/words.txt</span>
+            </div>
+
+            <div class="vocab-sample-section">
+              <span class="vocab-sample-title">Loaded Vocabulary Samples:</span>
+              <div class="vocab-preview-chips" id="vocab-preview-chips">
+                <!-- Preview words dynamically loaded -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Compact Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span><strong>txtedit</strong> &bull; Pure C99 Piece Table + Trie compiled with Emscripten</span>
+      </div>
+      <div class="footer-right">
+        <span>Zero Full-Document Reallocations</span>
+        &bull;
+        <a href="https://github.com/AdityaBanavali/sandbox" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
 
   <!-- Notification Toast -->
   <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-  <!-- Load WebAssembly Script -->
+  <!-- Load WebAssembly Script & Application -->
   <script src="editor.js"></script>
   <script src="app.js"></script>
 </body>
