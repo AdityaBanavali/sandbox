@@ -9,6 +9,21 @@ A high-performance text editing engine and real-time autocomplete search REPL im
 
 ---
 
+## 🌐 Live Demo
+
+- **Live Deployment URL**: `https://<your-vercel-deployment>.vercel.app` *(placeholder)*
+- **Rebuild WebAssembly**:
+  ```bash
+  make wasm
+  ```
+- **Redeploy to Vercel**:
+  ```bash
+  vercel --prod web
+  ```
+  *(or push the repository to deploy automatically with root directory set to `web`)*
+
+---
+
 ## 🏛️ Architecture
 
 ```
@@ -55,14 +70,19 @@ A high-performance text editing engine and real-time autocomplete search REPL im
 
 ```
 .
-├── piece_table.h       # Piece Table struct declarations and API
+├── piece_table.h       # Piece Table struct declarations and API (zero terminal dependencies)
 ├── piece_table.c       # Piece splitting, buffer append, rendering, undo/redo
 ├── trie.h              # 128-ary ASCII Trie interface and result definitions
 ├── trie.c              # Trie node allocation, insertion, prefix DFS search
-├── search_repl.c       # Raw terminal interactive search REPL loop
-├── test_integration.c  # Headless automated integration test suite
-├── main.c              # Command-line batch REPL
-└── Makefile            # Build targets with sanitizer support
+├── wasm_api.h          # Headless / WebAssembly C API declarations (EMSCRIPTEN_KEEPALIVE)
+├── wasm_api.c          # Global editor instance, JSON serialisation, Trie word loader
+├── search_repl.c       # Raw terminal interactive search REPL loop (CLI)
+├── test_integration.c  # Headless automated integration test suite (Core + WASM API)
+├── main.c              # Command-line batch REPL (CLI)
+├── commands.txt        # Scripted batch command input file
+├── output.txt          # Batch command output capture
+├── run_demo.sh         # Turnkey build, test, and execution script
+└── Makefile            # Multi-target build system (CLI, tests, WASM)
 ```
 
 ---

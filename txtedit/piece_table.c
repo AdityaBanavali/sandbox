@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 static Piece *clone_piece_list(const Piece *head, Piece **out_tail) {
     if (!head) {
@@ -531,4 +532,53 @@ void piece_table_free(PieceTable *pt) {
     pt->add_buf.data = NULL;
     pt->add_buf.length = 0;
     pt->add_buf.capacity = 0;
+}
+
+size_t piece_table_extract_active_prefix(const PieceTable *pt, size_t cursor,
+                                         char *out_buf, size_t max_buf_size) {
+    if (!pt || cursor == 0 || max_buf_size <= 1) {
+        if (out_buf && max_buf_size > 0) {
+            out_buf[0] = '\0';
+        }
+        return 0;
+    }
+
+    size_t offset_in_piece = 0;
+    Piece *piece = find_piece_at_index((PieceTable *)pt, cursor - 1, &offset_in_piece);
+    if (!piece) {
+        if (out_buf && max_buf_size > 0) {
+            out_buf[0] = '\0';
+        }
+        return 0;
+    }
+
+    char temp[256];
+    size_t count = 0;
+    Piece *curr = piece;
+    long pos = (long)offset_in_piece;
+
+    while (curr && count < sizeof(temp) - 1 && count < max_buf_size - 1) {
+        const char *base = (curr->buffer == BUFFER_ORIGINAL)
+                           ? pt->original_buf
+                           : pt->add_buf.data;
+        while (pos >= 0 && count < sizeof(temp) - 1 && count < max_buf_size - 1) {
+            char c = base[curr->offset + (size_t)pos];
+            if (isspace((unsigned char)c) || ispunct((unsigned char)c)) {
+                goto scan_done;
+            }
+            temp[count++] = c;
+            pos--;
+        }
+        curr = curr->prev;
+        if (curr) {
+            pos = (long)curr->length - 1;
+        }
+    }
+
+scan_done:
+    for (size_t i = 0; i < count; i++) {
+        out_buf[i] = temp[count - 1 - i];
+    }
+    out_buf[count] = '\0';
+    return count;
 }

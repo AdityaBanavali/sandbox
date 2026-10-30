@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>txtedit // WASM Piece Table Text Engine & Prefix Trie</title>
+  <meta name="description" content="High-performance text editing engine and real-time autocomplete search REPL implemented in pure C and compiled to WebAssembly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header & Project Info -->
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <div class="brand-text">
+          <h1>txtedit</h1>
+          <p class="brand-subtitle">Piece Table Text Engine & Real-Time Prefix Trie (C99 &rarr; WebAssembly)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary github-link" id="github-link">
+          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Complexity & Architecture Highlights -->
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <span class="metric-label">Append Keystroke</span>
+        <span class="metric-value">O(1) Amortized</span>
+        <span class="metric-desc">Append-only Add buffer</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">In-Line Edit / Split</span>
+        <span class="metric-value">O(P) Piece Traversal</span>
+        <span class="metric-desc">No full document copies</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Prefix Extraction</span>
+        <span class="metric-value">O(K) Stack Scan</span>
+        <span class="metric-desc">Zero heap reallocations</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Trie Autocomplete</span>
+        <span class="metric-value">O(K + &Sigma;&middot;M)</span>
+        <span class="metric-desc">128-ary ASCII DFS lookup</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Undo / Redo</span>
+        <span class="metric-value">O(1) Swap</span>
+        <span class="metric-desc">Piece chain state delta</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="main-layout">
+    <!-- Left Column: Editor & Autocomplete -->
+    <section class="editor-pane">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <h2>Document Editor</h2>
+          <span class="badge badge-wasm">WASM Engine Driven</span>
+        </div>
+        <div class="editor-controls">
+          <button type="button" class="btn btn-tool" id="btn-undo" title="Undo (Ctrl+Z / Cmd+Z)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"></path></svg>
+            Undo
+          </button>
+          <button type="button" class="btn btn-tool" id="btn-redo" title="Redo (Ctrl+Y / Cmd+Y / Cmd+Shift+Z)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"></path></svg>
+            Redo
+          </button>
+          <button type="button" class="btn btn-tool" id="btn-clear" title="Clear Editor">
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Editor Container -->
+      <div class="editor-wrapper" id="editor-wrapper">
+        <textarea id="editor" spellcheck="false" autocomplete="off" placeholder="Start typing here... Try typing 'appl', 'algo', 'buff', 'mem' for real-time Trie suggestions!"></textarea>
+        <!-- Caret Mirror for precise dropdown positioning -->
+        <div id="caret-mirror" class="caret-mirror" aria-hidden="true"></div>
+
+        <!-- Live Cursor Autocomplete Dropdown -->
+        <div id="autocomplete-popup" class="autocomplete-popup" hidden>
+          <div class="autocomplete-header">
+            <span class="popup-title">Trie Suggestions</span>
+            <span class="popup-hint">[Tab] or [&crarr;] to complete &bull; [&uarr;&darr;] to navigate</span>
+          </div>
+          <ul id="suggestion-list" class="suggestion-list"></ul>
+        </div>
+      </div>
+
+      <!-- Editor Status Footer -->
+      <div class="editor-footer">
+        <div class="status-left">
+          <span class="status-item" id="cursor-status">Ln 1, Col 1</span>
+          <span class="status-item" id="prefix-status">Prefix: <strong id="active-prefix-label">-</strong></span>
+        </div>
+        <div class="status-right">
+          <span class="status-item" id="length-status">0 chars</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Piece Table Inspector & Trie Loader -->
+    <aside class="sidebar-pane">
+      <!-- Vocabulary Loader Section -->
+      <section class="sidebar-section">
+        <div class="section-header">
+          <h3>Vocabulary Trie</h3>
+          <span class="badge" id="vocab-count-badge">Loading...</span>
+        </div>
+        <p class="section-desc">Real-time Trie matches prefixes as you type. Custom word lists can be appended below.</p>
+        <div class="vocab-upload-box">
+          <label for="dict-upload" class="btn btn-secondary upload-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Upload Custom .txt Wordlist
+          </label>
+          <input type="file" id="dict-upload" accept=".txt,text/plain" class="visually-hidden">
+          <span class="vocab-info" id="vocab-file-name">Default: web/words.txt</span>
+        </div>
+      </section>
+
+      <!-- Piece Table Inspector Section -->
+      <section class="sidebar-section inspector-section">
+        <div class="section-header">
+          <h3>Piece Table Inspector</h3>
+          <span class="badge badge-info" id="pieces-count-badge">0 Pieces</span>
+        </div>
+        <div class="inspector-legend">
+          <span class="legend-item"><span class="legend-color legend-orig"></span> Original Buffer</span>
+          <span class="legend-item"><span class="legend-color legend-add"></span> Add Buffer (Append-Only)</span>
+        </div>
+        <div class="inspector-container" id="inspector-container">
+          <!-- Dynamic Piece Blocks rendered here -->
+          <div class="empty-state">No pieces loaded yet. Type in the editor above to observe piece splitting in real time!</div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- Load WebAssembly Script -->
+  <script src="editor.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

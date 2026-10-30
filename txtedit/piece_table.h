@@ -57,6 +57,7 @@ void piece_table_undo(PieceTable *pt);
 void piece_table_redo(PieceTable *pt);
 void piece_table_debug(const PieceTable *pt);
 char *piece_table_render(const PieceTable *pt, size_t *out_len);
+size_t piece_table_extract_active_prefix(const PieceTable *pt, size_t cursor, char *out_buf, size_t max_buf_size);
 void piece_table_free(PieceTable *pt);
 
 #endif /* PIECE_TABLE_H */

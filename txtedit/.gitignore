@@ -1,0 +1,17 @@
+# Object files and debug symbols
+*.o
+*.dSYM/
+test_runner
+
+# Compiled CLI binaries
+piece_table_repl
+search_repl
+main_asan
+
+# OS and temporary files
+.DS_Store
+piece_table_submission.zip
+
+# Ensure web/ directory contents are tracked
+!web/
+!web/**
