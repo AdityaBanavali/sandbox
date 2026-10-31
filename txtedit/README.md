@@ -11,7 +11,7 @@ A high-performance text editing engine and real-time autocomplete search REPL im
 
 ## 🌐 Live Demo
 
-- **Live Deployment URL**: `https://<your-vercel-deployment>.vercel.app` *(placeholder)*
+- **Live Deployment URL**: `https://sandbox-web-three.vercel.app/` *(placeholder)*
 - **Rebuild WebAssembly**:
   ```bash
   make wasm
