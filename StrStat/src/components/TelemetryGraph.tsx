@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Activity, EyeOff, Radio, Layers, AlertTriangle } from 'lucide-react';
+import { Activity, EyeOff, Radio, Layers, SlidersHorizontal } from 'lucide-react';
 import { AccelSample } from '../types';
 import { calculatePGA, mapPgaToMmi } from '../utils/structuralMath';
 
@@ -19,6 +19,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
     y: true,
     z: true
   });
+  const [zMode, setZMode] = useState<'DYNAMIC' | 'RAW'>('DYNAMIC');
   const [scaleG, setScaleG] = useState<number>(2.0); // ±g scale
 
   // Instantaneous PGA & MMI Evaluation
@@ -32,7 +33,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
 
   // SVG dimensions for industrial SCADA oscilloscope
   const viewBoxWidth = 1000;
-  const viewBoxHeight = 260;
+  const viewBoxHeight = 240;
   const zeroY = viewBoxHeight / 2;
   const maxSamples = 60;
 
@@ -54,8 +55,12 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
       return history
         .map((sample, i) => {
           const x = (startX + i * stepX).toFixed(1);
-          // Zero-gravity offset removal: plot dynamic/AC Z (sample.z - 1.0)
-          const val = key === 'z' ? sample.z - 1.0 : sample[key];
+          // Toggle between dynamic vibration (z - 1.0) and raw acceleration (z)
+          const val = key === 'z'
+            ? zMode === 'DYNAMIC'
+              ? sample.z - 1.0
+              : sample.z
+            : sample[key];
           const y = (zeroY - (val / scaleG) * (viewBoxHeight / 2)).toFixed(1);
           return `${x},${y}`;
         })
@@ -67,7 +72,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
       pathY: buildPoints('y'),
       pathZ: buildPoints('z')
     };
-  }, [history, scaleG, zeroY]);
+  }, [history, scaleG, zeroY, zMode]);
 
   // Color mappings: X (Cyan), Y (Emerald), Z (Amber)
   const COLOR_X = '#06B6D4'; // Cyan
@@ -78,22 +83,22 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
   const dynZ = rawZ - 1.0;
 
   return (
-    <div className="bg-[#0B0D13] border border-[#1E2433] rounded p-4 flex flex-col justify-between relative shadow-2xl">
+    <div className="bg-[#0B0D13] border border-[#1E2433] rounded p-3 flex flex-col justify-between relative shadow-2xl">
       {/* Top Header Bar & Live SCADA Metrics */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-3 border-b border-[#1E2433] pb-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-2 border-b border-[#1E2433] pb-2">
         <div className="flex items-center gap-2">
           <Activity className="w-4 h-4 text-cyan-400" />
           <h2 className="text-xs font-mono font-semibold tracking-wider text-slate-200 uppercase">
             TRI-AXIAL SCADA OSCILLOSCOPE // MPU6050
           </h2>
           <span className="text-[10px] font-mono text-slate-500 bg-[#07090F] px-2 py-0.5 rounded border border-[#1E2433]">
-            60 SAMPLES ROLLING
+            60 SAMPLES
           </span>
         </div>
 
-        {/* Live Instantaneous PGA & Current MMI Intensity Badge Directly Above Chart */}
+        {/* Live Instantaneous PGA & Current MMI Intensity Badge */}
         <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-          <div className="flex items-center gap-2 bg-[#07090F] border border-[#1E2433] rounded px-3 py-1 text-[11px] tabular-nums">
+          <div className="flex items-center gap-2 bg-[#07090F] border border-[#1E2433] rounded px-2.5 py-0.5 text-[11px] tabular-nums">
             <span className="text-slate-500">PGA:</span>
             <span
               className={`font-semibold ${
@@ -112,9 +117,9 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
             <span className="text-[#1E2433] font-bold">|</span>
 
             {/* Current MMI Intensity Badge */}
-            <span className="text-slate-500">MMI SCALE:</span>
+            <span className="text-slate-500">MMI:</span>
             <span
-              className={`px-2 py-0.5 rounded border font-semibold text-[10px] tracking-wider uppercase transition-colors ${
+              className={`px-1.5 py-0.5 rounded border font-semibold text-[10px] tracking-wider uppercase transition-colors ${
                 !isConnected
                   ? 'bg-slate-900 border-slate-800 text-slate-600'
                   : curPga > 0.65
@@ -128,7 +133,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
             </span>
           </div>
 
-          {/* High-Contrast Channel Selection Buttons */}
+          {/* High-Contrast Channel Selection Buttons & Interactive Z Legend Toggle */}
           <div className="flex items-center gap-1 bg-[#07090F] border border-[#1E2433] rounded p-0.5">
             {/* X: Cyan */}
             <button
@@ -156,7 +161,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
               <span>Y: {isConnected && currentAccel ? `${currentAccel.y.toFixed(2)}g` : '--'}</span>
             </button>
 
-            {/* Z: Amber with Raw and Dynamic breakdown */}
+            {/* Z: Amber with Channel Toggle */}
             <button
               onClick={() => setChannels((p) => ({ ...p, z: !p.z }))}
               className={`px-2 py-0.5 rounded text-[11px] transition flex items-center gap-1.5 ${
@@ -167,15 +172,25 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
             >
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
               <span>
-                {isConnected
-                  ? `Z (Raw): ${rawZ.toFixed(2)}g • Z (Dyn): ${dynZ >= 0 ? '+' : ''}${dynZ.toFixed(2)}g`
-                  : 'Z: --'}
+                {zMode === 'DYNAMIC'
+                  ? `Z,dyn: ${isConnected ? (dynZ >= 0 ? `+${dynZ.toFixed(2)}` : dynZ.toFixed(2)) : '--'}g`
+                  : `Z,raw: ${isConnected ? rawZ.toFixed(2) : '--'}g`}
               </span>
+            </button>
+
+            {/* Interactive Toggle: Raw Z vs Dynamic Z (a_z,dyn) */}
+            <button
+              onClick={() => setZMode((m) => (m === 'DYNAMIC' ? 'RAW' : 'DYNAMIC'))}
+              title={`Switch Z-axis between Dynamic (a_z - 1.0g) and Raw (a_z)`}
+              className="px-1.5 py-0.5 rounded text-[10px] bg-[#161D2B] hover:bg-[#20293D] text-slate-300 border border-[#2D374D] flex items-center gap-1 transition font-mono"
+            >
+              <SlidersHorizontal className="w-3 h-3 text-cyan-400" />
+              <span>{zMode === 'DYNAMIC' ? 'DYN (Z-1g)' : 'RAW Z'}</span>
             </button>
           </div>
 
           {/* Scale Selector */}
-          <div className="flex items-center bg-[#07090F] border border-[#1E2433] rounded px-2.5 py-1 text-[11px]">
+          <div className="flex items-center bg-[#07090F] border border-[#1E2433] rounded px-2 py-0.5 text-[11px]">
             <span className="text-slate-500 mr-1.5">SCALE:</span>
             <select
               value={scaleG}
@@ -195,13 +210,13 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
       <div className="relative w-full rounded border border-[#1E2433] bg-[#0B0D13] overflow-hidden select-none">
         <svg
           viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-          className="w-full h-56 md:h-64 block"
+          className="w-full h-52 md:h-60 block"
           preserveAspectRatio="none"
         >
           {/* Background fill */}
           <rect width={viewBoxWidth} height={viewBoxHeight} fill="#0B0D13" />
 
-          {/* Fine horizontal grid lines (#1E2433) */}
+          {/* Fine horizontal grid lines */}
           {Array.from({ length: divisionsY + 1 }).map((_, i) => {
             const y = (viewBoxHeight / divisionsY) * i;
             const gVal = scaleG - (i * (2 * scaleG)) / divisionsY;
@@ -212,7 +227,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
                   y1={y}
                   x2={viewBoxWidth}
                   y2={y}
-                  stroke="#1E2433"
+                  stroke="#161C2A"
                   strokeWidth="1"
                 />
                 <text
@@ -228,7 +243,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
             );
           })}
 
-          {/* Fine vertical time division grid lines (#1E2433) */}
+          {/* Fine vertical time division grid lines */}
           {Array.from({ length: divisionsX + 1 }).map((_, j) => {
             const x = (viewBoxWidth / divisionsX) * j;
             return (
@@ -238,24 +253,36 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
                 y1={0}
                 x2={x}
                 y2={viewBoxHeight}
-                stroke="#1E2433"
+                stroke="#161C2A"
                 strokeWidth="1"
               />
             );
           })}
 
-          {/* Zero Datum Baseline */}
+          {/* Explicit Dashed Zero-Datum Reference Line at 0.0g */}
           <line
             x1={0}
             y1={zeroY}
             x2={viewBoxWidth}
             y2={zeroY}
-            stroke="#273248"
-            strokeWidth="1.2"
-            strokeDasharray="4 4"
+            stroke="#38BDF8"
+            strokeWidth="1.5"
+            strokeDasharray="6 4"
+            opacity={0.8}
           />
+          <text
+            x={viewBoxWidth - 165}
+            y={zeroY - 4}
+            fill="#38BDF8"
+            fontSize="9.5"
+            fontFamily="JetBrains Mono, monospace"
+            fontWeight="bold"
+            opacity={0.85}
+          >
+            0.0g DATUM (ZERO BIAS)
+          </text>
 
-          {/* 1.0g Earth Gravity Reference Line */}
+          {/* 1.0g Earth Gravity Reference Line (Visible when in Raw mode or for datum comparison) */}
           {(() => {
             const g1Y = zeroY - (1.0 / scaleG) * (viewBoxHeight / 2);
             if (g1Y >= 0 && g1Y <= viewBoxHeight) {
@@ -266,17 +293,17 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
                     y1={g1Y}
                     x2={viewBoxWidth}
                     y2={g1Y}
-                    stroke="rgba(56, 189, 248, 0.2)"
-                    strokeWidth="1"
-                    strokeDasharray="2 2"
+                    stroke={zMode === 'RAW' ? '#F59E0B' : 'rgba(148, 163, 184, 0.3)'}
+                    strokeWidth="1.2"
+                    strokeDasharray="3 3"
                   />
                   <text
-                    x={viewBoxWidth - 110}
+                    x={viewBoxWidth - 145}
                     y={g1Y - 4}
-                    fill="#38BDF8"
+                    fill={zMode === 'RAW' ? '#F59E0B' : '#94A3B8'}
                     fontSize="9"
                     fontFamily="JetBrains Mono, monospace"
-                    opacity={0.6}
+                    opacity={0.7}
                   >
                     1.0g GRAVITY DATUM
                   </text>
@@ -346,7 +373,7 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
       </div>
 
       {/* Industrial SCADA Footer Strip */}
-      <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+      <div className="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-500">
         <div className="flex items-center gap-2">
           <span
             className={`w-1.5 h-1.5 rounded-full ${
@@ -359,7 +386,9 @@ export const TelemetryGraph: React.FC<TelemetryGraphProps> = ({
               : 'ACQUISITION HALTED • HARDWARE STANDBY'}
           </span>
         </div>
-        <div>CALIBRATION: ±2g DYNAMIC RANGE • ZERO GRAVITY OFFSET REMOVED</div>
+        <div>
+          MODE: {zMode === 'DYNAMIC' ? 'DYNAMIC Z (a_z,dyn = a_z - 1.0g)' : 'RAW Z ACCELERATION'} • ZERO GRAVITY COMPENSATED
+        </div>
       </div>
     </div>
   );

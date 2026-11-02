@@ -78,10 +78,10 @@ export const ResonanceSpectrum: React.FC<ResonanceSpectrumProps> = ({
           : isResonanceAlert
           ? 'border-amber-500/60 shadow-[0_0_20px_rgba(245,158,11,0.15)]'
           : 'border-[#1E2433]'
-      } rounded p-4 flex flex-col justify-between transition-colors duration-200 ${className}`}
+      } rounded p-3 flex flex-col justify-between transition-colors duration-200 ${className}`}
     >
       {/* Top Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2433] pb-2.5 mb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2433] pb-2 mb-2">
         <div className="flex items-center gap-2">
           <Radio className="w-4 h-4 text-amber-400" />
           <h3 className="text-xs font-mono font-semibold tracking-wider text-slate-200 uppercase">
@@ -173,6 +173,26 @@ export const ResonanceSpectrum: React.FC<ResonanceSpectrumProps> = ({
           className="w-full h-36 md:h-40 block"
           preserveAspectRatio="none"
         >
+          <defs>
+            {/* Subtle red/amber diagonal hatch pattern for structural hazard band */}
+            <pattern
+              id="hazardHatch"
+              width="10"
+              height="10"
+              patternTransform="rotate(45 0 0)"
+              patternUnits="userSpaceOnUse"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="10"
+                stroke={isResonanceAlert || isSeismic ? 'rgba(239, 68, 68, 0.35)' : 'rgba(245, 158, 11, 0.22)'}
+                strokeWidth="2"
+              />
+            </pattern>
+          </defs>
+
           {/* Subtle Grid horizontal divisions */}
           {[0.25, 0.5, 0.75, 1.0].map((frac) => {
             const y = paddingTop + chartHeight * (1 - frac);
@@ -190,14 +210,39 @@ export const ResonanceSpectrum: React.FC<ResonanceSpectrumProps> = ({
             );
           })}
 
-          {/* Highlighted Structural Hazard Zone (1.0 Hz - 8.0 Hz) */}
+          {/* Highlighted Structural Hazard Zone (1.0 Hz - 8.0 Hz) with Diagonal Hatch */}
           <rect
             x={xMinDanger}
             y={paddingTop}
             width={xMaxDanger - xMinDanger}
             height={chartHeight}
-            fill={isResonanceAlert ? 'rgba(245, 158, 11, 0.12)' : 'rgba(245, 158, 11, 0.05)'}
+            fill="url(#hazardHatch)"
           />
+          <rect
+            x={xMinDanger}
+            y={paddingTop}
+            width={xMaxDanger - xMinDanger}
+            height={chartHeight}
+            fill={
+              isSeismic
+                ? 'rgba(239, 68, 68, 0.12)'
+                : isResonanceAlert
+                ? 'rgba(245, 158, 11, 0.12)'
+                : 'rgba(245, 158, 11, 0.04)'
+            }
+          />
+          <text
+            x={(xMinDanger + xMaxDanger) / 2}
+            y={paddingTop + chartHeight / 2}
+            textAnchor="middle"
+            fill={isSeismic ? 'rgba(239, 68, 68, 0.6)' : isResonanceAlert ? 'rgba(245, 158, 11, 0.65)' : 'rgba(245, 158, 11, 0.35)'}
+            fontSize="9"
+            fontFamily="JetBrains Mono, monospace"
+            letterSpacing="0.8"
+            fontWeight="bold"
+          >
+            STRUCTURAL HAZARD BAND (1.0 - 8.0 Hz)
+          </text>
 
           {/* Danger Band Minimum Threshold Line (1.0 Hz - Amber) */}
           <line
@@ -313,6 +358,54 @@ export const ResonanceSpectrum: React.FC<ResonanceSpectrumProps> = ({
               />
             );
           })}
+
+          {/* Dynamic Indicator Marker Pin Floating Above Dominant Peak Bar */}
+          {isConnected && dominantFreq > 0 && (() => {
+            const peakX = freqToX(dominantFreq);
+            const peakBarHeight = chartHeight * Math.max(0.04, Math.min(1.0, Math.max(0.2, peakMagnitude * 1.4)));
+            const peakY = paddingTop + chartHeight - peakBarHeight;
+            // Clamp marker X so pill doesn't clip off svg edges
+            const markerX = Math.max(70, Math.min(width - 70, peakX));
+            const markerY = Math.max(paddingTop + 14, peakY - 8);
+
+            return (
+              <g key="peak-marker-pin" className="transition-all duration-150">
+                {/* Pointer guide tick */}
+                <line
+                  x1={peakX}
+                  y1={markerY + 2}
+                  x2={peakX}
+                  y2={peakY}
+                  stroke={isSeismic ? '#EF4444' : isResonanceAlert ? '#F59E0B' : '#06B6D4'}
+                  strokeWidth="1.2"
+                  strokeDasharray="2 2"
+                />
+                {/* Floating pill badge */}
+                <rect
+                  x={markerX - 66}
+                  y={markerY - 14}
+                  width="132"
+                  height="16"
+                  rx="3"
+                  fill="#0B0E17"
+                  stroke={isSeismic ? '#EF4444' : isResonanceAlert ? '#F59E0B' : '#06B6D4'}
+                  strokeWidth="1.2"
+                  className="shadow-lg"
+                />
+                <text
+                  x={markerX}
+                  y={markerY - 3}
+                  textAnchor="middle"
+                  fill={isSeismic ? '#EF4444' : isResonanceAlert ? '#F59E0B' : '#38BDF8'}
+                  fontSize="8.5"
+                  fontFamily="JetBrains Mono, monospace"
+                  fontWeight="bold"
+                >
+                  ▼ {dominantFreq.toFixed(2)} Hz @ {peakMagnitude.toFixed(2)} g²/Hz
+                </text>
+              </g>
+            );
+          })()}
 
           {/* Bottom Frequency Axis Labels across 0 - 25 Hz (Ticks every 5 Hz) */}
           {[0, 5, 10, 15, 20, 25].map((fTick) => {

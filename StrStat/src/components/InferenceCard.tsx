@@ -72,8 +72,8 @@ export const InferenceCard: React.FC<InferenceCardProps> = ({
   };
 
   return (
-    <div className="bg-[#111318] border border-[#1F2430] rounded p-4 flex flex-col justify-between">
-      <div className="flex items-center justify-between border-b border-[#1F2430] pb-2.5 mb-3">
+    <div className="bg-[#111318] border border-[#1F2430] rounded p-3 flex flex-col justify-between">
+      <div className="flex items-center justify-between border-b border-[#1F2430] pb-2 mb-2.5">
         <div className="flex items-center gap-2">
           <Cpu className="w-4 h-4 text-emerald-400" />
           <h3 className="text-xs font-mono font-semibold tracking-wider text-slate-200 uppercase">
@@ -86,11 +86,11 @@ export const InferenceCard: React.FC<InferenceCardProps> = ({
       </div>
 
       {/* State Banner */}
-      <div className={`p-3 rounded border flex items-center justify-between gap-3 mb-3 ${status.color}`}>
-        <div className="flex items-center gap-2.5">
-          <span className={`w-2.5 h-2.5 rounded-full ${status.dot}`}></span>
+      <div className={`p-2 rounded border flex items-center justify-between gap-2 mb-2 ${status.color}`}>
+        <div className="flex items-center gap-2">
+          <span className={`w-2 h-2 rounded-full ${status.dot}`}></span>
           <div>
-            <span className="text-[10px] font-mono block tracking-wider uppercase opacity-75">
+            <span className="text-[9px] font-mono block tracking-wider uppercase opacity-75">
               CURRENT STATE INDICATOR
             </span>
             <span className="text-xs font-mono font-semibold tracking-wide">
@@ -98,11 +98,11 @@ export const InferenceCard: React.FC<InferenceCardProps> = ({
             </span>
           </div>
         </div>
-        <StatusIcon className="w-5 h-5 flex-shrink-0" />
+        <StatusIcon className="w-4 h-4 flex-shrink-0" />
       </div>
 
       {/* Anomaly Gauge & Probability */}
-      <div className="space-y-3 font-mono text-xs">
+      <div className="space-y-2 font-mono text-xs">
         <div>
           <div className="flex justify-between items-baseline mb-1">
             <span className="text-[10px] text-slate-500 uppercase">ANOMALY SCORE:</span>

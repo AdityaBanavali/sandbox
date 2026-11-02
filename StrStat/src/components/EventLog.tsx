@@ -32,8 +32,8 @@ export const EventLog: React.FC<EventLogProps> = ({
   };
 
   return (
-    <div className="bg-[#111318] border border-[#1F2430] rounded p-4 flex flex-col justify-between">
-      <div className="flex flex-wrap items-center justify-between border-b border-[#1F2430] pb-2.5 mb-2.5 gap-2">
+    <div className="bg-[#111318] border border-[#1F2430] rounded p-3 flex flex-col justify-between">
+      <div className="flex flex-wrap items-center justify-between border-b border-[#1F2430] pb-2 mb-2 gap-2">
         <div className="flex items-center gap-2">
           <Terminal className="w-4 h-4 text-slate-400" />
           <h3 className="text-xs font-mono font-semibold tracking-wider text-slate-200 uppercase">
@@ -51,16 +51,16 @@ export const EventLog: React.FC<EventLogProps> = ({
             <button
               onClick={onExportCSV}
               title="Download Incident Flight Recorder CSV"
-              className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded text-[11px] font-mono transition flex items-center gap-1.5"
+              className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[10px] font-mono transition flex items-center gap-1.5"
             >
               <Download className="w-3 h-3" />
-              <span>EXPORT SEISMOGRAM CSV</span>
+              <span>EXPORT CSV</span>
             </button>
           )}
           <button
             onClick={onClear}
             title="Clear Event Log"
-            className="text-slate-500 hover:text-slate-300 transition flex items-center gap-1 text-[11px] font-mono px-1 py-1"
+            className="text-slate-500 hover:text-slate-300 transition flex items-center gap-1 text-[10px] font-mono px-1 py-0.5"
           >
             <Trash2 className="w-3 h-3" />
             <span>PURGE</span>
@@ -68,7 +68,7 @@ export const EventLog: React.FC<EventLogProps> = ({
         </div>
       </div>
 
-      <div className="bg-[#090A0F] border border-[#1F2430] rounded p-2.5 font-mono text-[11px] overflow-y-auto max-h-48 space-y-1.5">
+      <div className="bg-[#090A0F] border border-[#1F2430] rounded p-2 font-mono text-[11px] overflow-y-auto max-h-32 space-y-1">
         {logs.length === 0 ? (
           <div className="text-slate-600 italic py-2">No active incidents or telemetry warnings recorded.</div>
         ) : (

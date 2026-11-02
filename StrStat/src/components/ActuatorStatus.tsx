@@ -59,8 +59,8 @@ export const ActuatorStatus: React.FC<ActuatorStatusProps> = ({
   };
 
   return (
-    <div className="bg-[#0B0D13] border border-[#1F2430] rounded p-4 flex flex-col justify-between shadow-lg">
-      <div className="flex items-center justify-between border-b border-[#1F2430] pb-2.5 mb-3">
+    <div className="bg-[#0B0D13] border border-[#1F2430] rounded p-3 flex flex-col justify-between shadow-lg">
+      <div className="flex items-center justify-between border-b border-[#1F2430] pb-2 mb-2.5">
         <div className="flex items-center gap-2">
           <ShieldAlert className="w-4 h-4 text-rose-400" />
           <h3 className="text-xs font-mono font-semibold tracking-wider text-slate-200 uppercase">
@@ -83,10 +83,10 @@ export const ActuatorStatus: React.FC<ActuatorStatusProps> = ({
       </div>
 
       {/* Actuator States */}
-      <div className="grid grid-cols-2 gap-3 mb-3 font-mono">
+      <div className="grid grid-cols-2 gap-2 mb-2 font-mono">
         {/* Safety Barrier Gate */}
         <div
-          className={`p-3 rounded border flex flex-col justify-between gap-2 transition-colors ${
+          className={`p-2 rounded border flex flex-col justify-between gap-1.5 transition-colors ${
             !isConnected
               ? 'bg-[#07090F] border-[#1F2430] text-slate-500'
               : barrierDeployed

@@ -1,5 +1,29 @@
 export type InferenceState = 'NOMINAL' | 'RESONANCE_WARNING' | 'SEISMIC_EVENT';
 
+export type SimulationProfile =
+  | 'LIVE'
+  | 'RESONANCE_SWEEP'
+  | 'EL_CENTRO_1940'
+  | 'STIFFNESS_DRIFT'
+  | 'FOUNDATION_SETTLEMENT';
+
+export interface TareOffset {
+  ax: number;
+  ay: number;
+  az: number; // static gravity offset (az - 1.0g)
+  pitch: number;
+  roll: number;
+}
+
+export interface DriftEvaluation {
+  displacementMm: number;
+  storyHeightMm: number;
+  driftRatio: number;
+  isPass: boolean;
+  statusText: string;
+  badgeText: string;
+}
+
 export interface ImuData {
   accel: {
     x: number;
