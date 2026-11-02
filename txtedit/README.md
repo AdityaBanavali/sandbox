@@ -59,6 +59,7 @@ A high-performance text editing engine and real-time autocomplete search REPL im
 
 - **Zero-Reallocation Prefix Extraction**: Traverses piece boundaries backwards from the cursor to isolate the active typing prefix into a small stack buffer with zero heap allocations.
 - **Append-Only Buffer Semantics**: User keystrokes append to the add buffer in $O(1)$ amortized time. Existing piece descriptors are split and linked without large array reallocations.
+- **Frequency-Ranked Learning Autocomplete**: Trie nodes cache the top-$K$ ($K = 5$) completions directly at each prefix node, reducing prefix lookup from full DFS $O(M)$ to $O(L + K)$. Tracks word frequencies, sorts by frequency descending then alphabetically, and persists learned completions across sessions (`trie_save` / `trie_load`).
 - **Real-Time Autocomplete Suggestions**: Keystrokes query the Trie in real time to display up to $K$ ranked completions below the search bar.
 - **In-Line Terminal Cursor Navigation**: ANSI escape controls provide left/right navigation, delete, and backspace while keeping the terminal cursor pinned to the exact document character index.
 - **Non-Destructive Undo / Redo**: Snapshot-based piece chain delta records enable undo (Ctrl+Z) and redo (Ctrl+Y / Ctrl+R) for keystroke corrections.
@@ -69,20 +70,26 @@ A high-performance text editing engine and real-time autocomplete search REPL im
 ## 📁 Repository Structure
 
 ```
-.
-├── piece_table.h       # Piece Table struct declarations and API (zero terminal dependencies)
-├── piece_table.c       # Piece splitting, buffer append, rendering, undo/redo
-├── trie.h              # 128-ary ASCII Trie interface and result definitions
-├── trie.c              # Trie node allocation, insertion, prefix DFS search
-├── wasm_api.h          # Headless / WebAssembly C API declarations (EMSCRIPTEN_KEEPALIVE)
-├── wasm_api.c          # Global editor instance, JSON serialisation, Trie word loader
-├── search_repl.c       # Raw terminal interactive search REPL loop (CLI)
-├── test_integration.c  # Headless automated integration test suite (Core + WASM API)
-├── main.c              # Command-line batch REPL (CLI)
-├── commands.txt        # Scripted batch command input file
-├── output.txt          # Batch command output capture
-├── run_demo.sh         # Turnkey build, test, and execution script
-└── Makefile            # Multi-target build system (CLI, tests, WASM)
+txtedit/
+├── src/
+│   ├── piece_table.c/.h    # Piece Table engine (buffers, piece descriptors, undo/redo)
+│   ├── trie.c/.h           # 128-ary ASCII Trie (top-K cached learning autocomplete)
+│   └── wasm_api.c/.h       # Headless C API for WebAssembly (EMSCRIPTEN_KEEPALIVE)
+├── cli/
+│   ├── main.c              # Batch command-line REPL
+│   ├── search_repl.c       # Raw terminal interactive search REPL loop (ANSI UI)
+│   └── test_integration.c # Automated integration test suite (Core + WASM)
+├── demo/
+│   ├── commands.txt        # Scripted batch command input file
+│   ├── output.txt          # Batch command output capture reference
+│   └── run_demo.sh         # Turnkey build, test, and execution script
+├── web/                    # Web frontend deployed on Vercel
+│   ├── index.html, app.js, style.css, words.txt, commands.txt, vercel.json
+│   └── editor.js, editor.wasm (compiled WebAssembly artifacts)
+├── build/                  # Compiled object files and CLI binaries (gitignored)
+├── Makefile                # Multi-target build system (CLI, tests, WASM)
+├── README.md               # Architecture documentation and API references
+└── .gitignore              # Ignored build artifacts and system files
 ```
 
 ---
@@ -96,11 +103,17 @@ A high-performance text editing engine and real-time autocomplete search REPL im
 ### Targets
 
 ```bash
-# Compile interactive search REPL (optimized -O2)
+# Compile CLI binaries and object files to build/
 make
 
 # Run automated ASan integration test (zero memory leaks check)
 make test
+
+# Run turnkey demo script
+./demo/run_demo.sh
+
+# Build WebAssembly modules for web/
+make wasm
 
 # Clean build artifacts
 make clean
@@ -109,7 +122,7 @@ make clean
 ### Launch Interactive REPL
 
 ```bash
-./search_repl
+./build/search_repl
 ```
 
 ---
@@ -182,15 +195,22 @@ piece_table_free(&pt);
 
 TrieNode *root = trie_create_node();
 
-// Insert vocabulary
+// Insert vocabulary (initial frequency = 1)
 trie_insert(root, "algorithm");
 trie_insert(root, "allocate");
 
-// Query prefix completions
+// Increment word frequency on user acceptance / completion
+trie_increment(root, "allocate");
+
+// Query top-K completions: O(L + K)
 TrieSearchResults *res = trie_search_prefix(root, "al", 5);
 for (size_t i = 0; i < res->count; i++) {
-    printf("Suggestion: %s\n", res->suggestions[i]);
+    printf("Suggestion [%u]: %s\n", res->frequencies[i], res->suggestions[i]);
 }
+
+// Persist and restore learned vocabulary & frequencies across sessions
+trie_save(root, ".txtedit_history.dat");
+trie_load(root, ".txtedit_history.dat");
 
 // Teardown
 trie_free_results(res);

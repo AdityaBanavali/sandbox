@@ -98,6 +98,7 @@ int main(void) {
         return EXIT_FAILURE;
     }
     seed_trie(trie_root);
+    trie_load(trie_root, ".txtedit_history.dat");
 
     enable_raw_mode();
 
@@ -248,6 +249,7 @@ int main(void) {
         if (c == '\t') {
             if (results && results->count > 0 && prefix_len > 0) {
                 const char *top = results->suggestions[0];
+                trie_increment(trie_root, top);
                 size_t word_len = strlen(top);
                 /* Replace typed prefix with completion */
                 size_t prefix_start = cursor - prefix_len;
@@ -261,6 +263,9 @@ int main(void) {
 
         /* Enter key commits line and resets */
         if (c == '\r' || c == '\n') {
+            if (prefix_len > 0) {
+                trie_increment(trie_root, prefix);
+            }
             printf("\r\033[J");
             char *completed = piece_table_render(&pt, NULL);
             printf("Committed search query: \"%s\"\n", completed ? completed : "");
@@ -275,6 +280,9 @@ int main(void) {
 
         /* Printable characters */
         if ((unsigned char)c >= 32 && (unsigned char)c <= 126) {
+            if (c == ' ' && prefix_len > 0) {
+                trie_increment(trie_root, prefix);
+            }
             char insert_buf[2] = { c, '\0' };
             if (insert_text(&pt, cursor, insert_buf)) {
                 cursor++;
@@ -290,6 +298,7 @@ int main(void) {
     /* Clear suggestion lines on exit and clean up */
     printf("\r\033[JExiting search REPL.\n");
 
+    trie_save(trie_root, ".txtedit_history.dat");
     trie_free(trie_root);
     piece_table_free(&pt);
 

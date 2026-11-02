@@ -140,6 +140,77 @@ int main(void) {
 
     editor_cleanup();
 
+    /* ---------------------------------------------------------
+     * 3. Phase 1: Frequency-Ranked Learning Autocomplete & Persistence
+     * --------------------------------------------------------- */
+    TrieNode *learn_trie = trie_create_node();
+    assert(learn_trie);
+    assert(trie_insert(learn_trie, "apple"));
+    assert(trie_insert(learn_trie, "application"));
+    assert(trie_insert(learn_trie, "apply"));
+
+    /* Initially all have frequency 1, so tie-breaker is alphabetical */
+    TrieSearchResults *lr = trie_search_prefix(learn_trie, "app", 5);
+    assert(lr != NULL);
+    assert(lr->count == 3);
+    assert(strcmp(lr->suggestions[0], "apple") == 0);
+    assert(strcmp(lr->suggestions[1], "application") == 0);
+    assert(strcmp(lr->suggestions[2], "apply") == 0);
+    trie_free_results(lr);
+
+    /* Increment "apply" twice -> frequency = 3 */
+    assert(trie_increment(learn_trie, "apply"));
+    assert(trie_increment(learn_trie, "apply"));
+
+    lr = trie_search_prefix(learn_trie, "app", 5);
+    assert(lr != NULL);
+    assert(lr->count == 3);
+    assert(strcmp(lr->suggestions[0], "apply") == 0);
+    assert(lr->frequencies[0] == 3);
+    assert(strcmp(lr->suggestions[1], "apple") == 0);
+    assert(strcmp(lr->suggestions[2], "application") == 0);
+    trie_free_results(lr);
+
+    /* Increment "application" 5 times -> frequency = 6 */
+    for (int i = 0; i < 5; i++) {
+        assert(trie_increment(learn_trie, "application"));
+    }
+
+    lr = trie_search_prefix(learn_trie, "app", 5);
+    assert(lr != NULL);
+    assert(lr->count == 3);
+    assert(strcmp(lr->suggestions[0], "application") == 0);
+    assert(lr->frequencies[0] == 6);
+    assert(strcmp(lr->suggestions[1], "apply") == 0);
+    assert(lr->frequencies[1] == 3);
+    assert(strcmp(lr->suggestions[2], "apple") == 0);
+    assert(lr->frequencies[2] == 1);
+    trie_free_results(lr);
+
+    /* Save to file */
+    const char *test_dump_path = "test_trie_persist.dat";
+    assert(trie_save(learn_trie, test_dump_path));
+    trie_free(learn_trie);
+
+    /* Load into fresh trie and verify round trip */
+    TrieNode *loaded_trie = trie_create_node();
+    assert(loaded_trie);
+    assert(trie_load(loaded_trie, test_dump_path));
+
+    lr = trie_search_prefix(loaded_trie, "app", 5);
+    assert(lr != NULL);
+    assert(lr->count == 3);
+    assert(strcmp(lr->suggestions[0], "application") == 0);
+    assert(lr->frequencies[0] == 6);
+    assert(strcmp(lr->suggestions[1], "apply") == 0);
+    assert(lr->frequencies[1] == 3);
+    assert(strcmp(lr->suggestions[2], "apple") == 0);
+    assert(lr->frequencies[2] == 1);
+    trie_free_results(lr);
+
+    trie_free(loaded_trie);
+    remove(test_dump_path);
+
     printf("ALL TESTS (CORE + WASM API) PASSED WITH ZERO LEAKS.\n");
     return 0;
 }

@@ -1,8 +1,12 @@
 CC ?= clang
-CFLAGS ?= -Wall -Wextra -pedantic -std=c99 -O2 -g
+CFLAGS ?= -Wall -Wextra -pedantic -std=c99 -O2 -g -Isrc
 
-COMMON_OBJS = piece_table.o trie.o
-TARGETS = search_repl piece_table_repl
+SRC_DIR = src
+CLI_DIR = cli
+BUILD_DIR = build
+
+COMMON_OBJS = $(BUILD_DIR)/piece_table.o $(BUILD_DIR)/trie.o
+TARGETS = $(BUILD_DIR)/search_repl $(BUILD_DIR)/piece_table_repl
 
 EMCC ?= $(shell which emcc 2>/dev/null || echo "/opt/homebrew/bin/emcc")
 WASM_FLAGS = -O2 \
@@ -11,35 +15,48 @@ WASM_FLAGS = -O2 \
              -s EXPORTED_RUNTIME_METHODS=ccall,cwrap,UTF8ToString,stringToUTF8 \
              -s ALLOW_MEMORY_GROWTH=1
 
-.PHONY: all clean test wasm
+.PHONY: all clean test wasm demo search_repl piece_table_repl
 
-all: $(TARGETS) wasm_api.o
+all: $(TARGETS) $(BUILD_DIR)/wasm_api.o
 
-search_repl: search_repl.o $(COMMON_OBJS)
+search_repl: $(BUILD_DIR)/search_repl
+piece_table_repl: $(BUILD_DIR)/piece_table_repl
+
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/search_repl: $(BUILD_DIR)/search_repl.o $(COMMON_OBJS) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
 
-piece_table_repl: main.o piece_table.o
+$(BUILD_DIR)/piece_table_repl: $(BUILD_DIR)/main.o $(BUILD_DIR)/piece_table.o | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
 
-wasm_api.o: wasm_api.c wasm_api.h piece_table.h trie.h
-	$(CC) $(CFLAGS) -c wasm_api.c -o $@
-
-%.o: %.c
+$(BUILD_DIR)/piece_table.o: $(SRC_DIR)/piece_table.c $(SRC_DIR)/piece_table.h | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-piece_table.o: piece_table.c piece_table.h
-trie.o: trie.c trie.h
-main.o: main.c piece_table.h
-search_repl.o: search_repl.c piece_table.h trie.h
+$(BUILD_DIR)/trie.o: $(SRC_DIR)/trie.c $(SRC_DIR)/trie.h | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-test: test_integration.c $(COMMON_OBJS) wasm_api.o
-	$(CC) $(CFLAGS) -fsanitize=address,undefined $(COMMON_OBJS) wasm_api.o test_integration.c -o test_runner
-	./test_runner
-	rm -f test_runner
+$(BUILD_DIR)/wasm_api.o: $(SRC_DIR)/wasm_api.c $(SRC_DIR)/wasm_api.h $(SRC_DIR)/piece_table.h $(SRC_DIR)/trie.h | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-wasm: piece_table.c trie.c wasm_api.c
+$(BUILD_DIR)/main.o: $(CLI_DIR)/main.c $(SRC_DIR)/piece_table.h | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/search_repl.o: $(CLI_DIR)/search_repl.c $(SRC_DIR)/piece_table.h $(SRC_DIR)/trie.h | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+test: $(COMMON_OBJS) $(BUILD_DIR)/wasm_api.o $(CLI_DIR)/test_integration.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -fsanitize=address,undefined $(COMMON_OBJS) $(BUILD_DIR)/wasm_api.o $(CLI_DIR)/test_integration.c -o $(BUILD_DIR)/test_runner
+	./$(BUILD_DIR)/test_runner
+	rm -f $(BUILD_DIR)/test_runner
+
+wasm: $(SRC_DIR)/piece_table.c $(SRC_DIR)/trie.c $(SRC_DIR)/wasm_api.c
 	@mkdir -p web
-	$(EMCC) $(WASM_FLAGS) piece_table.c trie.c wasm_api.c -o web/editor.js
+	$(EMCC) $(WASM_FLAGS) -I$(SRC_DIR) $^ -o web/editor.js
+
+demo: $(BUILD_DIR)/piece_table_repl
+	./demo/run_demo.sh
 
 clean:
-	rm -f *.o $(TARGETS) test_runner web/editor.js web/editor.wasm
+	rm -rf $(BUILD_DIR) test_runner web/editor.js web/editor.wasm

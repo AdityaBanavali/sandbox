@@ -1,3 +1,9 @@
+# Build directory
+build/
+
+# Local convenience symlinks
+run_demo.sh
+
 # Object files and debug symbols
 *.o
 *.dSYM/
@@ -7,10 +13,14 @@ test_runner
 piece_table_repl
 search_repl
 main_asan
+bench
+bench_results.csv
 
 # OS and temporary files
 .DS_Store
 piece_table_submission.zip
+*.zip
+*.dat
 
 # Ensure web/ directory contents are tracked
 !web/
