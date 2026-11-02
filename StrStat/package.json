@@ -17,6 +17,10 @@
     "recharts": "^3.10.1",
     "three": "^0.186.1"
   },
+  "optionalDependencies": {
+    "@esbuild/darwin-arm64": "^0.25.12",
+    "@rollup/rollup-darwin-arm64": "^4.64.5"
+  },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
